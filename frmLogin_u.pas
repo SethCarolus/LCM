@@ -25,7 +25,6 @@ var
   frmMain: TfrmMain;
 
 implementation
-
 {$R *.dfm}
 
 end.

@@ -5276,7 +5276,6 @@ object frmMain: TfrmMain
         Value = 30.000000000000000000
       end>
     TabOrder = 0
-    ExplicitHeight = 800
     DesignSize = (
       984
       761)
