@@ -48,3 +48,6 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+# XML Docs
+xml documentation/
