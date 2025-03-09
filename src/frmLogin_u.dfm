@@ -5276,8 +5276,6 @@ object frmMain: TfrmMain
         Value = 30.000000000000000000
       end>
     TabOrder = 0
-    ExplicitWidth = 982
-    ExplicitHeight = 753
     DesignSize = (
       984
       761)
@@ -5323,9 +5321,6 @@ object frmMain: TfrmMain
           Value = 33.333333333333310000
         end>
       TabOrder = 0
-      ExplicitTop = 226
-      ExplicitWidth = 982
-      ExplicitHeight = 301
       object btnLogin: TButton
         AlignWithMargins = True
         Left = 100
@@ -5346,9 +5341,6 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 0
         OnClick = btnLoginClick
-        ExplicitTop = 221
-        ExplicitWidth = 782
-        ExplicitHeight = 60
       end
       object edtUsername: TLabeledEdit
         AlignWithMargins = True
@@ -5368,7 +5360,6 @@ object frmMain: TfrmMain
         TabOrder = 1
         Text = ''
         OnChange = edtUsernameChange
-        ExplicitWidth = 782
         ExplicitHeight = 29
       end
       object edtPassword: TLabeledEdit
@@ -5389,8 +5380,6 @@ object frmMain: TfrmMain
         TabOrder = 2
         Text = ''
         OnChange = edtPasswordChange
-        ExplicitTop = 120
-        ExplicitWidth = 782
         ExplicitHeight = 29
       end
     end

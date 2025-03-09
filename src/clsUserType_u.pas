@@ -52,11 +52,15 @@ type
     procedure setDescription(const description: string);
 
   public
+
+    constructor create(const id: Integer; const name: string;
+                                          const description: string);
+
     {TODO -oOwner -cUserType : Create Constructor}
     /// <summary>
     /// Represents the id of the user-type.
     /// </summary>
-    property id: Integer read getId write setId;
+    property Id: Integer read getId write setId;
 
     /// <summary>
     /// Represents the name of the user-type.
@@ -66,7 +70,7 @@ type
     /// <summary>
     /// Represents the description of the user-type.
     /// </summary>
-    property description: string read getDescription write setDescription;
+    property Description: string read getDescription write setDescription;
 
   end;
 
@@ -75,6 +79,14 @@ implementation
 { TUserType }
 
 { TUserType }
+
+constructor TUserType.create(const id: Integer; const name,
+  description: string);
+begin
+  Self.Id := id;
+  Self.Name := name;
+  Self.Description := description;
+end;
 
 function TUserType.getDescription: string;
 begin

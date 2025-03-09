@@ -25,6 +25,15 @@ type
     /// <param name="password">The password entered by the user.</param>
     /// <returns>True if the password matches the user's stored password, otherwise False.</returns>
     function passwordCorrect(const username: string; const password: string): Boolean;
+
+    /// <summary>
+    /// Retrieves the user type ID associated with the specified username from the database.
+    /// </summary>
+    /// <param name="username">The username for which the user type ID is to be retrieved.</param>
+    /// <returns>
+    /// The user type ID as an integer. Returns 0 if the username is not found or if an error occurs.
+    /// </returns>
+    function getUserTypeIdWith(const username: string): Integer;
   end;
 
 implementation
@@ -34,7 +43,25 @@ implementation
 
 constructor TUserHandler.create;
 begin
+end;
 
+function TUserHandler.getUserTypeIdWith(const username: string): Integer;
+begin
+  with dmMain.qryMain do
+    begin
+      Close;
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblUser
+        WHERE username = :username;
+      ''';
+
+      Parameters.ParamByName('username').Value := username.Trim();
+      Open;
+
+      Result := FieldByName('user_type_id').AsInteger;
+   end;
 end;
 
 function TUserHandler.passwordCorrect(const username,
@@ -52,7 +79,7 @@ begin
       Exit;
     end;
 
-  With dmMain.qryMain do
+  with dmMain.qryMain do
     begin
       Close;
       SQL.Text :=

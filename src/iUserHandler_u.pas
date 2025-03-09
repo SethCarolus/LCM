@@ -22,6 +22,15 @@ type
     /// <param name="password">The password entered by the user.</param>
     /// <returns>True if the password matches the user's stored password, otherwise False.</returns>
     function passwordCorrect(const username: string; const password: string): Boolean;
+
+    /// <summary>
+    /// Retrieves the user type ID associated with the specified username from the database.
+    /// </summary>
+    /// <param name="username">The username for which the user type ID is to be retrieved.</param>
+    /// <returns>
+    /// The user type ID as an integer. Returns 0 if the username is not found or if an error occurs.
+    /// </returns>
+    function getUserTypeIdWith(const username: string): Integer;
   end;
 
 implementation

@@ -30,6 +30,8 @@ type
     function getPassword(): string;
     procedure setPassword(const password: string);
     property Password: string read getPassword write setPassword;
+
+    procedure navigate();
   end;
 
 var
@@ -38,7 +40,7 @@ var
 implementation
 {$R *.dfm}
 
-uses frmViewVehicles_u, login_u;
+uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u;
 
 var
   sUsername: string;
@@ -52,10 +54,8 @@ begin
       Exit;
     end;
   ShowMessage('Welcome to LCM');
-  var viewVehicles := TfrmViewVehicles.Create(Self);
-  viewVehicles.Show();
-  Self.Hide();
 
+  Navigate();
 end;
 
 procedure TfrmMain.edtPasswordChange(Sender: TObject);
@@ -78,6 +78,34 @@ begin
   Result := sUsername;
 end;
 
+procedure TfrmMain.navigate;
+begin
+  var userTypeId := GetUserTypeIdWith(Username);
+
+  case userTypeId of
+    // Driver
+    1:
+      begin
+        ShowMessage('Welcome Driver!');
+      end;
+    // Learner
+    2:
+      begin
+        ShowMessage('Welcome Parent!');
+      end;
+    // Parent
+    3:
+      begin
+        ShowMessage('Welcome Student!');
+      end;
+    else
+      begin
+        ShowMessage('Something went wrong!: {User type doesn''t exist}. Contact Help.');
+        Exit;
+      end;
+  end;
+end;
+
 procedure TfrmMain.setPassword(const password: string);
 begin
   sPassword := password;
@@ -88,4 +116,4 @@ begin
   sUsername := username;
 end;
 
-end.s
+end.

@@ -26,7 +26,9 @@ uses
   iImageHandler_u in 'iImageHandler_u.pas',
   clsImageHandler_u in 'clsImageHandler_u.pas',
   login_u in 'login_u.pas',
-  forms_u in 'forms_u.pas';
+  iUserTypeHandler_u in 'iUserTypeHandler_u.pas',
+  clsUserTypeHandler_u in 'clsUserTypeHandler_u.pas',
+  clsApplicationState_u in 'clsApplicationState_u.pas';
 
 {$R *.res}
 

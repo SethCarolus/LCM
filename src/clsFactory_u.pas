@@ -3,7 +3,7 @@ unit clsFactory_u;
 interface
 
 uses IVehicle_u, IImage_u, Generics.Collections, iVehicleHandler_u,
-    iImageHandler_u, iUserHandler_u;
+    iImageHandler_u, iUserHandler_u, iUserType_u;
 
 type
 
@@ -58,18 +58,21 @@ type
     class function createImage(const id: Integer; const fileName: string;
       const uploadedOn: TDate; const description: string): IImage; overload;
 
+
+    class function createUserType(const id: Integer; const name: string;
+                                          const description: string) : IUserType;
+
     // Handlers
 
     class function createVehicleHandler(): IVehicleHandler;
     class function createImageHandler(): IImageHandler;
     class function createUserHandler(): IUserHandler;
-
   end;
 
 implementation
 
 uses SysUtils, clsVehicle_u, clsVehicleHandler_u, clsImage_u, clsImageHandler_u,
-     clsUserHandler_u;
+     clsUserHandler_u, clsUserType_u;
 
 { TFactory }
 
@@ -94,6 +97,12 @@ begin
   Result := TUserHandler.create();
 end;
 
+class function TFactory.createUserType(const id: Integer; const name,
+  description: string): IUserType;
+begin
+  Result := TUserType.create(id, name, description);
+end;
+
 class function TFactory.createImage: IImage;
 begin
   Result := TImage.Create();
@@ -115,5 +124,4 @@ class function TFactory.createVehicle: IVehicle;
 begin
   Result := TVehicle.create();
 end;
-
 end.

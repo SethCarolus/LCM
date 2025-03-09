@@ -175,7 +175,9 @@
         <DCCReference Include="iImageHandler_u.pas"/>
         <DCCReference Include="clsImageHandler_u.pas"/>
         <DCCReference Include="login_u.pas"/>
-        <DCCReference Include="forms_u.pas"/>
+        <DCCReference Include="iUserTypeHandler_u.pas"/>
+        <DCCReference Include="clsUserTypeHandler_u.pas"/>
+        <DCCReference Include="clsApplicationState_u.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
