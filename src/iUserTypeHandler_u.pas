@@ -10,7 +10,6 @@ type
   /// </summary>
   IUserTypeHandler = interface
     function getUserTypes(): TList<IUserType>;
-    function getUserTypeWith(const id: Integer): IUserType;
   end;
 
 implementation

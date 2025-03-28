@@ -2,35 +2,29 @@ unit login_u;
 
 interface
 
-uses iUserType_u, iUser_u;
+uses iUserType_u;
 
-function login(const username: string; const password: string): Boolean;
-function getUserTypeIdWith(const username: string): Integer;
-function getUserWith(const username: string): IUser;
+function Login(const username: string; const password: string): Boolean;
+function GetUserTypeIdWith(const username: string): Integer;
 
 implementation
 
 uses iUserHandler_u, clsFactory_u, iUserTypeHandler_u;
 
-function login(const username: string; const password: string): Boolean;
+function Login(const username: string; const password: string): Boolean;
 begin
   var userHandler := TFactory.createUserHandler();
 
   Result := userHandler.userExists(username) and
             userHandler.passwordCorrect(username, password);
+  
 end;
 
-function getUserTypeIdWith(const username: string): Integer;
+function GetUserTypeIdWith(const username: string): Integer;
 begin
   var handler := TFactory.createUserHandler();
 
   Result := handler.getUserTypeIdWith(username);
-end;
-
-function getUserWith(const username: string): IUser;
-begin
-  var handler := TFactory.createUserHandler();
-  Result := handler.getUserWith(username);
 end;
 
 end.

@@ -12,9 +12,9 @@ type
     GridPanel1: TGridPanel;
     GridPanel2: TGridPanel;
     btnLogin: TButton;
+    edtUsername: TLabeledEdit;
+    edtPassword: TLabeledEdit;
     Image1: TImage;
-    edtUsername: TEdit;
-    edtPassword: TEdit;
     procedure btnLoginClick(Sender: TObject);
     procedure edtUsernameChange(Sender: TObject);
     procedure edtPasswordChange(Sender: TObject);
@@ -40,7 +40,7 @@ var
 implementation
 {$R *.dfm}
 
-uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u, frmDriverMenu_u;
+uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u;
 
 var
   sUsername: string;
@@ -48,14 +48,12 @@ var
 
 procedure TfrmMain.btnLoginClick(Sender: TObject);
 begin
-  if not login(Username, Password) then
+  if not Login(Username, Password) then
     begin
       ShowMessage('Login Failed!');
       Exit;
     end;
   ShowMessage('Welcome to LCM');
-
-  TApplicationState.CurrentUser := getUserWith(Username);
 
   Navigate();
 end;
@@ -89,14 +87,6 @@ begin
     1:
       begin
         ShowMessage('Welcome Driver!');
-        var form := TFrmDriverMenu.Create(Self);
-        try
-          Hide();
-          form.ShowModal();
-        finally
-          FreeAndNil(form)
-        end;
-        Show();
       end;
     // Learner
     2:

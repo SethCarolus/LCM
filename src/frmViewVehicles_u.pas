@@ -95,6 +95,7 @@ begin
     begin
       lstVehicleNames.Items.Add(v.model);
     end;
+    var hello: string;
 end;
 
 procedure TfrmViewVehicles.FormClose(Sender: TObject; var Action: TCloseAction);

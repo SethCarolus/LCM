@@ -5294,12 +5294,12 @@ object frmDriverMenu: TfrmDriverMenu
           Value = 33.333333333333340000
         end
         item
-          Value = 33.333333333333310000
+          Value = 33.333333333333340000
         end>
       ControlCollection = <
         item
           Column = 0
-          Control = btnMessages
+          Control = Button1
           Row = 0
         end
         item
@@ -5335,7 +5335,9 @@ object frmDriverMenu: TfrmDriverMenu
           Value = 50.000000000000000000
         end>
       TabOrder = 0
-      object btnMessages: TButton
+      ExplicitTop = 228
+      ExplicitHeight = 305
+      object Button1: TButton
         AlignWithMargins = True
         Left = 10
         Top = 10
@@ -5348,7 +5350,10 @@ object frmDriverMenu: TfrmDriverMenu
         Align = alClient
         Caption = 'Messages'
         TabOrder = 0
-        OnClick = btnMessagesClick
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
       object Button2: TButton
         AlignWithMargins = True
@@ -5361,7 +5366,12 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Messages'
         TabOrder = 1
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
       object Button3: TButton
         AlignWithMargins = True
@@ -5374,7 +5384,12 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Messages'
         TabOrder = 2
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
       object Button4: TButton
         AlignWithMargins = True
@@ -5387,7 +5402,12 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Messages'
         TabOrder = 3
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
       object Button5: TButton
         AlignWithMargins = True
@@ -5400,7 +5420,12 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Messages'
         TabOrder = 4
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
       object Button6: TButton
         AlignWithMargins = True
@@ -5413,7 +5438,12 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Messages'
         TabOrder = 5
+        ExplicitLeft = 152
+        ExplicitTop = 64
+        ExplicitWidth = 75
+        ExplicitHeight = 25
       end
     end
     object Panel1: TPanel

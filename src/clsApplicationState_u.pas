@@ -2,13 +2,12 @@ unit clsApplicationState_u;
 
 interface
 
-uses Generics.Collections, iUser_u, iChat_u;
+uses Generics.Collections, iDriver_u;
 
 type
   TApplicationState = class
     public
-      class var CurrentUser: IUser;
-      class var Chats: TList<IChat>;
+      class var Driver: IDriver;
   end;
 
 implementation

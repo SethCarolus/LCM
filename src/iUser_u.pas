@@ -59,42 +59,6 @@ type
     procedure setLastName(const lastName: string);
 
     /// <summary>
-    /// Function that returns the last name of the user.
-    /// </summary>
-    /// <returns>The last name of the user.</returns>
-    function getDisplayName: string;
-
-    /// <summary>
-    /// Procedure that sets the display name of the user.
-    /// </summary>
-    /// <param name="displayName">Display name to assign to the user.</param>
-    procedure setDisplayName(const displayName: string);
-
-    /// <summary>
-    /// Function that returns the date and time the user account was created on.
-    /// </summary>
-    /// <returns>the date and time the user account was created on</returns>
-    function getCreatedOn(): TDateTime;
-
-    /// <summary>
-    /// Procedure that sets the date and time the user account was created on.
-    /// </summary>
-    /// <param name="createdOn">the date and time the user account was created on.</param>
-    procedure setCreatedOn(const createdOn: TDateTime);
-
-    /// <summary>
-    /// Function that returns the date and time the user last logged on.
-    /// </summary>
-    /// <returns>The date and time the user last logged on.</returns>
-    function getLastLogin(): TDateTime;
-
-    /// <summary>
-    /// Procedure that sets the date and time the user last logged on.
-    /// </summary>
-    /// <param name="lastLogin">The date and time the user last logged on.</param>
-    procedure setLastLogin(const lastLogin: TDateTime);
-
-    /// <summary>
     /// Function that returns the user-type of the user.
     /// </summary>
     /// <returns>The user-type of the user.</returns>
@@ -109,37 +73,22 @@ type
     /// <summary>
     /// Represents the id of the user.
     /// </summary>
-    property Id: Integer read getId write setId;
+    property id: Integer read getId write setId;
 
     /// <summary>
     /// Represents the username of the user.
     /// </summary>
-    property Username: string read getUsername write setUsername;
+    property username: string read getUsername write setUsername;
 
     /// <summary>
     /// Represents the first name of the user.
     /// </summary>
-    property FirstName: string read getFirstName write setFirstName;
+    property firstName: string read getFirstName write setFirstName;
 
     /// <summary>
     /// Represents the last name of the user.
     /// </summary>
-    property LastName: string read getLastName write setLastName;
-
-    /// <summary>
-    /// Represents the display name of the user.
-    /// </summary>
-    property DisplayName: string read getDisplayName write setDisplayName;
-
-    /// <summary>
-    /// Represents the date and time the user account was created on.
-    /// </summary>
-    property CreatedOn: TDateTime read getCreatedOn write setCreatedOn;
-
-    /// <summary>
-    /// Represents Represents the date and time the user last logged in on.
-    /// </summary>
-    property LastLogin: TDateTime read getLastLogin write setLastLogin;
+    property lastName: string read getLastName write setLastName;
 
     /// <summary>
     /// Represents the user-type of the user.

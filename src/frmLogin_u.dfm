@@ -1,5 +1,5 @@
 object frmMain: TfrmMain
-  Left = 41
+  Left = 32
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -5342,7 +5342,7 @@ object frmMain: TfrmMain
         TabOrder = 0
         OnClick = btnLoginClick
       end
-      object edtUsername: TEdit
+      object edtUsername: TLabeledEdit
         AlignWithMargins = True
         Left = 100
         Top = 20
@@ -5354,13 +5354,15 @@ object frmMain: TfrmMain
         Margins.Bottom = 20
         Align = alClient
         Alignment = taCenter
+        EditLabel.Width = 71
+        EditLabel.Height = 21
+        EditLabel.Caption = 'Username'
         TabOrder = 1
-        Text = 'driver_susan'
-        TextHint = 'username'
+        Text = ''
         OnChange = edtUsernameChange
         ExplicitHeight = 29
       end
-      object edtPassword: TEdit
+      object edtPassword: TLabeledEdit
         AlignWithMargins = True
         Left = 100
         Top = 122
@@ -5372,9 +5374,11 @@ object frmMain: TfrmMain
         Margins.Bottom = 20
         Align = alClient
         Alignment = taCenter
+        EditLabel.Width = 65
+        EditLabel.Height = 21
+        EditLabel.Caption = 'Password'
         TabOrder = 2
-        Text = 'pass123'
-        TextHint = 'password'
+        Text = ''
         OnChange = edtPasswordChange
         ExplicitHeight = 29
       end
