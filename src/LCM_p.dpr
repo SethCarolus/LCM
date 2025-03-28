@@ -28,7 +28,16 @@ uses
   login_u in 'login_u.pas',
   iUserTypeHandler_u in 'iUserTypeHandler_u.pas',
   clsUserTypeHandler_u in 'clsUserTypeHandler_u.pas',
-  clsApplicationState_u in 'clsApplicationState_u.pas';
+  clsApplicationState_u in 'clsApplicationState_u.pas',
+  frmMessages_u in 'frmMessages_u.pas' {frmMessages},
+  clsMessage_u in 'clsMessage_u.pas',
+  iMessage_u in 'iMessage_u.pas',
+  clsMessageHandler_u in 'clsMessageHandler_u.pas',
+  iMessageHandler_u in 'iMessageHandler_u.pas',
+  clsChat_u in 'clsChat_u.pas',
+  iChat_u in 'iChat_u.pas',
+  IChatHandler_u in 'IChatHandler_u.pas',
+  clsChatHandler_u in 'clsChatHandler_u.pas';
 
 {$R *.res}
 
@@ -39,6 +48,7 @@ begin
   Application.CreateForm(TfrmDriverMenu, frmDriverMenu);
   Application.CreateForm(TdmMain, dmMain);
   Application.CreateForm(TfrmViewVehicles, frmViewVehicles);
+  Application.CreateForm(TfrmMessages, frmMessages);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

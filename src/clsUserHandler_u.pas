@@ -1,7 +1,7 @@
 unit clsUserHandler_u;
 
 interface
-  uses iUserHandler_u;
+  uses iUserHandler_u, iUser_u;
 
 type
   /// <summary>
@@ -34,10 +34,13 @@ type
     /// The user type ID as an integer. Returns 0 if the username is not found or if an error occurs.
     /// </returns>
     function getUserTypeIdWith(const username: string): Integer;
+
+    function getUserWith(const username: string): IUser ;overload;
+    function getUserWith(const id: Integer): IUser ;overload;
   end;
 
 implementation
-  uses dmMain_u, SysUtils;
+  uses dmMain_u, SysUtils, clsFactory_u;
 
 { TUserHandler }
 
@@ -62,6 +65,68 @@ begin
 
       Result := FieldByName('user_type_id').AsInteger;
    end;
+end;
+
+function TUserHandler.getUserWith(const id: Integer): IUser;
+begin
+
+  with dmMain.qryMain do
+    begin
+      Close;
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblUser
+        WHERE id = :id;
+      ''';
+
+      Parameters.ParamByName('id').Value := id;
+      Open;
+
+      Result := TFactory.createUser(
+                                    FieldByName('id').AsInteger,
+                                    FieldByName('username').AsString,
+                                    FieldByName('first_name').AsString,
+                                    FieldByName('last_name').AsString,
+                                    FieldByName('display_name').AsString,
+                                    FieldByName('created_on').AsDateTime,
+                                    FieldByName('last_login').AsDateTime, nil);
+    var userTypeHandler := TFactory.createUserTypeHandler();
+    Result.UserType := userTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)
+   end;
+
+end;
+
+function TUserHandler.getUserWith(const username: string): IUser;
+begin
+  if (string.IsNullOrEmpty(username)) then
+    raise Exception.Create('username cannot be null');
+
+  with dmMain.qryMain do
+    begin
+      Close;
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblUser
+        WHERE username = :username;
+      ''';
+
+      Parameters.ParamByName('username').Value := username.Trim();
+      Open;
+
+      Result := TFactory.createUser(
+                                    FieldByName('id').AsInteger,
+                                    FieldByName('username').AsString,
+                                    FieldByName('first_name').AsString,
+                                    FieldByName('last_name').AsString,
+                                    FieldByName('display_name').AsString,
+                                    FieldByName('created_on').AsDateTime,
+                                    FieldByName('last_login').AsDateTime, nil);
+    var userTypeHandler := TFactory.createUserTypeHandler();
+    Result.UserType := userTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)
+   end;
+
 end;
 
 function TUserHandler.passwordCorrect(const username,

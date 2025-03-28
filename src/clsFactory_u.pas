@@ -3,7 +3,8 @@ unit clsFactory_u;
 interface
 
 uses IVehicle_u, IImage_u, Generics.Collections, iVehicleHandler_u,
-    iImageHandler_u, iUserHandler_u, iUserType_u;
+    iImageHandler_u, iUserHandler_u, iUserType_u, iMessageHandler_u, iMessage_u,
+    iUser_u, iUserTypeHandler_u, iChat_u, IChatHandler_u;
 
 type
 
@@ -62,23 +63,47 @@ type
     class function createUserType(const id: Integer; const name: string;
                                           const description: string) : IUserType;
 
+    class function createMessage(const id: Integer; const senderId: Integer;
+                                 const receiverId: Integer; const content: string;
+                                 const timeStamp: TDateTime; const isRead: Boolean) : IMessage;
+
+    class function createUser(const id: Integer; username, firstName, lastName, displayName: string;
+                              const createdOn: TDateTime; const lastLogin: TDateTime;
+                              const userType: IUserType): IUser;
+
+    class function createChat(const messages: TList<IMessage>; const displayName: string): IChat;
     // Handlers
 
     class function createVehicleHandler(): IVehicleHandler;
     class function createImageHandler(): IImageHandler;
     class function createUserHandler(): IUserHandler;
+    class function createMessageHandler(): IMessageHandler;
+    class function createUserTypeHandler(): IUserTypeHandler;
+    class function createChatHandler(): IChatHandler;
   end;
 
 implementation
 
 uses SysUtils, clsVehicle_u, clsVehicleHandler_u, clsImage_u, clsImageHandler_u,
-     clsUserHandler_u, clsUserType_u;
+     clsUserHandler_u, clsUserType_u, clsMessageHandler_u, clsMessage_u, clsUser_u,
+     clsUserTypeHandler_u, clsChat_u, clsChatHandler_u;
 
 { TFactory }
 
 constructor TFactory.create;
 begin
   raise Exception.Create('Cannot Instatiate TFactory!');
+end;
+
+class function TFactory.createChat(const messages: TList<IMessage>;
+  const displayName: string): IChat;
+begin
+  Result := TChat.create(messages, displayName);
+end;
+
+class function TFactory.createChatHandler: IChatHandler;
+begin
+  Result := TChatHandler.Create();
 end;
 
 class function TFactory.createImage(const id: Integer; const fileName: string;
@@ -89,7 +114,26 @@ end;
 
 class function TFactory.createImageHandler: IImageHandler;
 begin
-  Result := TImageHandler.Create();
+  Result := TImageHandler.create();
+end;
+
+class function TFactory.createMessage(const id, senderId, receiverId: Integer;
+  const content: string; const timeStamp: TDateTime;
+  const isRead: Boolean): IMessage;
+begin
+  Result := TMessage.create(id, receiverId, senderId, content, timeStamp, isRead)
+end;
+
+class function TFactory.createMessageHandler: IMessageHandler;
+begin
+  Result := TMessageHandler.create();
+end;
+
+class function TFactory.createUser(const id: Integer; username, firstName, lastName, displayName: string;
+                              const createdOn: TDateTime; const lastLogin: TDateTime;
+                              const userType: IUserType): IUser;
+begin
+  Result := TUser.create(id, username, firstName, lastName, displayName, createdOn, lastLogin, userType);
 end;
 
 class function TFactory.createUserHandler: IUserHandler;
@@ -103,9 +147,14 @@ begin
   Result := TUserType.create(id, name, description);
 end;
 
+class function TFactory.createUserTypeHandler: IUserTypeHandler;
+begin
+  Result := TUserTypeHandler.create();
+end;
+
 class function TFactory.createImage: IImage;
 begin
-  Result := TImage.Create();
+  Result := TImage.create();
 end;
 
 class function TFactory.createVehicle(const id: Integer; const model,

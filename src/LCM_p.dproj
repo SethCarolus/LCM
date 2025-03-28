@@ -113,7 +113,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_OutputXMLDocumentation>true</DCC_OutputXMLDocumentation>
+        <DCC_OutputXMLDocumentation>false</DCC_OutputXMLDocumentation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -178,6 +178,18 @@
         <DCCReference Include="iUserTypeHandler_u.pas"/>
         <DCCReference Include="clsUserTypeHandler_u.pas"/>
         <DCCReference Include="clsApplicationState_u.pas"/>
+        <DCCReference Include="frmMessages_u.pas">
+            <Form>frmMessages</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="clsMessage_u.pas"/>
+        <DCCReference Include="iMessage_u.pas"/>
+        <DCCReference Include="clsMessageHandler_u.pas"/>
+        <DCCReference Include="iMessageHandler_u.pas"/>
+        <DCCReference Include="clsChat_u.pas"/>
+        <DCCReference Include="iChat_u.pas"/>
+        <DCCReference Include="IChatHandler_u.pas"/>
+        <DCCReference Include="clsChatHandler_u.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -2,6 +2,8 @@ unit iUserHandler_u;
 
 interface
 
+uses iUser_u;
+
 type
   /// <summary>
   /// Represents an interface for handling user data interactions.
@@ -31,6 +33,10 @@ type
     /// The user type ID as an integer. Returns 0 if the username is not found or if an error occurs.
     /// </returns>
     function getUserTypeIdWith(const username: string): Integer;
+
+    function getUserWith(const username: string): IUser ;overload;
+
+    function getUserWith(const id: Integer): IUser ;overload;
   end;
 
 implementation
