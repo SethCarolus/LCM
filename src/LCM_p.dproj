@@ -198,6 +198,10 @@
             <Form>frmViewRequests</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="frmStudentMenu_u.pas">
+            <Form>frmStudentMenu</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

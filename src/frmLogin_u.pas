@@ -41,7 +41,8 @@ var
 implementation
 {$R *.dfm}
 
-uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u, frmDriverMenu_u;
+uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u,
+     frmDriverMenu_u, frmStudentMenu_u;
 
 var
   sUsername: string;
@@ -114,6 +115,14 @@ begin
     3:
       begin
         ShowMessage('Welcome Student!');
+        var form := TfrmStudentMenu.Create(Self);
+        try
+          Hide();
+          form.ShowModal();
+        finally
+          FreeAndNil(form);
+        end;
+        Show();
       end;
     else
       begin

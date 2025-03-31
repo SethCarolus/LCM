@@ -39,7 +39,8 @@ uses
   IChatHandler_u in 'IChatHandler_u.pas',
   clsChatHandler_u in 'clsChatHandler_u.pas',
   frmRequest_u in 'frmRequest_u.pas' {frmRequest},
-  frmViewRequests_u in 'frmViewRequests_u.pas' {frmViewRequests};
+  frmViewRequests_u in 'frmViewRequests_u.pas' {frmViewRequests},
+  frmStudentMenu_u in 'frmStudentMenu_u.pas' {frmStudentMenu};
 
 {$R *.res}
 
@@ -53,6 +54,7 @@ begin
   Application.CreateForm(TfrmMessages, frmMessages);
   Application.CreateForm(TfrmRequest, frmRequest);
   Application.CreateForm(TfrmViewRequests, frmViewRequests);
+  Application.CreateForm(TfrmStudentMenu, frmStudentMenu);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.
