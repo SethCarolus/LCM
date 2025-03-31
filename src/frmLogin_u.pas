@@ -42,7 +42,7 @@ implementation
 {$R *.dfm}
 
 uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u,
-     frmDriverMenu_u, frmStudentMenu_u;
+     frmDriverMenu_u, frmStudentMenu_u, frmParentMenu_u;
 
 var
   sUsername: string;
@@ -110,6 +110,14 @@ begin
     2:
       begin
         ShowMessage('Welcome Parent!');
+        var form := TFrmParentMenu.Create(Self);
+        try
+          Hide();
+          form.ShowModal();
+        finally
+          FreeAndNil(form)
+        end;
+        Show();
       end;
     // Parent
     3:

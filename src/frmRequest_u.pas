@@ -42,6 +42,8 @@ begin
   var handler := TFactory.createUserHandler();
   handler.sendMessageRequest(TApplicationState.CurrentUser.Id,
                              TApplicationState.SelectedUserForRequest.Id);
+  ShowMessage('Send Request to: ' + TApplicationState.SelectedUserForRequest.DisplayName);
+  Close();
 end;
 
 procedure TfrmRequest.FormActivate(Sender: TObject);

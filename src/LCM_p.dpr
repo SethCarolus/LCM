@@ -40,7 +40,8 @@ uses
   clsChatHandler_u in 'clsChatHandler_u.pas',
   frmRequest_u in 'frmRequest_u.pas' {frmRequest},
   frmViewRequests_u in 'frmViewRequests_u.pas' {frmViewRequests},
-  frmStudentMenu_u in 'frmStudentMenu_u.pas' {frmStudentMenu};
+  frmStudentMenu_u in 'frmStudentMenu_u.pas' {frmStudentMenu},
+  frmParentMenu_u in 'frmParentMenu_u.pas' {frmParentMenu};
 
 {$R *.res}
 
@@ -55,6 +56,7 @@ begin
   Application.CreateForm(TfrmRequest, frmRequest);
   Application.CreateForm(TfrmViewRequests, frmViewRequests);
   Application.CreateForm(TfrmStudentMenu, frmStudentMenu);
+  Application.CreateForm(TfrmParentMenu, frmParentMenu);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.
