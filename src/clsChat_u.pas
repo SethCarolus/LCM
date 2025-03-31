@@ -8,8 +8,12 @@ type
   /// </summary>
   TChat = class(TInterfacedObject, iChat)
     private
+      fUserId: Integer;
       fMessages: TList<IMessage>;
       fDisplayName: string;
+
+      function getUserId: Integer;
+      procedure setUserId(const userId: Integer);
 
       function getMessages(): TList<IMessage>;
       procedure setMessages(const message: TList<IMessage>);
@@ -18,7 +22,13 @@ type
       procedure setDisplayName(const displayName: string);
     public
 
-      constructor create(const messages: TList<IMessage>; const displayName: string);
+      constructor create(const messages: TList<IMessage>;const userId: Integer
+                         ;const displayName: string);
+
+      /// <summary>
+      /// Represents the user's id of the chat
+      /// </summary>
+      property UserId: Integer read getUserId write setUserId;
 
       /// <summary>
       /// Represents the messages of a chat
@@ -35,10 +45,11 @@ implementation
 
 { TChat }
 
-constructor TChat.create(const messages: TList<IMessage>;
-  const displayName: string);
+constructor TChat.create(const messages: TList<IMessage>;const userId: Integer
+                         ;const displayName: string);
 begin
   Self.Messages := messages;
+  Self.UserId := userId;
   Self.DisplayName := displayName;
 end;
 
@@ -52,6 +63,11 @@ begin
   Result := fMessages;
 end;
 
+function TChat.getUserId: Integer;
+begin
+ Result := fUserId;
+end;
+
 procedure TChat.setDisplayName(const displayName: string);
 begin
   fDisplayName := displayName;
@@ -60,6 +76,11 @@ end;
 procedure TChat.setMessages(const message: TList<IMessage>);
 begin
   fMessages := message;
+end;
+
+procedure TChat.setUserId(const userId: Integer);
+begin
+  fUserId := userId;
 end;
 
 end.

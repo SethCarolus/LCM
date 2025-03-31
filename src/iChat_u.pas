@@ -8,12 +8,21 @@ type
   /// <summary>
   /// An interface a chat between two users
   /// </summary>
-  iChat = interface
+  IChat = interface
+    function getUserId: Integer;
+    procedure setUserId(const userId: Integer);
+
     function getMessages(): TList<IMessage>;
     procedure setMessages(const message: TList<IMessage>);
 
     function getDisplayName(): string;
     procedure setDisplayName(const displayName: string);
+
+
+    /// <summary>
+    /// Represents the user's id of the chat
+    /// </summary>
+    property UserId: Integer read getUserId write setUserId;
 
     /// <summary>
     ///   Represents the messages of a chat

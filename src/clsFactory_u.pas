@@ -71,7 +71,9 @@ type
                               const createdOn: TDateTime; const lastLogin: TDateTime;
                               const userType: IUserType): IUser;
 
-    class function createChat(const messages: TList<IMessage>; const displayName: string): IChat;
+    class function createChat(const messages: TList<IMessage>;
+                                   const UserId: Integer;
+                                   const displayName: string): IChat;
     // Handlers
 
     class function createVehicleHandler(): IVehicleHandler;
@@ -96,9 +98,10 @@ begin
 end;
 
 class function TFactory.createChat(const messages: TList<IMessage>;
-  const displayName: string): IChat;
+                                   const UserId: Integer;
+                                   const displayName: string): IChat;
 begin
-  Result := TChat.create(messages, displayName);
+  Result := TChat.create(messages, userId,displayName);
 end;
 
 class function TFactory.createChatHandler: IChatHandler;
@@ -121,7 +124,7 @@ class function TFactory.createMessage(const id, senderId, receiverId: Integer;
   const content: string; const timeStamp: TDateTime;
   const isRead: Boolean): IMessage;
 begin
-  Result := TMessage.create(id, receiverId, senderId, content, timeStamp, isRead)
+  Result := TMessage.create(id, senderId, receiverId, content, timeStamp, isRead)
 end;
 
 class function TFactory.createMessageHandler: IMessageHandler;

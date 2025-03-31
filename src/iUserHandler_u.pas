@@ -2,7 +2,7 @@ unit iUserHandler_u;
 
 interface
 
-uses iUser_u;
+uses iUser_u, Generics.Collections;
 
 type
   /// <summary>
@@ -37,6 +37,10 @@ type
     function getUserWith(const username: string): IUser ;overload;
 
     function getUserWith(const id: Integer): IUser ;overload;
+
+    function getAllUsers(): TList<IUser>;
+
+    procedure sendMessageRequest(const senderId: Integer; const receiverId: Integer);
   end;
 
 implementation

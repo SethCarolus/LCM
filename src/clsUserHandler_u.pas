@@ -1,7 +1,7 @@
 unit clsUserHandler_u;
 
 interface
-  uses iUserHandler_u, iUser_u;
+  uses iUserHandler_u, iUser_u,  Generics.Collections;
 
 type
   /// <summary>
@@ -36,7 +36,12 @@ type
     function getUserTypeIdWith(const username: string): Integer;
 
     function getUserWith(const username: string): IUser ;overload;
+
     function getUserWith(const id: Integer): IUser ;overload;
+
+    function getAllUsers(): TList<IUser>;
+
+    procedure sendMessageRequest(const senderId: Integer; const receiverId: Integer);
   end;
 
 implementation
@@ -46,6 +51,44 @@ implementation
 
 constructor TUserHandler.create;
 begin
+end;
+
+function TUserHandler.getAllUsers: TList<IUser>;
+begin
+  Result := TList<IUser>.Create();
+  var userTypeIds := TList<Integer>.Create();
+
+  var userTypeHandler := TFactory.createUserTypeHandler();
+
+  with dmMain.qryMain do
+    begin
+      Close;
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblUser
+      ''';
+      Open;
+      while not Eof do
+        begin
+          Result.Add(TFactory.createUser(
+                                        FieldByName('id').AsInteger,
+                                        FieldByName('username').AsString,
+                                        FieldByName('first_name').AsString,
+                                        FieldByName('last_name').AsString,
+                                        FieldByName('display_name').AsString,
+                                        FieldByName('created_on').AsDateTime,
+                                        FieldByName('last_login').AsDateTime, nil));
+          userTypeIds.Add(FieldByName('user_type_id').AsInteger);
+          Next();
+        end;
+   end;
+
+   for var i := 0 to Result.Count - 1 do
+    begin
+      Result[i].UserType := userTypeHandler.getUserTypeWith(userTypeIds[i]);
+    end;
+
 end;
 
 function TUserHandler.getUserTypeIdWith(const username: string): Integer;
@@ -157,6 +200,22 @@ begin
       Open;
 
       Result := FieldByName('password').AsString.Trim() = password.Trim()
+    end;
+end;
+
+procedure TUserHandler.sendMessageRequest(const senderId, receiverId: Integer);
+begin
+  with dmMain.qryMain do
+    begin
+      Close;
+      Sql.Text :=
+      '''
+        INSERT INTO tblMessageRequest (sender_id, receiver_id)
+        VALUES (:senderId, :receiverId)
+      ''';
+      Parameters.ParamByName('senderId').Value := senderId;
+      Parameters.ParamByName('receiverId').Value := receiverId;
+      ExecSQL();
     end;
 end;
 

@@ -190,6 +190,14 @@
         <DCCReference Include="iChat_u.pas"/>
         <DCCReference Include="IChatHandler_u.pas"/>
         <DCCReference Include="clsChatHandler_u.pas"/>
+        <DCCReference Include="frmRequest_u.pas">
+            <Form>frmRequest</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmViewRequests_u.pas">
+            <Form>frmViewRequests</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

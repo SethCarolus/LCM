@@ -37,7 +37,9 @@ uses
   clsChat_u in 'clsChat_u.pas',
   iChat_u in 'iChat_u.pas',
   IChatHandler_u in 'IChatHandler_u.pas',
-  clsChatHandler_u in 'clsChatHandler_u.pas';
+  clsChatHandler_u in 'clsChatHandler_u.pas',
+  frmRequest_u in 'frmRequest_u.pas' {frmRequest},
+  frmViewRequests_u in 'frmViewRequests_u.pas' {frmViewRequests};
 
 {$R *.res}
 
@@ -49,6 +51,8 @@ begin
   Application.CreateForm(TdmMain, dmMain);
   Application.CreateForm(TfrmViewVehicles, frmViewVehicles);
   Application.CreateForm(TfrmMessages, frmMessages);
+  Application.CreateForm(TfrmRequest, frmRequest);
+  Application.CreateForm(TfrmViewRequests, frmViewRequests);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

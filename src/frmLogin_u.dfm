@@ -1,9 +1,8 @@
 object frmMain: TfrmMain
-  Left = 41
+  Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'LCM'
   ClientHeight = 761
   ClientWidth = 984
   Color = clBtnFace
@@ -5242,6 +5241,7 @@ object frmMain: TfrmMain
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
   Position = poDesigned
+  OnActivate = FormActivate
   TextHeight = 21
   object GridPanel1: TGridPanel
     Left = 0

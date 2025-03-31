@@ -1,15 +1,16 @@
-object frmMessages: TfrmMessages
+object frmRequest: TfrmRequest
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'LCM'
   ClientHeight = 761
-  ClientWidth = 986
+  ClientWidth = 984
   Color = clBtnFace
-  Font.Charset = ANSI_CHARSET
+  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -16
-  Font.Name = 'Segoe UI Variable Display'
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
   Font.Style = []
   Icon.Data = {
     0000010009001010000001002000680400009600000018180000010020008809
@@ -5240,13 +5241,13 @@ object frmMessages: TfrmMessages
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
-  Position = poDesigned
   OnActivate = FormActivate
-  TextHeight = 21
+  OnClose = FormClose
+  TextHeight = 15
   object GridPanel1: TGridPanel
     Left = 0
     Top = 0
-    Width = 986
+    Width = 984
     Height = 761
     Margins.Left = 0
     Margins.Right = 0
@@ -5256,141 +5257,65 @@ object frmMessages: TfrmMessages
     BevelOuter = bvNone
     ColumnCollection = <
       item
-        Value = 30.000000000000000000
+        Value = 20.000000000000000000
       end
       item
         Value = 60.000000000000000000
       end
       item
-        Value = 10.000000000000000000
+        Value = 20.000000000000000000
       end>
     ControlCollection = <
       item
-        Column = 0
+        Column = 1
         Control = Label1
         Row = 0
       end
       item
         Column = 1
-        ColumnSpan = 2
-        Control = redChat
-        Row = 1
-        RowSpan = 3
-      end
-      item
-        Column = 1
-        Control = edtMessage
-        Row = 4
-      end
-      item
-        Column = 2
-        Control = btnSendMessage
-        Row = 4
-      end
-      item
-        Column = 1
-        ColumnSpan = 2
-        Control = pnlChatName
-        Row = 0
-      end
-      item
-        Column = 0
-        Control = lstChatDisplayNames
+        Control = btnSend
         Row = 2
       end
       item
-        Column = 0
-        Control = btnRequest
+        Column = 1
+        Control = lstDisplayNames
         Row = 1
-      end
-      item
-        Column = 0
-        Control = btnViewMessageRequests
-        Row = 3
-      end
-      item
-        Column = 0
-        Control = btnRefresh
-        Row = 4
       end>
     RowCollection = <
       item
         Value = 10.000000000000000000
       end
       item
-        Value = 10.000000000000000000
-      end
-      item
-        Value = 60.000000000000000000
-      end
-      item
-        Value = 10.000000000000000000
+        Value = 80.000000000000000000
       end
       item
         Value = 10.000000000000000000
       end>
     TabOrder = 0
     DesignSize = (
-      986
+      984
       761)
     object Label1: TLabel
-      Left = 113
+      Left = 444
       Top = 20
-      Width = 69
+      Width = 96
       Height = 36
       Anchors = []
-      Caption = 'Chats'
+      Caption = 'Request'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -27
       Font.Name = 'Segoe UI Variable Display'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 127
-      ExplicitTop = 27
+      ExplicitLeft = 457
+      ExplicitTop = 29
     end
-    object redChat: TRichEdit
+    object btnSend: TButton
       AlignWithMargins = True
-      Left = 306
-      Top = 86
-      Width = 670
-      Height = 589
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      BevelInner = bvNone
-      HideScrollBars = False
-      PlainText = True
-      ReadOnly = True
-      ScrollBars = ssVertical
-      TabOrder = 0
-    end
-    object edtMessage: TEdit
-      AlignWithMargins = True
-      Left = 306
+      Left = 207
       Top = 695
-      Width = 571
-      Height = 56
-      Hint = 'Type a message'
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 1
-      TextHint = 'Type a message'
-      OnChange = edtMessageChange
-      ExplicitHeight = 29
-    end
-    object btnSendMessage: TButton
-      AlignWithMargins = True
-      Left = 897
-      Top = 695
-      Width = 79
+      Width = 570
       Height = 56
       Margins.Left = 10
       Margins.Top = 10
@@ -5398,88 +5323,24 @@ object frmMessages: TfrmMessages
       Margins.Bottom = 10
       Align = alClient
       Caption = 'Send'
-      TabOrder = 2
-      OnClick = btnSendMessageClick
+      TabOrder = 0
+      OnClick = btnSendClick
     end
-    object pnlChatName: TPanel
+    object lstDisplayNames: TListBox
       AlignWithMargins = True
-      Left = 306
-      Top = 10
-      Width = 670
-      Height = 56
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      TabOrder = 3
-    end
-    object lstChatDisplayNames: TListBox
-      AlignWithMargins = True
-      Left = 10
-      Top = 162
-      Width = 276
-      Height = 437
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      ExtendedSelect = False
-      ItemHeight = 21
-      TabOrder = 4
-      OnClick = lstChatDisplayNamesClick
-    end
-    object btnRequest: TButton
-      AlignWithMargins = True
-      Left = 10
+      Left = 207
       Top = 86
-      Width = 276
-      Height = 56
+      Width = 570
+      Height = 589
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Caption = 'Request'
-      TabOrder = 5
-      OnClick = btnRequestClick
+      Columns = 1
+      ItemHeight = 15
+      TabOrder = 1
+      OnClick = lstDisplayNamesClick
     end
-    object btnViewMessageRequests: TButton
-      AlignWithMargins = True
-      Left = 10
-      Top = 619
-      Width = 276
-      Height = 56
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      Caption = 'View Requests'
-      TabOrder = 6
-      OnClick = btnViewMessageRequestsClick
-    end
-    object btnRefresh: TButton
-      AlignWithMargins = True
-      Left = 10
-      Top = 695
-      Width = 276
-      Height = 56
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      Caption = 'Refresh'
-      TabOrder = 7
-      OnClick = btnRefreshClick
-    end
-  end
-  object Timer1: TTimer
-    Interval = 500
-    OnTimer = Timer1Timer
-    Left = 912
-    Top = 592
   end
 end

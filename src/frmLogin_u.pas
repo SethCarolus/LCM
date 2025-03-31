@@ -18,6 +18,7 @@ type
     procedure btnLoginClick(Sender: TObject);
     procedure edtUsernameChange(Sender: TObject);
     procedure edtPasswordChange(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,6 +69,12 @@ end;
 procedure TfrmMain.edtUsernameChange(Sender: TObject);
 begin
   Username := edtUsername.Text;
+end;
+
+procedure TfrmMain.FormActivate(Sender: TObject);
+begin
+  Username := edtUsername.Text;
+  Password := edtPassword.Text;
 end;
 
 function TfrmMain.getPassword: string;

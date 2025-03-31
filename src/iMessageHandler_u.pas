@@ -9,7 +9,11 @@ type
 
   function getMessages(const currentUserId: Integer; const otherUserId: Integer)
                                                               : TList<IMessage>;
-  function getUsersInChatHistory(const userId: Integer): TList<IUser>;
+
+  procedure sendMessage(const senderId, receiverId: Integer; const content: string);
+
+  function getNewMessages(const currentUserId: Integer; const otherUserId: Integer;
+                            const lastUpdated: TDateTime): TList<IMessage>;
   end;
 
 implementation
