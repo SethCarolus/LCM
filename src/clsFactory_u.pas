@@ -4,7 +4,9 @@ interface
 
 uses IVehicle_u, IImage_u, Generics.Collections, iVehicleHandler_u,
     iImageHandler_u, iUserHandler_u, iUserType_u, iMessageHandler_u, iMessage_u,
-    iUser_u, iUserTypeHandler_u, iChat_u, IChatHandler_u;
+    iUser_u, iUserTypeHandler_u, iChat_u, IChatHandler_u, iTrip_u,
+    iTripHandler_u, iDriver_u, iDriverHandler_u, iStudent_u, iStudentHandler_u,
+    iComment_u, iCommentHandler_u;
 
 type
 
@@ -74,6 +76,20 @@ type
     class function createChat(const messages: TList<IMessage>;
                                    const UserId: Integer;
                                    const displayName: string): IChat;
+
+    class function createTrip(const id: Integer; const name: string;
+                              const driver: IDriver;
+                              const vehicle: IVehicle;
+                              const startTime: TDateTime;
+                              const costPerPassenger: Currency): ITrip;
+
+    class function createDriver(const id: Integer; const user: IUser): IDriver;
+    class function createStudent(const id: Integer; const user: IUser;
+                            const grade: Integer; const c: Char): IStudent;
+    class function createComment(const id: Integer; const header: string;
+                                 const content: string;
+                                 const user: IUser): IComment;
+
     // Handlers
 
     class function createVehicleHandler(): IVehicleHandler;
@@ -82,13 +98,19 @@ type
     class function createMessageHandler(): IMessageHandler;
     class function createUserTypeHandler(): IUserTypeHandler;
     class function createChatHandler(): IChatHandler;
+    class function createTripHandler(): ITripHandler;
+    class function createDriverHandler(): IDriverHandler;
+    class function createStudentHandler(): IStudentHandler;
+    class function createCommentHandler(): ICommentHandler;
   end;
 
 implementation
 
 uses SysUtils, clsVehicle_u, clsVehicleHandler_u, clsImage_u, clsImageHandler_u,
-     clsUserHandler_u, clsUserType_u, clsMessageHandler_u, clsMessage_u, clsUser_u,
-     clsUserTypeHandler_u, clsChat_u, clsChatHandler_u;
+     clsUserHandler_u, clsUserType_u, clsMessageHandler_u, clsMessage_u,
+     clsUser_u, clsUserTypeHandler_u, clsChat_u, clsChatHandler_u, clsTrip_u,
+     clsTripHandler_u, clsDriverHandler_u, clsDriver_u, clsStudent_u,
+     clsStudentHandler_u, clsComment_u, clsCommentHandler_u;
 
 { TFactory }
 
@@ -109,10 +131,33 @@ begin
   Result := TChatHandler.Create();
 end;
 
+class function TFactory.createComment(const id: Integer; const header: string;
+                                 const content: string;
+                                 const user: IUser): IComment;
+begin
+  Result := TComment.create(id, header , content, user);
+end;
+
+class function TFactory.createCommentHandler: ICommentHandler;
+begin
+  Result := TCommentHandler.Create();
+end;
+
+class function TFactory.createDriver(const id: Integer;
+  const user: IUser): IDriver;
+begin
+  Result := TDriver.create(id, user);
+end;
+
+class function TFactory.createDriverHandler: IDriverHandler;
+begin
+  Result := TDriverHandler.Create(createUserHandler(), createImageHandler());
+end;
+
 class function TFactory.createImage(const id: Integer; const fileName: string;
   const uploadedOn: TDate; const description: string): IImage;
 begin
-  Result := TImage.create(id, fileName, uploadedOn, description);
+  Result := TLCMImage.create(id, fileName, uploadedOn, description);
 end;
 
 class function TFactory.createImageHandler: IImageHandler;
@@ -130,6 +175,31 @@ end;
 class function TFactory.createMessageHandler: IMessageHandler;
 begin
   Result := TMessageHandler.create();
+end;
+
+class function TFactory.createStudent(const id: Integer; const user: IUser;
+                            const grade: Integer; const c: Char): IStudent;
+begin
+  Result := TStudent.create(id, user, grade, c);
+end;
+
+class function TFactory.createStudentHandler: IStudentHandler;
+begin
+  Result := TStudentHandler.Create();
+end;
+
+class function TFactory.createTrip(const id: Integer; const name: string;
+                              const driver: IDriver;
+                              const vehicle: IVehicle;
+                              const startTime: TDateTime;
+                              const costPerPassenger: Currency): ITrip;
+begin
+  Result := TTrip.Create(id, name,driver, vehicle, startTime, costPerPassenger);
+end;
+
+class function TFactory.createTripHandler: ITripHandler;
+begin
+  Result := TTripHandler.Create(createVehicleHandler(), createDriverHandler());
 end;
 
 class function TFactory.createUser(const id: Integer; username, firstName, lastName, displayName: string;
@@ -157,7 +227,7 @@ end;
 
 class function TFactory.createImage: IImage;
 begin
-  Result := TImage.create();
+  Result := TLCMImage.create();
 end;
 
 class function TFactory.createVehicle(const id: Integer; const model,

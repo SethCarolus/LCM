@@ -111,11 +111,11 @@ begin
       var sMessage := m.Content;
       if (m.SenderId = TApplicationState.CurrentUser.Id) then
         begin
-          sMessage := 'You' + #9 + sMessage;
+          sMessage := 'You:' + #9 + sMessage;
         end
       else if (m.SenderId = TApplicationState.SelectedChat.UserId) then
         begin
-          sMessage := TApplicationState.SelectedChat.DisplayName + #9 + sMessage;
+          sMessage := TApplicationState.SelectedChat.DisplayName + ':' + #9 + sMessage;
         end;
 
       redChat.Lines.Add(sMessage);
@@ -144,11 +144,11 @@ begin
       var sMessage := m.Content;
       if (m.SenderId = TApplicationState.CurrentUser.Id) then
         begin
-          sMessage := 'You' + #9 + sMessage;
+          sMessage := 'You:' + #9 + sMessage;
         end
       else if (m.SenderId = TApplicationState.SelectedChat.UserId) then
         begin
-          sMessage := TApplicationState.SelectedChat.DisplayName + #9 + sMessage;
+          sMessage := TApplicationState.SelectedChat.DisplayName + ':' + #9 + sMessage;
         end;
 
       redChat.Lines.Add(sMessage);
@@ -168,8 +168,7 @@ begin
   DisplayDisplayNames();
 
   redChat.Paragraph.TabCount := 2;
-  redChat.Paragraph.Tab[0] := 50;
-  redChat.Paragraph.Tab[1] := 70;
+  redChat.Paragraph.Tab[0] := 100;
 end;
 function TfrmMessages.getContent: string;
 begin

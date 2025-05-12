@@ -86,28 +86,28 @@ type
     /// <summary>
     /// Represents the id of a vehicle in the database table.
     /// </summary>
-    property id: Integer read getId write setId;
+    property Id: Integer read getId write setId;
 
     /// <summary>
     /// Represents the model of a vehicle.
     /// </summary>
-    property model: string read getModel write setModel;
+    property Model: string read getModel write setModel;
 
     /// <summary>
     /// Represents the number plate of a vehicle.
     /// </summary>
-    property numberPlate: string read getNumberPlate write setNumberPlate;
+    property NumberPlate: string read getNumberPlate write setNumberPlate;
 
     /// <summary>
     /// Represents the max passengers a vehicle can carry.
     /// </summary>
-    property maxPassengers: Integer read getMaxPassengers
+    property MaxPassengers: Integer read getMaxPassengers
       write setMaxPassengers;
 
     /// <summary>
     /// Represents the exterior color of a vehicle.
     /// </summary>
-    property color: string read getColor write setColor;
+    property Color: string read getColor write setColor;
 
     /// <summary>
     /// Represents the images of a vehicle.

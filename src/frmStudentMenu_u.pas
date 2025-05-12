@@ -11,13 +11,16 @@ type
     GridPanel1: TGridPanel;
     GridPanel2: TGridPanel;
     btnMessages: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    btnTrips: TButton;
+    btnMyTrips: TButton;
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
     Panel1: TPanel;
     procedure btnMessagesClick(Sender: TObject);
+    procedure btnTripsClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnMyTripsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,7 +32,8 @@ var
 
 implementation
 
-uses frmMessages_u;
+uses frmMessages_u, frmViewTrips_u, clsFactory_u, clsApplicationState_u,
+     frmMyTrips_u	;
 
 {$R *.dfm}
 
@@ -43,6 +47,36 @@ begin
     FreeAndNil(form);
   end;
   Show;
+end;
+
+procedure TfrmStudentMenu.btnMyTripsClick(Sender: TObject);
+begin
+  var form := TFrmMyTrips.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
+
+procedure TfrmStudentMenu.btnTripsClick(Sender: TObject);
+begin
+  var form := TfrmViewTrips.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
+
+procedure TfrmStudentMenu.FormActivate(Sender: TObject);
+begin
+  var handler := TFactory.createStudentHandler();
+  TApplicationState.CurrentStudent := handler.getStudentForUserWith(TApplicationState.CurrentUser.Id);
 end;
 
 end.

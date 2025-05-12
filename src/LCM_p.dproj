@@ -206,6 +206,52 @@
             <Form>frmParentMenu</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="iTrip_u.pas"/>
+        <DCCReference Include="clsTrip_u.pas"/>
+        <DCCReference Include="iTripHandler_u.pas"/>
+        <DCCReference Include="clsTripHandler_u.pas"/>
+        <DCCReference Include="iDriverHandler_u.pas"/>
+        <DCCReference Include="clsDriverHandler_u.pas"/>
+        <DCCReference Include="frmViewTrips_u.pas">
+            <Form>frmViewTrips</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmManageTrips_u.pas">
+            <Form>frmManageTrips</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmAddTrip_u.pas">
+            <Form>frmAddTrip</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmEditTrip_u.pas">
+            <Form>frmEditTrip</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="clsStudent_u.pas"/>
+        <DCCReference Include="iStudent_u.pas"/>
+        <DCCReference Include="clsStudentHandler_u.pas"/>
+        <DCCReference Include="iStudentHandler_u.pas"/>
+        <DCCReference Include="frmViewStudentsEnquiringAboutTrip_u.pas">
+            <Form>frmViewStudentsEnquiringAboutTrip</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmMyTrips_u.pas">
+            <Form>frmMyTrips</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmPastTrips_u.pas">
+            <Form>frmPastTrips</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmViewTripComments_u.pas">
+            <Form>frmViewTripComments</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="iCommentHandler_u.pas"/>
+        <DCCReference Include="clsCommentHandler_u.pas"/>
+        <DCCReference Include="iComment_u.pas"/>
+        <DCCReference Include="clsComment_u.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -8,7 +8,7 @@ type
   /// <summary>
   /// Represents an Image.
   /// </summary>
-  TImage = class(TInterfacedObject, IImage)
+  TLCMImage = class(TInterfacedObject, IImage)
 
   private
     fId: Integer;
@@ -104,7 +104,7 @@ type
 
 implementation
 
-constructor TImage.Create(const id: Integer; const fileName: string;
+constructor TLCMImage.Create(const id: Integer; const fileName: string;
   const uploadedOn: TDate; const description: string);
 begin
   Self.Id := id;
@@ -113,49 +113,49 @@ begin
   Self.Description := description;
 end;
 
-constructor TImage.Create;
+constructor TLCMImage.Create;
 begin
 
 end;
 
 { TVehicleImage }
 
-function TImage.getDescription: string;
+function TLCMImage.getDescription: string;
 begin
   Result := fDescription;
 end;
 
-function TImage.getFileName: string;
+function TLCMImage.getFileName: string;
 begin
   Result := fFileName;
 end;
 
-function TImage.getId: Integer;
+function TLCMImage.getId: Integer;
 begin
   Result := fId;
 end;
 
-function TImage.getUploadedOn: TDate;
+function TLCMImage.getUploadedOn: TDate;
 begin
   Result := fUploadedOn;
 end;
 
-procedure TImage.setDescription(const description: string);
+procedure TLCMImage.setDescription(const description: string);
 begin
   fDescription := description;
 end;
 
-procedure TImage.setFileName(const fileName: string);
+procedure TLCMImage.setFileName(const fileName: string);
 begin
   fFileName := fileName;
 end;
 
-procedure TImage.setId(const id: Integer);
+procedure TLCMImage.setId(const id: Integer);
 begin
   fId := id;
 end;
 
-procedure TImage.setUploadedOn(const uploadedOn: TDate);
+procedure TLCMImage.setUploadedOn(const uploadedOn: TDate);
 begin
   fUploadedOn := uploadedOn;
 end;

@@ -12,6 +12,7 @@ type
       constructor create(const imageHandler: IImageHandler);
       function getVehicles(): TList<IVehicle>;
       function getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
+      function getVehicleWith(const id: Integer): IVehicle;
   end;
 
 implementation
@@ -22,7 +23,7 @@ uses dmMain_u, clsFactory_u, iImage_u;
 
 constructor TVehicleHandler.create(const imageHandler: IImageHandler);
 begin
-  fImageHandler := TFactory.createImageHandler();
+  fImageHandler := imageHandler;
 end;
 
 function TVehicleHandler.getVehicles: TList<IVehicle>;
@@ -80,7 +81,17 @@ begin
           Next();
         end;
 
+      for var vID in vehicleIds do
+        begin
+          Result.Add(getVehicleWith(vID));
+        end;
+    end;
+end;
 
+function TVehicleHandler.getVehicleWith(const id: Integer): IVehicle;
+begin
+  With dmMain.qryMain do
+    begin
       Close();
       Sql.Text :=
       '''
@@ -91,28 +102,13 @@ begin
       Parameters.ParamByName('id').Value := id;
       Open();
 
-      var vehicles := TList<IVehicle>.Create();
-
-      while not Eof do
-        begin
-          var vehicle :=  TFactory.createVehicle(
-                                                  FieldByName('ID').AsInteger,
-                                                  FieldByName('model').AsString,
-                                                  FieldByName('number_plate').AsString,
-                                                  FieldByName('max_passengers').AsInteger,
-                                                  FieldByName('color').AsString,
-                                                  nil);
-          Result.Add(vehicle);
-          Next();
-        end;
-
-      for var i := 0 to Result.Count - 1 do
-        begin
-          Result[i].Images := fImageHandler.getImagesForVehicleWith(Result[i].id)
-        end;
-
+      Result := TFactory.createVehicle(FieldByName('ID').AsInteger,
+                                      FieldByName('model').AsString,
+                                      FieldByName('number_plate').AsString,
+                                      FieldByName('max_passengers').AsInteger,
+                                      FieldByName('color').AsString, nil);
     end;
+  Result.Images := fImageHandler.getImagesForVehicleWith(Result.Id);
 end;
 
 end.
-

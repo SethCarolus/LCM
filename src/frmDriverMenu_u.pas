@@ -13,12 +13,16 @@ type
     GridPanel2: TGridPanel;
     Panel1: TPanel;
     btnMessages: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    btnFutreTrips: TButton;
+    btnViewVehicles: TButton;
+    btnPastTrips: TButton;
     Button5: TButton;
     Button6: TButton;
     procedure btnMessagesClick(Sender: TObject);
+    procedure btnViewVehiclesClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure btnFutreTripsClick(Sender: TObject);
+    procedure btnPastTripsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +34,8 @@ var
 
 implementation
 
-uses frmMessages_u;
+uses frmMessages_u, frmViewVehicles_u, frmManageTrips_u ,
+     iDriverHandler_u, clsFactory_u, clsApplicationState_u, frmPastTrips_u;
 
 {$R *.dfm}
 
@@ -44,6 +49,49 @@ begin
     FreeAndNil(form);
   end;
   Show;
+end;
+
+procedure TfrmDriverMenu.btnPastTripsClick(Sender: TObject);
+begin
+  var form := TfrmPastTrips.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
+
+procedure TfrmDriverMenu.btnFutreTripsClick(Sender: TObject);
+begin
+  var form := TfrmManageTrips.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
+
+procedure TfrmDriverMenu.btnViewVehiclesClick(Sender: TObject);
+begin
+  var form := TfrmViewVehicles.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
+
+procedure TfrmDriverMenu.FormActivate(Sender: TObject);
+begin
+  var handler := TFactory.createDriverHandler();
+  TApplicationState.CurrentDriver :=
+    handler.getDriverWithUserId(TApplicationState.CurrentUser.Id);
 end;
 
 end.

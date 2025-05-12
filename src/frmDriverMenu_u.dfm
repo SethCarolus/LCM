@@ -9,7 +9,7 @@ object frmDriverMenu: TfrmDriverMenu
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -16
+  Font.Height = -20
   Font.Name = 'Segoe UI Variable Display'
   Font.Style = []
   Icon.Data = {
@@ -5241,7 +5241,8 @@ object frmDriverMenu: TfrmDriverMenu
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
-  TextHeight = 21
+  OnActivate = FormActivate
+  TextHeight = 27
   object GridPanel1: TGridPanel
     Left = 0
     Top = 0
@@ -5272,6 +5273,8 @@ object frmDriverMenu: TfrmDriverMenu
         Value = 67.938473877494500000
       end>
     TabOrder = 0
+    ExplicitWidth = 982
+    ExplicitHeight = 753
     DesignSize = (
       984
       761)
@@ -5304,17 +5307,17 @@ object frmDriverMenu: TfrmDriverMenu
         end
         item
           Column = 1
-          Control = Button2
+          Control = btnFutreTrips
           Row = 0
         end
         item
           Column = 2
-          Control = Button3
+          Control = btnViewVehicles
           Row = 0
         end
         item
           Column = 0
-          Control = Button4
+          Control = btnPastTrips
           Row = 1
         end
         item
@@ -5350,7 +5353,7 @@ object frmDriverMenu: TfrmDriverMenu
         TabOrder = 0
         OnClick = btnMessagesClick
       end
-      object Button2: TButton
+      object btnFutreTrips: TButton
         AlignWithMargins = True
         Left = 338
         Top = 10
@@ -5361,9 +5364,11 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Future Trips '
         TabOrder = 1
+        OnClick = btnFutreTripsClick
       end
-      object Button3: TButton
+      object btnViewVehicles: TButton
         AlignWithMargins = True
         Left = 666
         Top = 10
@@ -5374,9 +5379,11 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'View Vehicles'
         TabOrder = 2
+        OnClick = btnViewVehiclesClick
       end
-      object Button4: TButton
+      object btnPastTrips: TButton
         AlignWithMargins = True
         Left = 10
         Top = 268
@@ -5387,7 +5394,9 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Past Trips'
         TabOrder = 3
+        OnClick = btnPastTripsClick
       end
       object Button5: TButton
         AlignWithMargins = True

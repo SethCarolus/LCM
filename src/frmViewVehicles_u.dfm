@@ -13,7 +13,6 @@ object frmViewVehicles: TfrmViewVehicles
   Font.Style = []
   Position = poDesigned
   OnActivate = FormActivate
-  OnClose = FormClose
   TextHeight = 21
   object GridPanel1: TGridPanel
     Left = 0

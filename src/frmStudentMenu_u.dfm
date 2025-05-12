@@ -5239,6 +5239,7 @@ object frmStudentMenu: TfrmStudentMenu
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
+  OnActivate = FormActivate
   TextHeight = 22
   object GridPanel1: TGridPanel
     Left = 0
@@ -5270,8 +5271,6 @@ object frmStudentMenu: TfrmStudentMenu
         Value = 67.938473877494500000
       end>
     TabOrder = 0
-    ExplicitWidth = 982
-    ExplicitHeight = 753
     DesignSize = (
       984
       761)
@@ -5304,12 +5303,12 @@ object frmStudentMenu: TfrmStudentMenu
         end
         item
           Column = 1
-          Control = Button2
+          Control = btnTrips
           Row = 0
         end
         item
           Column = 2
-          Control = Button3
+          Control = btnMyTrips
           Row = 0
         end
         item
@@ -5350,7 +5349,7 @@ object frmStudentMenu: TfrmStudentMenu
         TabOrder = 0
         OnClick = btnMessagesClick
       end
-      object Button2: TButton
+      object btnTrips: TButton
         AlignWithMargins = True
         Left = 338
         Top = 10
@@ -5361,9 +5360,11 @@ object frmStudentMenu: TfrmStudentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Trips'
         TabOrder = 1
+        OnClick = btnTripsClick
       end
-      object Button3: TButton
+      object btnMyTrips: TButton
         AlignWithMargins = True
         Left = 666
         Top = 10
@@ -5374,7 +5375,9 @@ object frmStudentMenu: TfrmStudentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'My Trips'
         TabOrder = 2
+        OnClick = btnMyTripsClick
       end
       object Button4: TButton
         AlignWithMargins = True

@@ -19,7 +19,6 @@ type
     procedure FormActivate(Sender: TObject);
     procedure lstVehicleNamesClick(Sender: TObject);
     procedure btnNextClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure displaySelectedImage(const imageIndex: Integer);
@@ -40,7 +39,7 @@ var
 
 implementation
 
-uses iVehicleHandler_u, Generics.Collections, clsFactory_u;
+uses iVehicleHandler_u, Generics.Collections, clsFactory_u, clsApplicationState_u;
 
 var
   vehicles: TList<IVehicle>;
@@ -67,41 +66,30 @@ end;
 
 procedure TfrmViewVehicles.displaySelectedImage(const imageIndex: Integer);
 begin
-  TTask.Run(
-  procedure
-  begin
-    try
-      ImgVehicleImage.Picture.LoadFromFile('./Vehicle Images/' +
-                        SelectedVehicle.Images[imageIndex].FileName);
-      pnlDescription.Caption := 'Description: ' +
-                                 SelectedVehicle.Images[imageIndex].Description;
-      pnlUploadedOn.Caption := 'Uploaded On: ' +
-                                  DateToStr(SelectedVehicle.Images[imageIndex].UploadedOn);
-    except
-      ShowMessage('Error in loading image!');
-      ImgVehicleImage.Picture.Destroy();
-    end;
-  end
-    ).Wait();
+  try
+    ImgVehicleImage.Picture.LoadFromFile('./Vehicle Images/' +
+      SelectedVehicle.Images[imageIndex].FileName);
+    pnlDescription.Caption := 'Description: ' + SelectedVehicle.Images
+      [imageIndex].Description;
+    pnlUploadedOn.Caption := 'Uploaded On: ' +
+      DateToStr(SelectedVehicle.Images[imageIndex].UploadedOn);
+  except
+    ShowMessage('Error in loading image!');
+    ImgVehicleImage.Picture.Destroy();
+  end;
 end;
 
 procedure TfrmViewVehicles.FormActivate(Sender: TObject);
 begin
   var vehicleHandler := TFactory.createVehicleHandler();
 
-  vehicles := vehicleHandler.getVehiclesForDriverWith(1);
+  vehicles := vehicleHandler.getVehiclesForDriverWith(TApplicationState.CurrentDriver.Id);
 
   for var v in vehicles do
     begin
       lstVehicleNames.Items.Add(v.model);
     end;
 end;
-
-procedure TfrmViewVehicles.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Application.Terminate;
-end;
-
 function TfrmViewVehicles.getSelectedVehicle: IVehicle;
 begin
   Result := _selectedVehicle;

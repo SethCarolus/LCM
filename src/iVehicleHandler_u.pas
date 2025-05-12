@@ -6,7 +6,7 @@ type
   /// <summary>
   /// Represents an interface for handling vehicle data interactions.
   /// </summary>
-  iVehicleHandler = interface
+  IVehicleHandler = interface
 
     /// <summary>
     /// Retrieves a list of vehicles.
@@ -21,6 +21,8 @@ type
     function getVehicles(): TList<IVehicle>;
 
     function getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
+
+    function getVehicleWith(const id: Integer): IVehicle;
   end;
 
 implementation

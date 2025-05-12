@@ -41,7 +41,29 @@ uses
   frmRequest_u in 'frmRequest_u.pas' {frmRequest},
   frmViewRequests_u in 'frmViewRequests_u.pas' {frmViewRequests},
   frmStudentMenu_u in 'frmStudentMenu_u.pas' {frmStudentMenu},
-  frmParentMenu_u in 'frmParentMenu_u.pas' {frmParentMenu};
+  frmParentMenu_u in 'frmParentMenu_u.pas' {frmParentMenu},
+  iTrip_u in 'iTrip_u.pas',
+  clsTrip_u in 'clsTrip_u.pas',
+  iTripHandler_u in 'iTripHandler_u.pas',
+  clsTripHandler_u in 'clsTripHandler_u.pas',
+  iDriverHandler_u in 'iDriverHandler_u.pas',
+  clsDriverHandler_u in 'clsDriverHandler_u.pas',
+  frmViewTrips_u in 'frmViewTrips_u.pas' {frmViewTrips},
+  frmManageTrips_u in 'frmManageTrips_u.pas' {frmManageTrips},
+  frmAddTrip_u in 'frmAddTrip_u.pas' {frmAddTrip},
+  frmEditTrip_u in 'frmEditTrip_u.pas' {frmEditTrip},
+  clsStudent_u in 'clsStudent_u.pas',
+  iStudent_u in 'iStudent_u.pas',
+  clsStudentHandler_u in 'clsStudentHandler_u.pas',
+  iStudentHandler_u in 'iStudentHandler_u.pas',
+  frmViewStudentsEnquiringAboutTrip_u in 'frmViewStudentsEnquiringAboutTrip_u.pas' {frmViewStudentsEnquiringAboutTrip},
+  frmMyTrips_u in 'frmMyTrips_u.pas' {frmMyTrips},
+  frmPastTrips_u in 'frmPastTrips_u.pas' {frmPastTrips},
+  frmViewTripComments_u in 'frmViewTripComments_u.pas' {frmViewTripComments},
+  iCommentHandler_u in 'iCommentHandler_u.pas',
+  clsCommentHandler_u in 'clsCommentHandler_u.pas',
+  iComment_u in 'iComment_u.pas',
+  clsComment_u in 'clsComment_u.pas';
 
 {$R *.res}
 
@@ -57,6 +79,14 @@ begin
   Application.CreateForm(TfrmViewRequests, frmViewRequests);
   Application.CreateForm(TfrmStudentMenu, frmStudentMenu);
   Application.CreateForm(TfrmParentMenu, frmParentMenu);
+  Application.CreateForm(TfrmViewTrips, frmViewTrips);
+  Application.CreateForm(TfrmManageTrips, frmManageTrips);
+  Application.CreateForm(TfrmAddTrip, frmAddTrip);
+  Application.CreateForm(TfrmEditTrip, frmEditTrip);
+  Application.CreateForm(TfrmViewStudentsEnquiringAboutTrip, frmViewStudentsEnquiringAboutTrip);
+  Application.CreateForm(TfrmMyTrips, frmMyTrips);
+  Application.CreateForm(TfrmPastTrips, frmPastTrips);
+  Application.CreateForm(TfrmViewTripComments, frmViewTripComments);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

@@ -2,7 +2,7 @@ unit clsDriver_u;
 
 interface
 
-uses iDriver_u, iUser_u;
+uses iDriver_u, iUser_u, iImage_u, Generics.Collections;
 
 type
   /// <summary>
@@ -20,6 +20,11 @@ type
     /// Represents the user associated with the driver.
     /// </summary>
     fUser: IUser;
+
+    /// <summary>
+    /// Represents the images associated with the driver.
+    /// </summary>
+    fImages: TList<IImage>;
 
     /// <summary>
     /// Function that returns the id of the driver.
@@ -45,6 +50,18 @@ type
     /// <param name="user">User to assign to the driver.</param>
     procedure setUser(const user: IUser);
 
+    /// <summary>
+    /// Function that returns the images of the driver.
+    /// </summary>
+    /// <returns>The iamges of the driver.</returns>
+    function getImages(): TList<IImage>;
+
+    /// <summary>
+    /// Procedure that sets the images of the driver.
+    /// </summary>
+    /// <param name="images">images to assign to the driver.</param>
+    procedure setImages(const images: TList<IImage>);
+
   public
 
     /// <summary>
@@ -60,12 +77,17 @@ type
     /// <summary>
     /// Represents the id of the driver.
     /// </summary>
-    property id: Integer read getId write setId;
+    property Id: Integer read getId write setId;
 
     /// <summary>
     /// Represents the user associated with the driver.
     /// </summary>
-    property user: IUser read getUser write setUser;
+    property User: IUser read getUser write setUser;
+
+    /// <summary>
+    /// Represents the images associated with the driver.
+    /// </summary>
+    property Images: TList<IImage> read getImages write setImages;
   end;
 
 implementation
@@ -89,6 +111,11 @@ begin
   Result := fId;
 end;
 
+function TDriver.getImages: TList<IImage>;
+begin
+  Result := fImages;
+end;
+
 function TDriver.getUser: IUser;
 begin
   Result := fUser;
@@ -97,6 +124,11 @@ end;
 procedure TDriver.setId(const id: Integer);
 begin
   fId := id;
+end;
+
+procedure TDriver.setImages(const images: TList<IImage>);
+begin
+  fImages := images;
 end;
 
 procedure TDriver.setUser(const user: IUser);
