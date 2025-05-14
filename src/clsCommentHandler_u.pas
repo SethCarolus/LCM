@@ -19,7 +19,7 @@ function TCommentHandler.getCommentsForTrip(const tripId: Integer): TList<IComme
 begin
   Result := TList<IComment>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryComment do
     begin
       SQL.Text :=
       '''

@@ -1,15 +1,17 @@
 unit clsUserHandler_u;
 
 interface
-  uses iUserHandler_u, iUser_u,  Generics.Collections;
+  uses iUserHandler_u, iUser_u,  Generics.Collections, iUserTypeHandler_u;
 
 type
   /// <summary>
   /// Represents a concrete implementation of the IUserHandler interface.
   /// </summary>
   TUserHandler = class(TInterfacedObject, IUserHandler)
+    private
+      fUserTypeHandler: IUserTypeHandler;
     public
-      constructor create();
+      constructor create(const userTypeHandler: IUserTypeHandler);
 
     /// <summary>
     /// Checks if a user exists in the system.
@@ -49,18 +51,16 @@ implementation
 
 { TUserHandler }
 
-constructor TUserHandler.create;
+constructor TUserHandler.create(const userTypeHandler: IUserTypeHandler);
 begin
+  fUserTypeHandler := userTypeHandler;
 end;
 
 function TUserHandler.getAllUsers: TList<IUser>;
 begin
   Result := TList<IUser>.Create();
-  var userTypeIds := TList<Integer>.Create();
 
-  var userTypeHandler := TFactory.createUserTypeHandler();
-
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       SQL.Text :=
@@ -78,22 +78,16 @@ begin
                                         FieldByName('last_name').AsString,
                                         FieldByName('display_name').AsString,
                                         FieldByName('created_on').AsDateTime,
-                                        FieldByName('last_login').AsDateTime, nil));
-          userTypeIds.Add(FieldByName('user_type_id').AsInteger);
+                                        FieldByName('last_login').AsDateTime,
+                                        fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)));
           Next();
         end;
    end;
-
-   for var i := 0 to Result.Count - 1 do
-    begin
-      Result[i].UserType := userTypeHandler.getUserTypeWith(userTypeIds[i]);
-    end;
-
 end;
 
 function TUserHandler.getUserTypeIdWith(const username: string): Integer;
 begin
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       SQL.Text :=
@@ -113,7 +107,7 @@ end;
 function TUserHandler.getUserWith(const id: Integer): IUser;
 begin
 
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       SQL.Text :=
@@ -133,9 +127,8 @@ begin
                                     FieldByName('last_name').AsString,
                                     FieldByName('display_name').AsString,
                                     FieldByName('created_on').AsDateTime,
-                                    FieldByName('last_login').AsDateTime, nil);
-    var userTypeHandler := TFactory.createUserTypeHandler();
-    Result.UserType := userTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)
+                                    FieldByName('last_login').AsDateTime,
+                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger));
    end;
 
 end;
@@ -145,7 +138,7 @@ begin
   if (string.IsNullOrEmpty(username)) then
     raise Exception.Create('username cannot be null');
 
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       SQL.Text :=
@@ -165,9 +158,8 @@ begin
                                     FieldByName('last_name').AsString,
                                     FieldByName('display_name').AsString,
                                     FieldByName('created_on').AsDateTime,
-                                    FieldByName('last_login').AsDateTime, nil);
-    var userTypeHandler := TFactory.createUserTypeHandler();
-    Result.UserType := userTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)
+                                    FieldByName('last_login').AsDateTime,
+                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger));
    end;
 
 end;
@@ -187,7 +179,7 @@ begin
       Exit;
     end;
 
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       SQL.Text :=
@@ -205,7 +197,7 @@ end;
 
 procedure TUserHandler.sendMessageRequest(const senderId, receiverId: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryUser do
     begin
       Close;
       Sql.Text :=
@@ -224,7 +216,7 @@ begin
   if (string.IsNullOrEmpty(username)) then
     raise Exception.Create('username cannot be null');
 
-  With dmMain.qryMain do
+  With dmMain.qryUser do
     begin
       Close;
       SQL.Text :=

@@ -67,7 +67,7 @@ type
     /// <summary>
     /// Creates a new Driver instance.
     /// </summary>
-    constructor create(id: Integer; user: IUser);
+    constructor create(const id: Integer; const user: IUser; const images: TList<IImage>);
 
     /// <summary>
     /// Destroys the Driver instance.
@@ -94,10 +94,12 @@ implementation
 
 { TDriver }
 
-constructor TDriver.create(id: Integer; user: IUser);
+constructor TDriver.create(const id: Integer; const user: IUser;
+                           const images: TList<IImage>);
 begin
   fId := id;
   fUser := user;
+  fImages := images;
 end;
 
 destructor TDriver.Destroy;

@@ -8,7 +8,17 @@ uses
 type
   TdmMain = class(TDataModule)
     conMain: TADOConnection;
-    qryMain: TADOQuery;
+    qryUser: TADOQuery;
+    qryDriver: TADOQuery;
+    qryParent: TADOQuery;
+    qryStudent: TADOQuery;
+    qryTrip: TADOQuery;
+    qryVehicle: TADOQuery;
+    qryUserType: TADOQuery;
+    qryImage: TADOQuery;
+    qryMessage: TADOQuery;
+    qryChat: TADOQuery;
+    qryComment: TADOQuery;
   private
     { Private declarations }
   public

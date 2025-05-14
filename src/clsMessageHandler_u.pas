@@ -26,7 +26,7 @@ uses dmMain_u, clsFactory_u, SysUtils;
 procedure TMessageHandler.sendMessage(const senderId, receiverId: Integer;
   const content: string);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryMessage do
     begin
       Close();
       SQL.Text :=
@@ -49,7 +49,7 @@ function TMessageHandler.GetMessages(const currentUserId,
 begin
   Result := TList<IMessage>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryMessage do
     begin
        SQL.Text :=
        '''
@@ -86,7 +86,7 @@ function TMessageHandler.getNewMessages(const currentUserId,
 begin
   Result := TList<IMessage>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryMessage do
     begin
        SQL.Text :=
        '''

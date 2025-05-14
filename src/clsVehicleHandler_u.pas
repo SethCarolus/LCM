@@ -29,7 +29,7 @@ end;
 function TVehicleHandler.getVehicles: TList<IVehicle>;
 begin
   Result := TList<IVehicle>.Create();
-  With dmMain.qryMain do
+  With dmMain.qryVehicle do
     begin
       Close();
       SQL.Text :=
@@ -46,22 +46,17 @@ begin
                                                   FieldByName('number_plate').AsString,
                                                   FieldByName('max_passengers').AsInteger,
                                                   FieldByName('color').AsString,
-                                                  nil);
+                                                  fImageHandler.getImagesForVehicleWith(FieldByName('ID').AsInteger));
           Result.Add(vehicle);
           Next();
         end;
-    end;
-
-  for var i := 0 to Result.Count - 1 do
-    begin
-      Result[i].Images := fImageHandler.getImagesForVehicleWith(Result[i].id)
     end;
 end;
 
 function TVehicleHandler.getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
 begin
   Result := TList<IVehicle>.Create();
-  With dmMain.qryMain do
+  With dmMain.qryVehicle do
     begin
       Close;
       Sql.Text :=
@@ -90,7 +85,7 @@ end;
 
 function TVehicleHandler.getVehicleWith(const id: Integer): IVehicle;
 begin
-  With dmMain.qryMain do
+  With dmMain.qryVehicle do
     begin
       Close();
       Sql.Text :=
@@ -106,9 +101,9 @@ begin
                                       FieldByName('model').AsString,
                                       FieldByName('number_plate').AsString,
                                       FieldByName('max_passengers').AsInteger,
-                                      FieldByName('color').AsString, nil);
+                                      FieldByName('color').AsString,
+                                      fImageHandler.getImagesForVehicleWith(FieldByName('ID').AsInteger));
     end;
-  Result.Images := fImageHandler.getImagesForVehicleWith(Result.Id);
 end;
 
 end.

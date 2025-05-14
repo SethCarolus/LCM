@@ -22,7 +22,7 @@ function TStudentHandler.getStudentsEnquiringAboutTripWith(
 begin
   Result := TList<IStudent>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryStudent do
     begin
       SQL.Text :=
       '''
@@ -64,7 +64,7 @@ end;
 
 function TStudentHandler.getStudentForUserWith(const id: Integer): IStudent;
 begin
-  with dmMain.qryMain do
+  with dmMain.qryStudent do
     begin
       SQL.Text :=
       '''

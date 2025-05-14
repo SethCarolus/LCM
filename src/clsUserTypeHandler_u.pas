@@ -20,7 +20,7 @@ uses dmMain_u, clsFactory_u;
 function TUserTypeHandler.getUserTypes: TList<IUserType>;
 begin
   Result := TList<IUserType>.Create();
-  with dmMain.qryMain do
+  with dmMain.qryUserType do
     begin
       Close();
       SQL.Text :=
@@ -43,7 +43,7 @@ end;
 
 function TUserTypeHandler.getUserTypeWith(const id: Integer): IUserType;
 begin
-  with dmMain.qryMain do
+  with dmMain.qryUserType do
     begin
       Close();
       SQL.Text :=

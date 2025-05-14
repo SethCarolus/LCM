@@ -83,7 +83,8 @@ type
                               const startTime: TDateTime;
                               const costPerPassenger: Currency): ITrip;
 
-    class function createDriver(const id: Integer; const user: IUser): IDriver;
+    class function createDriver(const id: Integer; const user: IUser;
+                                const images: TList<IImage>): IDriver;
     class function createStudent(const id: Integer; const user: IUser;
                             const grade: Integer; const c: Char): IStudent;
     class function createComment(const id: Integer; const header: string;
@@ -128,7 +129,7 @@ end;
 
 class function TFactory.createChatHandler: IChatHandler;
 begin
-  Result := TChatHandler.Create();
+  Result := TChatHandler.Create(createUserHandler(), createMessageHandler());
 end;
 
 class function TFactory.createComment(const id: Integer; const header: string;
@@ -143,10 +144,10 @@ begin
   Result := TCommentHandler.Create();
 end;
 
-class function TFactory.createDriver(const id: Integer;
-  const user: IUser): IDriver;
+class function TFactory.createDriver(const id: Integer; const user: IUser;
+                                const images: TList<IImage>): IDriver;
 begin
-  Result := TDriver.create(id, user);
+  Result := TDriver.create(id, user, images);
 end;
 
 class function TFactory.createDriverHandler: IDriverHandler;
@@ -211,7 +212,7 @@ end;
 
 class function TFactory.createUserHandler: IUserHandler;
 begin
-  Result := TUserHandler.create();
+  Result := TUserHandler.create(createUserTypeHandler());
 end;
 
 class function TFactory.createUserType(const id: Integer; const name,

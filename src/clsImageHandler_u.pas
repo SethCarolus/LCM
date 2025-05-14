@@ -21,7 +21,7 @@ function TImageHandler.getImagesForDriverWith(const id: Integer): TList<IImage>;
 begin
   Result := TList<IImage>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryImage do
     begin
       Close;
       SQL.Text :=
@@ -48,7 +48,7 @@ function TImageHandler.getImagesForVehicleWith(const id: Integer)
 begin
   Result := TList<IImage>.Create();
 
-  with dmMain.qryMain do
+  with dmMain.qryImage do
     begin
       Close;
       SQL.Text :=

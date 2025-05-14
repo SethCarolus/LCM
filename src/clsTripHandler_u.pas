@@ -41,7 +41,7 @@ uses dmMain_u, clsFactory_u, DateUtils;
 procedure TTripHandler.acceptTripEnquiry(const tripId: Integer;
   const studentId: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -58,7 +58,7 @@ procedure TTripHandler.addTrip(const trip_name: string; const driverId,
   vehicleId: Integer; const startTime: TDateTime;
   const costPerPassenger: Currency);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -78,7 +78,7 @@ end;
 procedure TTripHandler.addTripComment(const header: string;const content: string; const userId,
   tripId: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -95,7 +95,7 @@ end;
 
 procedure TTripHandler.addTripEnquiry(const studentId, tripId: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -117,7 +117,7 @@ end;
 
 procedure TTripHandler.deleteTrip(const id: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -157,10 +157,7 @@ function TTripHandler.getTrips(const date: TDateTime): TList<ITrip>;
 begin
   Result := TList<ITrip>.Create();
 
-  var driverIds := TList<Integer>.Create();
-  var vehicleIds := TList<Integer>.Create();
-
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -173,19 +170,16 @@ begin
 
       while not Eof do
         begin
-          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger, FieldByName('trip_name').AsString ,nil, nil, FieldByName('start_time').AsDateTime, FieldByName('cost_per_passenger').AsCurrency));
-          driverIds.Add(FieldByName('driver_id').AsInteger);
-          vehicleIds.Add(FieldByName('vehicle_id').AsInteger);
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString ,
+                                         fDriverHandler.getDriverWith(FieldByName('driver_id').AsInteger),
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
+
           Next();
         end;
     end;
-
-  for var i := 0 to Result.Count - 1 do
-   begin
-    Result[i].Driver := fDriverHandler.getDriverWith(driverIds[i]);
-    Result[i].Vehicle := fVehicleHandler.getVehicleWith(vehicleIds[i]);
-   end;
-
 end;
 
 function TTripHandler.getTrips(const date: TDateTime;
@@ -193,9 +187,9 @@ function TTripHandler.getTrips(const date: TDateTime;
 begin
   Result := TList<ITrip>.Create();
 
-  var vehicleIds := TList<Integer>.Create();
 
-  with dmMain.qryMain do
+  var driver := fDriverHandler.getDriverWith(driverId);
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -208,27 +202,24 @@ begin
       Open();
       while not Eof do
         begin
-          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger, FieldByName('trip_name').AsString ,nil, nil, FieldByName('start_time').AsDateTime, FieldByName('cost_per_passenger').AsCurrency));
-          vehicleIds.Add(FieldByName('vehicle_id').AsInteger);
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString,
+                                         driver,
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
           Next();
         end;
     end;
-  var driver := fDriverHandler.getDriverWith(driverId);
-  for var i := 0 to Result.Count - 1 do
-   begin
-    Result[i].Driver := driver;
-    Result[i].Vehicle := fVehicleHandler.getVehicleWith(vehicleIds[i]);
-   end;
 end;
 
 function TTripHandler.getTripsForDriver(const driverId: Integer): TList<ITrip>;
 begin
   Result := TList<ITrip>.Create();
 
-  var driverIds := TList<Integer>.Create();
-  var vehicleIds := TList<Integer>.Create();
+  var driver := fDriverHandler.getDriverWith(driverId);
 
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -242,30 +233,22 @@ begin
 
       while not Eof do
         begin
-          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger, FieldByName('trip_name').AsString ,nil, nil, FieldByName('start_time').AsDateTime, FieldByName('cost_per_passenger').AsCurrency));
-          driverIds.Add(FieldByName('driver_id').AsInteger);
-          vehicleIds.Add(FieldByName('vehicle_id').AsInteger);
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString,
+                                         driver,
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
           Next();
         end;
     end;
-
-  var driver := fDriverHandler.getDriverWith(driverId);
-  for var i := 0 to Result.Count - 1 do
-   begin
-    Result[i].Driver := driver;
-    Result[i].Vehicle := fVehicleHandler.getVehicleWith(vehicleIds[i]);
-   end;
 end;
 
 function TTripHandler.getTripsForStudent(const studentId: Integer;
   const date: TDateTime): TList<ITrip>;
 begin
   Result := TList<ITrip>.Create();
-
-  var driverIds := TList<Integer>.Create();
-  var vehicleIds := TList<Integer>.Create();
-
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -287,22 +270,21 @@ begin
 
       while not Eof do
         begin
-          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger, FieldByName('trip_name').AsString ,nil, nil, FieldByName('start_time').AsDateTime, FieldByName('cost_per_passenger').AsCurrency));
-          driverIds.Add(FieldByName('driver_id').AsInteger);
-          vehicleIds.Add(FieldByName('vehicle_id').AsInteger);
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString ,
+                                         fDriverHandler.getDriverWith(FieldByName('driver_id').AsInteger),
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
+
           Next();
         end;
     end;
-  for var i := 0 to Result.Count - 1 do
-   begin
-    Result[i].Driver := fDriverHandler.getDriverWith(driverIds[i]);
-    Result[i].Vehicle := fVehicleHandler.getVehicleWith(vehicleIds[i]);
-   end;
 end;
 
 procedure TTripHandler.updateTrip(const trip: ITrip);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''
@@ -329,7 +311,7 @@ end;
 procedure TTripHandler.updateTripRatingForStudent(const studentId,
   tripId: Integer; const rating: UInt8);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryTrip do
     begin
       SQL.Text :=
       '''

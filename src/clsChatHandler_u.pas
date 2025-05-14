@@ -2,34 +2,42 @@ unit clsChatHandler_u;
 
 interface
 
-uses IChatHandler_u, Generics.Collections, iChat_u, iMessage_u, iUser_u;
+uses IChatHandler_u, Generics.Collections, iChat_u, iMessage_u, iUser_u,
+     iUserHandler_u, iMessageHandler_u;
 
 type
   TChatHandler = class(TInterfacedObject, IChatHandler)
-    function getChatsForUserWith(const id: Integer): TList<IChat>;
+    private
+      fUserHandler: IUserHandler;
+      fMessageHandler: iMessageHandler;
+    public
+      function getChatsForUserWith(const id: Integer): TList<IChat>;
 
-    function getNewPartOfChatsForUserWith(const id: Integer; const chats: TList<IChat>): TList<iChat>;
+      function getNewPartOfChatsForUserWith(const id: Integer; const chats: TList<IChat>): TList<iChat>;
 
-    function getChatRequestableUsersForUserWith(const id: Integer): TList<IUser>;
+      function getChatRequestableUsersForUserWith(const id: Integer): TList<IUser>;
 
-    function getUsersInChatHistory(const userId: Integer): TList<IUser>;
+      function getUsersInChatHistory(const userId: Integer): TList<IUser>;
 
-    function getUsersForRequestAcceptanceForUserWith(const id: Integer): TList<IUser>;
+      function getUsersForRequestAcceptanceForUserWith(const id: Integer): TList<IUser>;
 
-    procedure acceptRequest(const senderId: Integer; const receiverId: Integer);
+      procedure acceptRequest(const senderId: Integer; const receiverId: Integer);
 
-    function getNewChatsForUserWith(const id: Integer;const chats: TList<IChat>): TList<IChat>;
+      function getNewChatsForUserWith(const id: Integer;const chats: TList<IChat>): TList<IChat>;
+
+      constructor create(const userHandler: IUserHandler;
+                         const messageHandler: IMessageHandler);
   end;
 
 implementation
 
-uses iMessageHandler_u, clsFactory_u, dmMain_u;
+uses clsFactory_u, dmMain_u;
 
 { TChatHandler }
 
 procedure TChatHandler.acceptRequest(const senderId, receiverId: Integer);
 begin
-  with dmMain.qryMain do
+  with dmMain.qryChat do
     begin
       SQL.Text :=
       '''
@@ -45,6 +53,13 @@ begin
   var handler := TFactory.createMessageHandler();
 
   handler.sendMessage(senderId, receiverId, 'Request Accepted. Enjoy using LCM Messaging');
+end;
+
+constructor TChatHandler.create(const userHandler: IUserHandler;
+                                const messageHandler: IMessageHandler);
+begin
+  fUserHandler := userHandler;
+  fMessageHandler := messageHandler;
 end;
 
 function TChatHandler.getChatRequestableUsersForUserWith(
@@ -77,13 +92,12 @@ end;
 function TChatHandler.getChatsForUserWith(const id: Integer): TList<IChat>;
 begin
   Result := TList<IChat>.Create();
-  var handler := TFactory.createMessageHandler();
 
   var users := getUsersInChatHistory(id);
 
   for var u in users do
     begin
-       Result.Add(TFactory.createChat(handler.getMessages(id, u.Id), u.Id, u.DisplayName))
+       Result.Add(TFactory.createChat(fMessageHandler.getMessages(id, u.Id), u.Id, u.DisplayName))
     end;
 
 end;
@@ -112,13 +126,12 @@ function TChatHandler.getNewPartOfChatsForUserWith(const id: Integer; const chat
 begin
   Result := TList<IChat>.Create();
 
-  var handler := TFactory.createMessageHandler();
 
   var users := getUsersInChatHistory(id);
 
   for var c in chats do
     begin
-      var messages := handler.getMessages(id, c.UserId);
+      var messages := fMessageHandler.getMessages(id, c.UserId);
       var newMessages := TList<IMessage>.Create();
 
       for var i := c.Messages.Count to messages.Count -1 do
@@ -137,7 +150,7 @@ begin
 
   var userTypeHandler := TFactory.createUserTypeHandler();
 
-  with dmMain.qryMain do
+  with dmMain.qryChat do
     begin
       SQL.Text :=
       '''
@@ -178,7 +191,7 @@ begin
   var ids := TList<Integer>.Create();
 
   // get ids
-  with dmMain.qryMain do
+  with dmMain.qryChat do
     begin
       SQL.Text :=
       '''
@@ -208,10 +221,9 @@ begin
         end;
     end;
   // get users
-  var userHandler := TFactory.createUserHandler();
   for var id in ids do
     begin
-      Result.Add(userHandler.getUserWith(id));
+      Result.Add(fUserHandler.getUserWith(id));
     end;
 end;
 

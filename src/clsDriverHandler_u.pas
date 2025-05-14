@@ -27,7 +27,7 @@ begin
 end;
 function TDriverHandler.getDriverWith(const id: Integer): IDriver;
 begin
-  with dmMain.qryMain do
+  with dmMain.qryDriver do
     begin
       SQL.Text :=
       '''
@@ -39,14 +39,14 @@ begin
       Open();
 
       Result := TFactory.createDriver(FieldByName('ID').AsInteger,
-        fUserHandler.getUserWith(FieldByName('user_id').AsInteger));
+        fUserHandler.getUserWith(FieldByName('user_id').AsInteger),
+        fImageHandler.getImagesForDriverWith(FieldByName('ID').AsInteger));
     end;
-  Result.Images := fImageHandler.getImagesForDriverWith(id);
 end;
 
 function TDriverHandler.getDriverWithUserId(const id: Integer): IDriver;
 begin
-  with dmMain.qryMain do
+  with dmMain.qryDriver do
     begin
       SQL.Text :=
       '''
@@ -56,10 +56,10 @@ begin
       ''';
       Parameters.ParamByName('id').Value := id;
       Open();
-      Result := TFactory.createDriver(FieldByName('ID').AsInteger, nil);
+      Result := TFactory.createDriver(FieldByName('ID').AsInteger,
+                                      fUserHandler.getUserWith(id),
+                                      fImageHandler.getImagesForDriverWith(FieldByName('ID').AsInteger));
     end;
-  Result.User := fUserHandler.getUserWith(id);
-  Result.Images := fImageHandler.getImagesForDriverWith(Result.Id);
 end;
 
 end.
