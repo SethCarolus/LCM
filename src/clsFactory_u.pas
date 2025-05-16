@@ -8,7 +8,7 @@ uses IVehicle_u, IImage_u, Generics.Collections, iVehicleHandler_u,
     iTripHandler_u, iDriver_u, iDriverHandler_u, iStudent_u, iStudentHandler_u,
     iComment_u, iCommentHandler_u,
     iBankCard_u, iBank_u, iBankCardHandler_u, iBankHandler_u, iParent_u,
-    iParentHandler_u, iPaymentHandler_u;
+    iParentHandler_u, iPaymentHandler_u, IUserHabitHandler_u, ITimer_u;
 
 type
 
@@ -119,6 +119,10 @@ type
     class function createBankHandler(): IBankHandler;
     class function createParentHandler(): IParentHandler;
     class function createPaymentHandler(): IPaymentHandler;
+    class function createUserHabitHandler(): IUserHabitHandler;
+
+    // Other Objects
+    class function createTimer(): ITimer;
   end;
 
 implementation
@@ -129,7 +133,8 @@ uses SysUtils, clsVehicle_u, clsVehicleHandler_u, clsImage_u, clsImageHandler_u,
      clsTripHandler_u, clsDriverHandler_u, clsDriver_u, clsStudent_u,
      clsStudentHandler_u, clsComment_u, clsCommentHandler_u,
      clsBank_u, clsBankCard_u, clsBankHandler_u, clsBankCardHandler_u,
-     clsParent_u, clsParentHandler_u, clsPaymentHandler_u;
+     clsParent_u, clsParentHandler_u, clsPaymentHandler_u, clsUserHabitHandler_u,
+     clsTimer_u;
 
 { TFactory }
 
@@ -248,6 +253,11 @@ begin
   Result := TStudentHandler.Create(createUserHandler());
 end;
 
+class function TFactory.createTimer: ITimer;
+begin
+  Result := TTimer.create();
+end;
+
 class function TFactory.createTrip(const id: Integer; const name: string;
                               const driver: IDriver;
                               const vehicle: IVehicle;
@@ -308,5 +318,10 @@ end;
 class function TFactory.createVehicle: IVehicle;
 begin
   Result := TVehicle.create();
+end;
+
+class function TFactory.createUserHabitHandler: IUserHabitHandler;
+begin
+   Result := TUserHabitHandler.create();
 end;
 end.

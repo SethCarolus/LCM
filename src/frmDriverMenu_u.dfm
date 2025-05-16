@@ -5273,8 +5273,6 @@ object frmDriverMenu: TfrmDriverMenu
         Value = 67.938473877494500000
       end>
     TabOrder = 0
-    ExplicitWidth = 982
-    ExplicitHeight = 753
     DesignSize = (
       984
       761)
@@ -5322,7 +5320,7 @@ object frmDriverMenu: TfrmDriverMenu
         end
         item
           Column = 1
-          Control = Button5
+          Control = btnHabits
           Row = 1
         end
         item
@@ -5398,7 +5396,7 @@ object frmDriverMenu: TfrmDriverMenu
         TabOrder = 3
         OnClick = btnPastTripsClick
       end
-      object Button5: TButton
+      object btnHabits: TButton
         AlignWithMargins = True
         Left = 338
         Top = 268
@@ -5409,7 +5407,9 @@ object frmDriverMenu: TfrmDriverMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Habits'
         TabOrder = 4
+        OnClick = btnHabitsClick
       end
       object Button6: TButton
         AlignWithMargins = True

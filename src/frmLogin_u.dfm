@@ -5243,6 +5243,7 @@ object frmMain: TfrmMain
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
   Position = poDesigned
   OnActivate = FormActivate
+  OnClose = FormClose
   TextHeight = 27
   object GridPanel1: TGridPanel
     Left = 0

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, Math;
 
 type
   TfrmMain = class(TForm)
@@ -19,6 +19,7 @@ type
     procedure edtUsernameChange(Sender: TObject);
     procedure edtPasswordChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -42,7 +43,8 @@ implementation
 {$R *.dfm}
 
 uses login_u, iUserTypeHandler_u, clsApplicationState_u, iUserHandler_u,
-     frmDriverMenu_u, frmStudentMenu_u, frmParentMenu_u;
+     frmDriverMenu_u, frmStudentMenu_u, frmParentMenu_u, clsFactory_u,
+     logout_u;
 
 var
   sUsername: string;
@@ -58,6 +60,7 @@ begin
   ShowMessage('Welcome to LCM');
 
   TApplicationState.CurrentUser := getUserWith(Username);
+  TApplicationState.HabitTimer := TFactory.createTimer();
   Navigate();
 end;
 
@@ -75,6 +78,11 @@ procedure TfrmMain.FormActivate(Sender: TObject);
 begin
   Username := edtUsername.Text;
   Password := edtPassword.Text;
+end;
+
+procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  LogTimeSpent(TApplicationState.CurrentUser.Id, Ceil(TApplicationState.HabitTimer.elapsedSeconds() / 60));
 end;
 
 function TfrmMain.getPassword: string;

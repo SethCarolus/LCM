@@ -13,7 +13,7 @@ type
     btnMessages: TButton;
     btnTrips: TButton;
     btnMyTrips: TButton;
-    Button4: TButton;
+    btnHabits: TButton;
     Button5: TButton;
     Button6: TButton;
     Panel1: TPanel;
@@ -21,6 +21,7 @@ type
     procedure btnTripsClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnMyTripsClick(Sender: TObject);
+    procedure btnHabitsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,9 +34,21 @@ var
 implementation
 
 uses frmMessages_u, frmViewTrips_u, clsFactory_u, clsApplicationState_u,
-     frmMyTrips_u	;
+     frmMyTrips_u, frmViewHabits_u;
 
 {$R *.dfm}
+
+procedure TfrmStudentMenu.btnHabitsClick(Sender: TObject);
+begin
+  var form := TfrmViewHabits.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
 
 procedure TfrmStudentMenu.btnMessagesClick(Sender: TObject);
 begin

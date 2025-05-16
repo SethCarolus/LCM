@@ -3,7 +3,7 @@ unit clsApplicationState_u;
 interface
 
 uses Generics.Collections, iUser_u, iChat_u, iTrip_u, iDriver_u, iStudent_u,
-     iComment_u, iBankCard_u, iParent_u;
+     iComment_u, iBankCard_u, iParent_u, ITimer_u;
 
 type
   TApplicationState = class
@@ -12,6 +12,9 @@ type
       class var CurrentDriver: IDriver;
       class var CurrentStudent: IStudent;
       class var CurrentParent: IParent;
+
+      class var HabitTimer: ITimer;
+      class var Habits: TList<UInt64>;
 
       class var Chats: TList<IChat>;
       class var NewPartOfChats: TList<iChat>;

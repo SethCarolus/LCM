@@ -270,6 +270,15 @@
             <Form>frmManagePayment</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="clsUserHabitHandler_u.pas"/>
+        <DCCReference Include="IUserHabitHandler_u.pas"/>
+        <DCCReference Include="clsTimer_u.pas"/>
+        <DCCReference Include="ITimer_u.pas"/>
+        <DCCReference Include="logout_u.pas"/>
+        <DCCReference Include="frmViewHabits_u.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -12,7 +12,7 @@ type
     GridPanel2: TGridPanel;
     btnMessages: TButton;
     btnTripPayments: TButton;
-    Button3: TButton;
+    btnHabits: TButton;
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
@@ -20,6 +20,7 @@ type
     procedure btnMessagesClick(Sender: TObject);
     procedure btnTripPaymentsClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnHabitsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,9 +33,21 @@ var
 implementation
 
 uses frmMessages_u, frmManageTripPayment_u, clsApplicationState_u,
-    Generics.Collections, clsFactory_u;
+    Generics.Collections, clsFactory_u, frmViewHabits_u;
 
 {$R *.dfm}
+
+procedure TfrmParentMenu.btnHabitsClick(Sender: TObject);
+begin
+  var form := TfrmViewHabits.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
 
 procedure TfrmParentMenu.btnMessagesClick(Sender: TObject);
 begin

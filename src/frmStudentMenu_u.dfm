@@ -5313,7 +5313,7 @@ object frmStudentMenu: TfrmStudentMenu
         end
         item
           Column = 0
-          Control = Button4
+          Control = btnHabits
           Row = 1
         end
         item
@@ -5379,7 +5379,7 @@ object frmStudentMenu: TfrmStudentMenu
         TabOrder = 2
         OnClick = btnMyTripsClick
       end
-      object Button4: TButton
+      object btnHabits: TButton
         AlignWithMargins = True
         Left = 10
         Top = 268
@@ -5390,7 +5390,9 @@ object frmStudentMenu: TfrmStudentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Habits'
         TabOrder = 3
+        OnClick = btnHabitsClick
       end
       object Button5: TButton
         AlignWithMargins = True
@@ -5425,7 +5427,7 @@ object frmStudentMenu: TfrmStudentMenu
       Width = 346
       Height = 106
       Anchors = []
-      Caption = 'Student Dashboard'
+      Caption = 'Dashboard'
       TabOrder = 1
     end
   end

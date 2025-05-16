@@ -78,7 +78,13 @@ uses
   clsParentHandler_u in 'clsParentHandler_u.pas',
   clsPaymentHandler_u in 'clsPaymentHandler_u.pas',
   iPaymentHandler_u in 'iPaymentHandler_u.pas',
-  frmManageTripPayment_u in 'frmManageTripPayment_u.pas' {frmManagePayment};
+  frmManageTripPayment_u in 'frmManageTripPayment_u.pas' {frmManagePayment},
+  clsUserHabitHandler_u in 'clsUserHabitHandler_u.pas',
+  IUserHabitHandler_u in 'IUserHabitHandler_u.pas',
+  clsTimer_u in 'clsTimer_u.pas',
+  ITimer_u in 'ITimer_u.pas',
+  logout_u in 'logout_u.pas',
+  frmViewHabits_u in 'frmViewHabits_u.pas' {Form1};
 
 {$R *.res}
 
@@ -103,6 +109,7 @@ begin
   Application.CreateForm(TfrmPastTrips, frmPastTrips);
   Application.CreateForm(TfrmViewTripComments, frmViewTripComments);
   Application.CreateForm(TfrmManagePayment, frmManagePayment);
+  Application.CreateForm(TForm1, Form1);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

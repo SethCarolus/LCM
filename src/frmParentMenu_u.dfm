@@ -5308,7 +5308,7 @@ object frmParentMenu: TfrmParentMenu
         end
         item
           Column = 2
-          Control = Button3
+          Control = btnHabits
           Row = 0
         end
         item
@@ -5360,11 +5360,11 @@ object frmParentMenu: TfrmParentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
-        Caption = 'Trip Payments'
+        Caption = 'Payments'
         TabOrder = 1
         OnClick = btnTripPaymentsClick
       end
-      object Button3: TButton
+      object btnHabits: TButton
         AlignWithMargins = True
         Left = 666
         Top = 10
@@ -5375,7 +5375,9 @@ object frmParentMenu: TfrmParentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Habits'
         TabOrder = 2
+        OnClick = btnHabitsClick
       end
       object Button4: TButton
         AlignWithMargins = True
@@ -5423,7 +5425,7 @@ object frmParentMenu: TfrmParentMenu
       Width = 346
       Height = 106
       Anchors = []
-      Caption = 'Parent Dashboard'
+      Caption = 'Dashboard'
       TabOrder = 1
     end
   end

@@ -16,13 +16,14 @@ type
     btnFutreTrips: TButton;
     btnViewVehicles: TButton;
     btnPastTrips: TButton;
-    Button5: TButton;
+    btnHabits: TButton;
     Button6: TButton;
     procedure btnMessagesClick(Sender: TObject);
     procedure btnViewVehiclesClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnFutreTripsClick(Sender: TObject);
     procedure btnPastTripsClick(Sender: TObject);
+    procedure btnHabitsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,9 +36,22 @@ var
 implementation
 
 uses frmMessages_u, frmViewVehicles_u, frmManageTrips_u ,
-     iDriverHandler_u, clsFactory_u, clsApplicationState_u, frmPastTrips_u;
+     iDriverHandler_u, clsFactory_u, clsApplicationState_u, frmPastTrips_u,
+     frmViewHabits_u;
 
 {$R *.dfm}
+
+procedure TfrmDriverMenu.btnHabitsClick(Sender: TObject);
+begin
+  var form := TfrmViewHabits.Create(Self);
+  try
+    Hide();
+    form.ShowModal;
+  finally
+    FreeAndNil(form);
+  end;
+  Show;
+end;
 
 procedure TfrmDriverMenu.btnMessagesClick(Sender: TObject);
 begin
