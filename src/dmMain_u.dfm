@@ -2,12 +2,15 @@ object dmMain: TdmMain
   Height = 673
   Width = 828
   object conMain: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=LCM.mdb;Persist Sec' +
       'urity Info=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 40
-    Top = 64
+    Top = 56
   end
   object qryUser: TADOQuery
     Connection = conMain
@@ -74,5 +77,23 @@ object dmMain: TdmMain
     Parameters = <>
     Left = 264
     Top = 440
+  end
+  object qryBank: TADOQuery
+    Connection = conMain
+    Parameters = <>
+    Left = 88
+    Top = 536
+  end
+  object qryBankCard: TADOQuery
+    Connection = conMain
+    Parameters = <>
+    Left = 160
+    Top = 536
+  end
+  object tblBankCard: TADOTable
+    Connection = conMain
+    TableName = 'tblBankCard'
+    Left = 560
+    Top = 520
   end
 end

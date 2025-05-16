@@ -58,7 +58,6 @@ begin
   ShowMessage('Welcome to LCM');
 
   TApplicationState.CurrentUser := getUserWith(Username);
-
   Navigate();
 end;
 

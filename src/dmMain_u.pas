@@ -19,6 +19,9 @@ type
     qryMessage: TADOQuery;
     qryChat: TADOQuery;
     qryComment: TADOQuery;
+    qryBank: TADOQuery;
+    qryBankCard: TADOQuery;
+    tblBankCard: TADOTable;
   private
     { Private declarations }
   public

@@ -3,12 +3,13 @@ unit clsChatHandler_u;
 interface
 
 uses IChatHandler_u, Generics.Collections, iChat_u, iMessage_u, iUser_u,
-     iUserHandler_u, iMessageHandler_u;
+     iUserHandler_u, iMessageHandler_u, iUserTypeHandler_u;
 
 type
   TChatHandler = class(TInterfacedObject, IChatHandler)
     private
       fUserHandler: IUserHandler;
+      fUserTypeHandler: IUserTypeHandler;
       fMessageHandler: iMessageHandler;
     public
       function getChatsForUserWith(const id: Integer): TList<IChat>;
@@ -26,6 +27,7 @@ type
       function getNewChatsForUserWith(const id: Integer;const chats: TList<IChat>): TList<IChat>;
 
       constructor create(const userHandler: IUserHandler;
+                         const userTypeHandler: IUserTypeHandler;
                          const messageHandler: IMessageHandler);
   end;
 
@@ -56,9 +58,11 @@ begin
 end;
 
 constructor TChatHandler.create(const userHandler: IUserHandler;
-                                const messageHandler: IMessageHandler);
+                         const userTypeHandler: IUserTypeHandler;
+                         const messageHandler: IMessageHandler);
 begin
   fUserHandler := userHandler;
+  fUserTypeHandler := userTypeHandler;
   fMessageHandler := messageHandler;
 end;
 
@@ -146,9 +150,6 @@ function TChatHandler.getUsersForRequestAcceptanceForUserWith(
   const id: Integer): TList<IUser>;
 begin
   Result := TList<IUser>.Create();
-  var userTypeIds := TList<Integer>.Create();
-
-  var userTypeHandler := TFactory.createUserTypeHandler();
 
   with dmMain.qryChat do
     begin
@@ -164,22 +165,9 @@ begin
       Open;
       while not Eof do
         begin
-          Result.Add(TFactory.createUser(
-                                        FieldByName('id').AsInteger,
-                                        FieldByName('username').AsString,
-                                        FieldByName('first_name').AsString,
-                                        FieldByName('last_name').AsString,
-                                        FieldByName('display_name').AsString,
-                                        FieldByName('created_on').AsDateTime,
-                                        FieldByName('last_login').AsDateTime, nil));
-          userTypeIds.Add(FieldByName('user_type_id').AsInteger);
+          Result.Add(fUserHandler.getUserWith(FieldByName('id').AsInteger));
           Next();
         end;
-    end;
-
-   for var i := 0 to Result.Count - 1 do
-    begin
-      Result[i].UserType := userTypeHandler.getUserTypeWith(userTypeIds[i]);
     end;
 end;
 

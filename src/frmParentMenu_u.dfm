@@ -5239,6 +5239,7 @@ object frmParentMenu: TfrmParentMenu
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
+  OnShow = FormShow
   TextHeight = 22
   object GridPanel1: TGridPanel
     Left = 0
@@ -5270,8 +5271,6 @@ object frmParentMenu: TfrmParentMenu
         Value = 67.938473877494500000
       end>
     TabOrder = 0
-    ExplicitWidth = 982
-    ExplicitHeight = 753
     DesignSize = (
       984
       761)
@@ -5304,7 +5303,7 @@ object frmParentMenu: TfrmParentMenu
         end
         item
           Column = 1
-          Control = Button2
+          Control = btnTripPayments
           Row = 0
         end
         item
@@ -5350,7 +5349,7 @@ object frmParentMenu: TfrmParentMenu
         TabOrder = 0
         OnClick = btnMessagesClick
       end
-      object Button2: TButton
+      object btnTripPayments: TButton
         AlignWithMargins = True
         Left = 338
         Top = 10
@@ -5361,7 +5360,9 @@ object frmParentMenu: TfrmParentMenu
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
+        Caption = 'Trip Payments'
         TabOrder = 1
+        OnClick = btnTripPaymentsClick
       end
       object Button3: TButton
         AlignWithMargins = True

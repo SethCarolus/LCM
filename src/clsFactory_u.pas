@@ -6,7 +6,9 @@ uses IVehicle_u, IImage_u, Generics.Collections, iVehicleHandler_u,
     iImageHandler_u, iUserHandler_u, iUserType_u, iMessageHandler_u, iMessage_u,
     iUser_u, iUserTypeHandler_u, iChat_u, IChatHandler_u, iTrip_u,
     iTripHandler_u, iDriver_u, iDriverHandler_u, iStudent_u, iStudentHandler_u,
-    iComment_u, iCommentHandler_u;
+    iComment_u, iCommentHandler_u,
+    iBankCard_u, iBank_u, iBankCardHandler_u, iBankHandler_u, iParent_u,
+    iParentHandler_u, iPaymentHandler_u;
 
 type
 
@@ -71,7 +73,8 @@ type
 
     class function createUser(const id: Integer; username, firstName, lastName, displayName: string;
                               const createdOn: TDateTime; const lastLogin: TDateTime;
-                              const userType: IUserType): IUser;
+                              const userType: IUserType;
+                              const bankCards: TList<IBankCard>): IUser;
 
     class function createChat(const messages: TList<IMessage>;
                                    const UserId: Integer;
@@ -91,6 +94,15 @@ type
                                  const content: string;
                                  const user: IUser): IComment;
 
+    class function createBankCard(const id: integer; const accountNumber : string;
+                            const nameOnCard: string;
+                            const expireyDate: TDateTime;
+                            const securityCode: string; const balance: Double;
+                            const bank: IBank): IBankCard;
+    class function createBank(const id: Integer; const shortName: string;
+                            const longName: string; const phoneNumber: string) : IBank;
+    class function createParent(const id: Integer; const user: IUser): IParent;
+
     // Handlers
 
     class function createVehicleHandler(): IVehicleHandler;
@@ -103,6 +115,10 @@ type
     class function createDriverHandler(): IDriverHandler;
     class function createStudentHandler(): IStudentHandler;
     class function createCommentHandler(): ICommentHandler;
+    class function createBankCardHandler(): IBankCardHandler;
+    class function createBankHandler(): IBankHandler;
+    class function createParentHandler(): IParentHandler;
+    class function createPaymentHandler(): IPaymentHandler;
   end;
 
 implementation
@@ -111,13 +127,39 @@ uses SysUtils, clsVehicle_u, clsVehicleHandler_u, clsImage_u, clsImageHandler_u,
      clsUserHandler_u, clsUserType_u, clsMessageHandler_u, clsMessage_u,
      clsUser_u, clsUserTypeHandler_u, clsChat_u, clsChatHandler_u, clsTrip_u,
      clsTripHandler_u, clsDriverHandler_u, clsDriver_u, clsStudent_u,
-     clsStudentHandler_u, clsComment_u, clsCommentHandler_u;
+     clsStudentHandler_u, clsComment_u, clsCommentHandler_u,
+     clsBank_u, clsBankCard_u, clsBankHandler_u, clsBankCardHandler_u,
+     clsParent_u, clsParentHandler_u, clsPaymentHandler_u;
 
 { TFactory }
 
 constructor TFactory.create;
 begin
   raise Exception.Create('Cannot Instatiate TFactory!');
+end;
+
+class function TFactory.createBank(const id: Integer; const shortName, longName,
+  phoneNumber: string): IBank;
+begin
+  Result := TBank.create(id, shortName, longName, phoneNumber);
+end;
+
+class function TFactory.createBankCard(const id: integer; const accountNumber,
+  nameOnCard: string; const expireyDate: TDateTime; const securityCode: string;
+  const balance: Double; const bank: IBank): IBankCard;
+begin
+  Result := TBankCard.Create(id, accountNumber, nameOnCard, expireyDate,
+                             securityCode, balance, bank);
+end;
+
+class function TFactory.createBankCardHandler: IBankCardHandler;
+begin
+  Result := TBankCardHandler.Create(createBankHandler());
+end;
+
+class function TFactory.createBankHandler: IBankHandler;
+begin
+  Result := TBankHandler.Create();
 end;
 
 class function TFactory.createChat(const messages: TList<IMessage>;
@@ -129,7 +171,8 @@ end;
 
 class function TFactory.createChatHandler: IChatHandler;
 begin
-  Result := TChatHandler.Create(createUserHandler(), createMessageHandler());
+  Result := TChatHandler.Create(createUserHandler(), createUserTypeHandler(),
+                                createMessageHandler());
 end;
 
 class function TFactory.createComment(const id: Integer; const header: string;
@@ -141,7 +184,7 @@ end;
 
 class function TFactory.createCommentHandler: ICommentHandler;
 begin
-  Result := TCommentHandler.Create();
+  Result := TCommentHandler.Create(createUserHandler());
 end;
 
 class function TFactory.createDriver(const id: Integer; const user: IUser;
@@ -178,6 +221,22 @@ begin
   Result := TMessageHandler.create();
 end;
 
+class function TFactory.createParent(const id: Integer;
+  const user: IUser): IParent;
+begin
+  Result := TParent.create(id, user);
+end;
+
+class function TFactory.createParentHandler: IParentHandler;
+begin
+  Result := TParentHandler.create(createUserHandler(), createBankCardHandler());
+end;
+
+class function TFactory.createPaymentHandler: IPaymentHandler;
+begin
+  Result := TPaymentHandler.create(createBankCardHandler(), createTripHandler());
+end;
+
 class function TFactory.createStudent(const id: Integer; const user: IUser;
                             const grade: Integer; const c: Char): IStudent;
 begin
@@ -186,7 +245,7 @@ end;
 
 class function TFactory.createStudentHandler: IStudentHandler;
 begin
-  Result := TStudentHandler.Create();
+  Result := TStudentHandler.Create(createUserHandler());
 end;
 
 class function TFactory.createTrip(const id: Integer; const name: string;
@@ -205,14 +264,17 @@ end;
 
 class function TFactory.createUser(const id: Integer; username, firstName, lastName, displayName: string;
                               const createdOn: TDateTime; const lastLogin: TDateTime;
-                              const userType: IUserType): IUser;
+                              const userType: IUserType;
+                              const bankCards: TList<IBankCard>): IUser;
 begin
-  Result := TUser.create(id, username, firstName, lastName, displayName, createdOn, lastLogin, userType);
+  Result := TUser.create(id, username, firstName, lastName, displayName,
+                         createdOn, lastLogin, userType, bankCards);
 end;
 
 class function TFactory.createUserHandler: IUserHandler;
 begin
-  Result := TUserHandler.create(createUserTypeHandler());
+  Result := TUserHandler.create(createUserTypeHandler(),
+                                createBankCardHandler());
 end;
 
 class function TFactory.createUserType(const id: Integer; const name,

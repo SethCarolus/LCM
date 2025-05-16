@@ -1,7 +1,8 @@
 unit clsUserHandler_u;
 
 interface
-  uses iUserHandler_u, iUser_u,  Generics.Collections, iUserTypeHandler_u;
+  uses iUserHandler_u, iUser_u,  Generics.Collections, iUserTypeHandler_u,
+       iBankCardHandler_u;
 
 type
   /// <summary>
@@ -10,8 +11,10 @@ type
   TUserHandler = class(TInterfacedObject, IUserHandler)
     private
       fUserTypeHandler: IUserTypeHandler;
+      fBankCardHandler: IBankCardHandler;
     public
-      constructor create(const userTypeHandler: IUserTypeHandler);
+      constructor create(const userTypeHandler: IUserTypeHandler;
+                         const bankCardHandler: IBankCardHandler);
 
     /// <summary>
     /// Checks if a user exists in the system.
@@ -51,9 +54,11 @@ implementation
 
 { TUserHandler }
 
-constructor TUserHandler.create(const userTypeHandler: IUserTypeHandler);
+constructor TUserHandler.create(const userTypeHandler: IUserTypeHandler;
+                                const bankCardHandler: IBankCardHandler);
 begin
   fUserTypeHandler := userTypeHandler;
+  fBankCardHandler := bankCardHandler;
 end;
 
 function TUserHandler.getAllUsers: TList<IUser>;
@@ -79,7 +84,8 @@ begin
                                         FieldByName('display_name').AsString,
                                         FieldByName('created_on').AsDateTime,
                                         FieldByName('last_login').AsDateTime,
-                                        fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger)));
+                                        fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger),
+                                        fBankCardHandler.getBankCards(FieldByName('id').AsInteger)));
           Next();
         end;
    end;
@@ -128,7 +134,8 @@ begin
                                     FieldByName('display_name').AsString,
                                     FieldByName('created_on').AsDateTime,
                                     FieldByName('last_login').AsDateTime,
-                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger));
+                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger),
+                                    fBankCardHandler.getBankCards(FieldByName('id').AsInteger));
    end;
 
 end;
@@ -159,7 +166,8 @@ begin
                                     FieldByName('display_name').AsString,
                                     FieldByName('created_on').AsDateTime,
                                     FieldByName('last_login').AsDateTime,
-                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger));
+                                    fUserTypeHandler.getUserTypeWith(FieldByName('user_type_id').AsInteger),
+                                    fBankCardHandler.getBankCards(FieldByName('id').AsInteger));
    end;
 
 end;

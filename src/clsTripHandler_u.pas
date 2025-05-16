@@ -16,7 +16,9 @@ type
 
       function getTrips(const date: TDateTime): TList<ITrip>;overload;
       function getTrips(const date: TDateTime;const driverId: Integer): TList<ITrip>;overload;
-      function getTripsForStudent(const studentId: Integer; const date: TDateTime): TList<ITrip>;
+      function getTripsForStudent(const studentId: Integer; const date: TDateTime): TList<ITrip>;overload;
+      function getTripsForStudent(const studentId: Integer): TList<ITrip>;overload;
+      function getTripsForStudentThatNeedPayment(const studentId: Integer): TList<ITrip>;
       function getTripsForDriver(const driverId: Integer): TList<ITrip>;
 
       procedure addTrip(const trip_name: string; const driverId: Integer;
@@ -30,11 +32,12 @@ type
                                            const rating: UInt8);
       procedure addTripComment(const header: string;const content: string; const userId: Integer;
                                const tripId: Integer);
+      procedure changeTripsToPayed(const trips: TList<ITrip>; const studentId: Integer);
   end;
 
 implementation
 
-uses dmMain_u, clsFactory_u, DateUtils;
+uses dmMain_u, clsFactory_u, DateUtils, SysUtils;
 
 { TTripHandler }
 
@@ -105,6 +108,33 @@ begin
       Parameters.ParamByName('student_id').Value := studentId;
       Parameters.ParamByName('trip_id').Value := tripId;
       ExecSQL();
+    end;
+end;
+
+procedure TTripHandler.changeTripsToPayed(const trips: TList<ITrip>;
+  const studentId: Integer);
+begin
+  if (trips = nil) then
+    raise EArgumentNilException.Create('trips cannot be nil');
+
+  var tripIds := TList<Integer>.Create();
+
+
+  with dmMain.qryTrip do
+    begin
+      SQL.Text :=
+      '''
+        UPDATE tblStudentTrip
+        SET has_payed = True
+        WHERE student_id = :studentId AND trip_id = :tripId
+      ''';
+      Parameters.ParamByName('studentId').Value := studentId;
+
+      for var t in trips do
+        begin
+          Parameters.ParamByName('tripId').Value := t.Id;
+          ExecSQL();
+        end;
     end;
 end;
 
@@ -242,6 +272,78 @@ begin
           Next();
         end;
     end;
+end;
+
+function TTripHandler.getTripsForStudent(
+  const studentId: Integer): TList<ITrip>;
+begin
+  Result := TList<ITrip>.Create();
+  with dmMain.qryTrip do
+    begin
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblTrip
+        WHERE id in
+        (
+          SELECT trip_id
+          FROM tblStudentTrip
+          WHERE student_id = :id
+        )
+      ''';
+
+      Parameters.ParamByName('id').Value := studentId;
+      Open();
+
+      while not Eof do
+        begin
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString ,
+                                         fDriverHandler.getDriverWith(FieldByName('driver_id').AsInteger),
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
+
+          Next();
+        end;
+    end;
+end;
+
+function TTripHandler.getTripsForStudentThatNeedPayment(
+  const studentId: Integer): TList<ITrip>;
+begin
+  Result := TList<ITrip>.Create();
+  with dmMain.qryTrip do
+    begin
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblTrip
+        WHERE id in
+        (
+          SELECT trip_id
+          FROM tblStudentTrip
+          WHERE student_id = :id
+          AND has_payed = false
+        )
+      ''';
+
+      Parameters.ParamByName('id').Value := studentId;
+      Open();
+
+      while not Eof do
+        begin
+          Result.Add(TFactory.createTrip(FieldByName('Id').AsInteger,
+                                         FieldByName('trip_name').AsString ,
+                                         fDriverHandler.getDriverWith(FieldByName('driver_id').AsInteger),
+                                         fVehicleHandler.getVehicleWith(FieldByName('vehicle_id').AsInteger),
+                                         FieldByName('start_time').AsDateTime,
+                                         FieldByName('cost_per_passenger').AsCurrency));
+
+          Next();
+        end;
+    end;
+    
 end;
 
 function TTripHandler.getTripsForStudent(const studentId: Integer;

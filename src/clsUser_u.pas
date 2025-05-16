@@ -2,7 +2,7 @@ unit clsUser_u;
 
 interface
 
-uses iUserType_u, iUser_u;
+uses iUserType_u, iUser_u, iBankCard_u, Generics.Collections;
 
 type
 
@@ -50,6 +50,11 @@ type
     /// Represents the user-type of the user.
     /// </summary>
     fUserType: IUserType;
+
+    /// <summary>
+    /// Represents the bank cards assiociated with the user.
+    /// </summary>
+    fBankCards: TList<IBankCard>;
 
     /// <summary>
     /// Function that returns the id of the user.
@@ -148,6 +153,18 @@ type
     /// <param name="userType">User-type to assign to the user.</param>
     procedure setUserType(const userType: IUserType);
 
+    /// <summary>
+    /// Function that returns the bank cards assiocated with the user.
+    /// </summary>
+    /// <returns>The bank cards associated with the user.</returns>
+    function getBankCards(): TList<IBankCard>;
+
+    /// <summary>
+    /// Procedure that sets the bank cards associated wtih the user.
+    /// </summary>
+    /// <param name="bankCards">the bank cards to assign to the user.</param>
+    procedure setBankCards(const bankCards: TList<IBankCard>);
+
   public
     /// <summary>
     /// Creates a user with the specified details.
@@ -158,7 +175,10 @@ type
     /// <param name="lastName">Last name.</param>
     /// <param name="userTypeId">User type id.</param>
     constructor Create(const id: Integer; username, firstName, lastName, displayName: string;
-                       const createdOn: TDateTime; const lastLogin: TDateTime; const userType: IUserType);
+                       const createdOn: TDateTime;
+                       const lastLogin: TDateTime;
+                       const userType: IUserType;
+                       const bankCards: TList<IBankCard>);
 
     /// <summary>
     /// Represents the id of the user.
@@ -199,6 +219,11 @@ type
     /// Represents the user-type of the user.
     /// </summary>
     property UserType: IUserType read getUserType write setUserType;
+
+    /// <summary>
+    /// Represents the bank cards assiociated with the user.
+    /// </summary>
+    property BankCards: TList<IBankCard> read getBankCards write setBankCards;
   end;
 
 implementation
@@ -206,8 +231,10 @@ implementation
 { TUser }
 
 constructor TUser.Create(const id: Integer; username, firstName, lastName, displayName: string;
-    const createdOn: TDateTime; const lastLogin: TDateTime;
-    const userType: IUserType);
+                       const createdOn: TDateTime;
+                       const lastLogin: TDateTime;
+                       const userType: IUserType;
+                       const bankCards: TList<IBankCard>);
 begin
   Self.Id := id;
   Self.Username := username;
@@ -217,6 +244,7 @@ begin
   Self.CreatedOn := createdOn;
   Self.LastLogin := lastLogin;
   Self.UserType := userType;
+  Self.BankCards := bankCards
 end;
 
 function TUser.getId: Integer;
@@ -239,6 +267,11 @@ begin
   fUsername := username;
 end;
 
+function TUser.getBankCards: TList<IBankCard>;
+begin
+  Result := fBankCards;
+end;
+
 function TUser.getCreatedOn: TDateTime;
 begin
   Result := fCreatedOn;
@@ -252,6 +285,11 @@ end;
 function TUser.getFirstName: string;
 begin
   Result := fFirstName;
+end;
+
+procedure TUser.setBankCards(const bankCards: TList<IBankCard>);
+begin
+  fBankCards := bankCards;
 end;
 
 procedure TUser.setCreatedOn(const createdOn: TDateTime);

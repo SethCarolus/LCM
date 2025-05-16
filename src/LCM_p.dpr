@@ -63,7 +63,22 @@ uses
   iCommentHandler_u in 'iCommentHandler_u.pas',
   clsCommentHandler_u in 'clsCommentHandler_u.pas',
   iComment_u in 'iComment_u.pas',
-  clsComment_u in 'clsComment_u.pas';
+  clsComment_u in 'clsComment_u.pas',
+  clsBank_u in 'clsBank_u.pas',
+  clsBankCard_u in 'clsBankCard_u.pas',
+  clsBankCardHandler_u in 'clsBankCardHandler_u.pas',
+  clsBankHandler_u in 'clsBankHandler_u.pas',
+  iBank_u in 'iBank_u.pas',
+  iBankCard_u in 'iBankCard_u.pas',
+  iBankCardHandler_u in 'iBankCardHandler_u.pas',
+  iBankHandler_u in 'iBankHandler_u.pas',
+  iParent_u in 'iParent_u.pas',
+  iParentHandler_u in 'iParentHandler_u.pas',
+  clsParent_u in 'clsParent_u.pas',
+  clsParentHandler_u in 'clsParentHandler_u.pas',
+  clsPaymentHandler_u in 'clsPaymentHandler_u.pas',
+  iPaymentHandler_u in 'iPaymentHandler_u.pas',
+  frmManageTripPayment_u in 'frmManageTripPayment_u.pas' {frmManagePayment};
 
 {$R *.res}
 
@@ -87,6 +102,7 @@ begin
   Application.CreateForm(TfrmMyTrips, frmMyTrips);
   Application.CreateForm(TfrmPastTrips, frmPastTrips);
   Application.CreateForm(TfrmViewTripComments, frmViewTripComments);
+  Application.CreateForm(TfrmManagePayment, frmManagePayment);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

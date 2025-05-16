@@ -2,7 +2,7 @@ unit iUser_u;
 
 interface
 
-uses iUserType_u;
+uses iUserType_u, iBankCard_u, Generics.Collections;
 
 type
   /// <summary>
@@ -107,6 +107,18 @@ type
     procedure setUserType(const userType: IUserType);
 
     /// <summary>
+    /// Function that returns the bank cards assiocated with the user.
+    /// </summary>
+    /// <returns>The bank cards associated with the user.</returns>
+    function getBankCards(): TList<IBankCard>;
+
+    /// <summary>
+    /// Procedure that sets the bank cards associated wtih the user.
+    /// </summary>
+    /// <param name="bankCards">the bank cards to assign to the user.</param>
+    procedure setBankCards(const bankCards: TList<IBankCard>);
+
+    /// <summary>
     /// Represents the id of the user.
     /// </summary>
     property Id: Integer read getId write setId;
@@ -145,6 +157,11 @@ type
     /// Represents the user-type of the user.
     /// </summary>
     property UserType: IUserType read getUserType write setUserType;
+
+    /// <summary>
+    /// Represents the bank cards assiociated with the user.
+    /// </summary>
+    property BankCards: TList<IBankCard> read getBankCards write setBankCards;
   end;
 
 implementation

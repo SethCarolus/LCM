@@ -252,6 +252,24 @@
         <DCCReference Include="clsCommentHandler_u.pas"/>
         <DCCReference Include="iComment_u.pas"/>
         <DCCReference Include="clsComment_u.pas"/>
+        <DCCReference Include="clsBank_u.pas"/>
+        <DCCReference Include="clsBankCard_u.pas"/>
+        <DCCReference Include="clsBankCardHandler_u.pas"/>
+        <DCCReference Include="clsBankHandler_u.pas"/>
+        <DCCReference Include="iBank_u.pas"/>
+        <DCCReference Include="iBankCard_u.pas"/>
+        <DCCReference Include="iBankCardHandler_u.pas"/>
+        <DCCReference Include="iBankHandler_u.pas"/>
+        <DCCReference Include="iParent_u.pas"/>
+        <DCCReference Include="iParentHandler_u.pas"/>
+        <DCCReference Include="clsParent_u.pas"/>
+        <DCCReference Include="clsParentHandler_u.pas"/>
+        <DCCReference Include="clsPaymentHandler_u.pas"/>
+        <DCCReference Include="iPaymentHandler_u.pas"/>
+        <DCCReference Include="frmManageTripPayment_u.pas">
+            <Form>frmManagePayment</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

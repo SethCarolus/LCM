@@ -5356,7 +5356,7 @@ object frmMain: TfrmMain
         Align = alClient
         Alignment = taCenter
         TabOrder = 1
-        Text = 'student_isabella'
+        Text = 'parent_linda'
         TextHint = 'username'
         OnChange = edtUsernameChange
         ExplicitHeight = 35
@@ -5374,7 +5374,7 @@ object frmMain: TfrmMain
         Align = alClient
         Alignment = taCenter
         TabOrder = 2
-        Text = 'pass777'
+        Text = 'pass899'
         TextHint = 'password'
         OnChange = edtPasswordChange
         ExplicitHeight = 35

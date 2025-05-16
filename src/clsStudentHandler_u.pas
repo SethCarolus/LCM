@@ -2,13 +2,19 @@ unit clsStudentHandler_u;
 
 interface
 
-uses iStudentHandler_u, Generics.Collections, iStudent_u;
+uses iStudentHandler_u, Generics.Collections, iStudent_u, iUserHandler_u;
 
 type
   TStudentHandler = class(TInterfacedObject, IStudentHandler)
-  public
-    function getStudentsEnquiringAboutTripWith(const id: Integer): TList<IStudent>;
-    function getStudentForUserWith(const id: Integer): IStudent;
+    private
+      fUserHandler: IUserHandler;
+    public
+      function getStudentsEnquiringAboutTripWith(const id: Integer): TList<IStudent>;
+      function getStudentForUserWith(const id: Integer): IStudent;
+      function getStudent(const id: Integer): IStudent;
+      function getStudentsForParentWith(const id: Integer): TList<IStudent>;
+
+      constructor create(const userHandler: IUserHandler);
   end;
 
 implementation
@@ -27,15 +33,13 @@ begin
       SQL.Text :=
       '''
         SELECT *
-        FROM tblStudent, tblUser, tblUserType
+        FROM tblStudent
         WHERE tblStudent.id IN
         (
           SELECT student_id
           FROM tblTripEnquiry
           WHERE trip_id = :id
         )
-        AND tblStudent.user_id = tblUser.id
-        AND tblUser.user_type_id = tblUserType.id
       ''';
       Parameters.ParamByName('id').Value := id;
       Open();
@@ -44,21 +48,63 @@ begin
         begin
 
           Result.Add(TFactory.createStudent(FieldByName('tblStudent.ID').AsInteger,
-                     TFactory.createUser(
-                                        FieldByName('tblUser.id').AsInteger,
-                                        FieldByName('username').AsString,
-                                        FieldByName('first_name').AsString,
-                                        FieldByName('last_name').AsString,
-                                        FieldByName('display_name').AsString,
-                                        FieldByName('created_on').AsDateTime,
-                                        FieldByName('last_login').AsDateTime,
-                                        TFactory.createUserType(FieldByName('tblUserType.Id').AsInteger,
-                                                                FieldByName('user_type_name').AsString,
-                                                                FieldByName('description').AsString)),
+                     fUserHandler.getUserWith(FieldByName('user_id').AsInteger),
                      FieldByName('grade').AsInteger,
                      FieldByName('class').AsString[1]));
           Next();
         end;
+    end;
+end;
+
+function TStudentHandler.getStudentsForParentWith(
+  const id: Integer): TList<IStudent>;
+begin
+  Result := TList<IStudent>.Create();
+  with dmMain.qryParent do
+    begin
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblStudent
+        WHERE id in
+        (
+          SELECT student_id
+          FROM tblStudentParent
+          WHERE parent_id = :id
+        )
+      ''';
+      Parameters.ParamByName('id').Value := id;
+      Open();
+      while not Eof do
+        begin
+          Result.add(getStudent(FieldByName('id').AsInteger));
+          Next();
+        end;
+    end;
+end;
+
+constructor TStudentHandler.create(const userHandler: IUserHandler);
+begin
+  fUserHandler := userHandler;
+end;
+
+function TStudentHandler.getStudent(const id: Integer): IStudent;
+begin
+  with dmMain.qryStudent do
+    begin
+      SQL.Text :=
+      '''
+        SELECT *
+        FROM tblStudent
+        WHERE id = ?
+      ''';
+      Parameters[0].Value := id;
+      Open();
+      Result := TFactory.createStudent(
+                FieldByName('ID').AsInteger,
+                fUserHandler.getUserWith(FieldByName('user_id').AsInteger),
+                FieldByName('grade').AsInteger,
+                FieldByName('class').AsString[1]);
     end;
 end;
 
@@ -69,28 +115,16 @@ begin
       SQL.Text :=
       '''
         SELECT *
-        FROM tblStudent, tblUser, tblUserType
+        FROM tblStudent
         WHERE tblStudent.user_id = ?
-        AND tblStudent.user_id = tblUser.id
-        AND tblUser.user_type_id = tblUserType.id
       ''';
       Parameters[0].Value := id;
       Open();
       Result := TFactory.createStudent(
-                FieldByName('tblStudent.ID').AsInteger,
-                TFactory.createUser(
-                                    FieldByName('tblUser.ID').AsInteger,
-                                    FieldByName('username').AsString,
-                                    FieldByName('first_name').AsString,
-                                    FieldByName('last_name').AsString,
-                                    FieldByName('display_name').AsString,
-                                    FieldByName('created_on').AsDateTime,
-                                    FieldByName('last_login').AsDateTime,
-                                    TFactory.createUserType(FieldByName('tblUserType.ID').AsInteger,
-                                                            FieldByName('user_type_name').AsString,
-                                                            FieldByName('description').AsString)),
-              FieldByName('grade').AsInteger,
-              FieldByName('class').AsString[1]);
+                FieldByName('ID').AsInteger,
+                fUserHandler.getUserWith(FieldByName('user_id').AsInteger),
+                FieldByName('grade').AsInteger,
+                FieldByName('class').AsString[1]);
     end;
 end;
 
