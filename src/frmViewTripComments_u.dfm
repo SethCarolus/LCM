@@ -2,7 +2,7 @@ object frmViewTripComments: TfrmViewTripComments
   Left = 0
   Top = 0
   Caption = 'LCM'
-  ClientHeight = 761
+  ClientHeight = 861
   ClientWidth = 983
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -5239,190 +5239,266 @@ object frmViewTripComments: TfrmViewTripComments
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
+  Position = poOwnerFormCenter
   OnActivate = FormActivate
   TextHeight = 27
   object GridPanel1: TGridPanel
     Left = 0
     Top = 0
     Width = 983
-    Height = 761
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Height = 861
     Align = alClient
-    BevelOuter = bvNone
     ColumnCollection = <
       item
-        Value = 30.000000000000000000
-      end
-      item
-        Value = 35.000000000000000000
-      end
-      item
-        Value = 35.000000000000000000
+        Value = 100.000000000000000000
       end>
     ControlCollection = <
       item
         Column = 0
-        Control = lstComments
-        Row = 1
-      end
-      item
-        Column = 2
-        Control = StackPanel3
-        Row = 1
-      end
-      item
-        Column = 2
-        Control = StackPanel4
-        Row = 2
-      end
-      item
-        Column = 1
-        Control = StackPanel1
-        Row = 1
+        Control = GridPanel2
+        Row = 0
       end
       item
         Column = 0
-        Control = Label1
-        Row = 0
+        Control = GridPanel4
+        Row = 1
       end>
     RowCollection = <
       item
-        Value = 10.000000000000000000
+        Value = 90.000000000000000000
       end
       item
-        Value = 80.000000000000000000
-      end
-      item
-        Value = 10.000000000000000000
+        Value = 9.999999999999998000
       end>
     TabOrder = 0
-    object lstComments: TListBox
-      AlignWithMargins = True
-      Left = 10
-      Top = 86
-      Width = 275
-      Height = 589
+    object GridPanel2: TGridPanel
+      Left = 1
+      Top = 1
+      Width = 981
+      Height = 773
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      ItemHeight = 27
-      TabOrder = 0
-      OnClick = lstCommentsClick
-    end
-    object StackPanel3: TStackPanel
-      Left = 639
-      Top = 76
-      Width = 344
-      Height = 609
-      Align = alClient
       BevelOuter = bvNone
-      ControlCollection = <
+      ColumnCollection = <
         item
-          Control = Label2
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
+          Value = 30.000000000000000000
         end
         item
-          Control = edtName
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
+          Value = 35.000000000000000000
+        end
+        item
+          Value = 35.000000000000000000
         end>
-      TabOrder = 1
-      object Label2: TLabel
-        AlignWithMargins = True
-        Left = 10
-        Top = 10
-        Width = 324
-        Height = 27
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        Caption = 'User:'
-      end
-      object edtName: TLabeledEdit
-        AlignWithMargins = True
-        Left = 10
-        Top = 79
-        Width = 324
-        Height = 35
-        Margins.Left = 10
-        Margins.Top = 30
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 56
-        EditLabel.Height = 27
-        EditLabel.Caption = 'Name:'
-        ReadOnly = True
-        TabOrder = 0
-        Text = ''
-      end
-    end
-    object StackPanel4: TStackPanel
-      Left = 639
-      Top = 685
-      Width = 344
-      Height = 76
-      Align = alClient
-      BevelOuter = bvNone
-      ControlCollection = <>
-      TabOrder = 2
-    end
-    object StackPanel1: TStackPanel
-      Left = 295
-      Top = 76
-      Width = 344
-      Height = 609
-      Hint = 'Comment on the trip!'
-      Align = alClient
-      BevelOuter = bvNone
       ControlCollection = <
         item
-          Control = memContent
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
+          Column = 0
+          Control = lstComments
+          Row = 1
+        end
+        item
+          Column = 2
+          Control = StackPanel3
+          Row = 1
+        end
+        item
+          Column = 2
+          Control = StackPanel4
+          Row = 2
+        end
+        item
+          Column = 1
+          Control = StackPanel1
+          Row = 1
+        end
+        item
+          Column = 0
+          Control = Label1
+          Row = 0
         end>
-      TabOrder = 3
-      object memContent: TMemo
+      RowCollection = <
+        item
+          Value = 10.000000000000000000
+        end
+        item
+          Value = 80.000000000000000000
+        end
+        item
+          Value = 10.000000000000000000
+        end>
+      TabOrder = 0
+      object lstComments: TListBox
         AlignWithMargins = True
         Left = 10
-        Top = 10
-        Width = 324
-        Height = 586
+        Top = 87
+        Width = 274
+        Height = 599
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
-        ReadOnly = True
+        ItemHeight = 27
         TabOrder = 0
+        OnClick = lstCommentsClick
+      end
+      object StackPanel3: TStackPanel
+        Left = 638
+        Top = 77
+        Width = 343
+        Height = 619
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = Label2
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = edtName
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        TabOrder = 1
+        object Label2: TLabel
+          AlignWithMargins = True
+          Left = 10
+          Top = 10
+          Width = 323
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'User:'
+        end
+        object edtName: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 79
+          Width = 323
+          Height = 35
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 56
+          EditLabel.Height = 27
+          EditLabel.Caption = 'Name:'
+          ReadOnly = True
+          TabOrder = 0
+          Text = ''
+        end
+      end
+      object StackPanel4: TStackPanel
+        Left = 638
+        Top = 696
+        Width = 343
+        Height = 77
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <>
+        TabOrder = 2
+      end
+      object StackPanel1: TStackPanel
+        Left = 294
+        Top = 77
+        Width = 344
+        Height = 619
+        Hint = 'Comment on the trip!'
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = memContent
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        TabOrder = 3
+        object memContent: TMemo
+          AlignWithMargins = True
+          Left = 10
+          Top = 10
+          Width = 324
+          Height = 586
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          ReadOnly = True
+          TabOrder = 0
+        end
+      end
+      object Label1: TLabel
+        AlignWithMargins = True
+        Left = 10
+        Top = 10
+        Width = 274
+        Height = 57
+        Margins.Left = 10
+        Margins.Top = 10
+        Margins.Right = 10
+        Margins.Bottom = 10
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Comment:'
+        Layout = tlCenter
+        ExplicitWidth = 92
+        ExplicitHeight = 27
       end
     end
-    object Label1: TLabel
-      AlignWithMargins = True
-      Left = 10
-      Top = 10
-      Width = 275
-      Height = 56
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
+    object GridPanel4: TGridPanel
+      Left = 1
+      Top = 774
+      Width = 981
+      Height = 86
       Align = alClient
-      Alignment = taCenter
-      Caption = 'Comment:'
-      Layout = tlCenter
-      ExplicitWidth = 92
-      ExplicitHeight = 27
+      BevelOuter = bvNone
+      ColumnCollection = <
+        item
+          Value = 33.333333333333340000
+        end
+        item
+          Value = 33.333333333333340000
+        end
+        item
+          Value = 33.333333333333310000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = btnBack
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      TabOrder = 1
+      object btnBack: TBitBtn
+        AlignWithMargins = True
+        Left = 10
+        Top = 10
+        Width = 117
+        Height = 66
+        Margins.Left = 10
+        Margins.Top = 10
+        Margins.Right = 200
+        Margins.Bottom = 10
+        Align = alClient
+        Caption = '&Back'
+        Kind = bkClose
+        NumGlyphs = 2
+        TabOrder = 0
+      end
     end
   end
 end

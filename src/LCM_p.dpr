@@ -84,7 +84,7 @@ uses
   clsTimer_u in 'clsTimer_u.pas',
   ITimer_u in 'ITimer_u.pas',
   logout_u in 'logout_u.pas',
-  frmViewHabits_u in 'frmViewHabits_u.pas' {Form1};
+  frmViewHabits_u in 'frmViewHabits_u.pas' {frmViewHabits};
 
 {$R *.res}
 
@@ -109,7 +109,7 @@ begin
   Application.CreateForm(TfrmPastTrips, frmPastTrips);
   Application.CreateForm(TfrmViewTripComments, frmViewTripComments);
   Application.CreateForm(TfrmManagePayment, frmManagePayment);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmViewHabits, frmViewHabits);
   TStyleManager.TrySetStyle('Windows11 MineShaft');
   Application.Run;
 end.

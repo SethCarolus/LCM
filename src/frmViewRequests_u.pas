@@ -4,14 +4,17 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TfrmViewRequests = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     Label1: TLabel;
     btnSend: TButton;
     lstDisplayNames: TListBox;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure btnSendClick(Sender: TObject);
     procedure lstDisplayNamesClick(Sender: TObject);

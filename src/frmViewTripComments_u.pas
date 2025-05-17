@@ -5,19 +5,22 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.WinXPanels, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Mask;
+  Vcl.ExtCtrls, Vcl.Mask, Vcl.Buttons;
 
 type
   TfrmViewTripComments = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstComments: TListBox;
     StackPanel3: TStackPanel;
+    Label2: TLabel;
+    edtName: TLabeledEdit;
     StackPanel4: TStackPanel;
     StackPanel1: TStackPanel;
-    edtName: TLabeledEdit;
-    Label2: TLabel;
     memContent: TMemo;
     Label1: TLabel;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstCommentsClick(Sender: TObject);
   private

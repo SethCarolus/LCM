@@ -2,7 +2,7 @@ object frmStudentMenu: TfrmStudentMenu
   Left = 0
   Top = 0
   Caption = 'LCM'
-  ClientHeight = 761
+  ClientHeight = 861
   ClientWidth = 984
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -5239,15 +5239,15 @@ object frmStudentMenu: TfrmStudentMenu
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
+  Position = poOwnerFormCenter
   OnActivate = FormActivate
   TextHeight = 22
   object GridPanel1: TGridPanel
     Left = 0
     Top = 0
     Width = 984
-    Height = 761
+    Height = 861
     Align = alClient
-    BevelOuter = bvNone
     ColumnCollection = <
       item
         Value = 100.000000000000000000
@@ -5256,33 +5256,216 @@ object frmStudentMenu: TfrmStudentMenu
       item
         Column = 0
         Control = GridPanel2
-        Row = 1
+        Row = 0
       end
       item
         Column = 0
-        Control = Panel1
-        Row = 0
+        Control = GridPanel4
+        Row = 1
       end>
     RowCollection = <
       item
-        Value = 32.061526122505500000
+        Value = 90.000000000000000000
       end
       item
-        Value = 67.938473877494500000
+        Value = 9.999999999999998000
       end>
     TabOrder = 0
-    DesignSize = (
-      984
-      761)
     object GridPanel2: TGridPanel
-      Left = 0
-      Top = 244
-      Width = 984
-      Height = 517
-      Margins.Left = 100
-      Margins.Top = 50
-      Margins.Right = 100
-      Margins.Bottom = 50
+      Left = 1
+      Top = 1
+      Width = 982
+      Height = 773
+      Align = alClient
+      BevelOuter = bvNone
+      ColumnCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = GridPanel3
+          Row = 1
+        end
+        item
+          Column = 0
+          Control = Panel1
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 32.061526122505500000
+        end
+        item
+          Value = 67.938473877494500000
+        end>
+      TabOrder = 0
+      DesignSize = (
+        982
+        773)
+      object GridPanel3: TGridPanel
+        Left = 0
+        Top = 248
+        Width = 982
+        Height = 525
+        Margins.Left = 100
+        Margins.Top = 50
+        Margins.Right = 100
+        Margins.Bottom = 50
+        Align = alClient
+        BevelOuter = bvNone
+        ColumnCollection = <
+          item
+            Value = 33.333333333333340000
+          end
+          item
+            Value = 33.333333333333340000
+          end
+          item
+            Value = 33.333333333333310000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = btnMessages
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = btnTrips
+            Row = 0
+          end
+          item
+            Column = 2
+            Control = btnMyTrips
+            Row = 0
+          end
+          item
+            Column = 0
+            Control = btnHabits
+            Row = 1
+          end
+          item
+            Column = 1
+            Control = Button5
+            Row = 1
+          end
+          item
+            Column = 2
+            Control = Button6
+            Row = 1
+          end>
+        RowCollection = <
+          item
+            Value = 50.000000000000000000
+          end
+          item
+            Value = 50.000000000000000000
+          end>
+        TabOrder = 0
+        object btnMessages: TButton
+          AlignWithMargins = True
+          Left = 10
+          Top = 10
+          Width = 307
+          Height = 242
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Messages'
+          TabOrder = 0
+          OnClick = btnMessagesClick
+        end
+        object btnTrips: TButton
+          AlignWithMargins = True
+          Left = 337
+          Top = 10
+          Width = 308
+          Height = 242
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Trips'
+          TabOrder = 1
+          OnClick = btnTripsClick
+        end
+        object btnMyTrips: TButton
+          AlignWithMargins = True
+          Left = 665
+          Top = 10
+          Width = 307
+          Height = 242
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'My Trips'
+          TabOrder = 2
+          OnClick = btnMyTripsClick
+        end
+        object btnHabits: TButton
+          AlignWithMargins = True
+          Left = 10
+          Top = 272
+          Width = 307
+          Height = 243
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Habits'
+          TabOrder = 3
+          OnClick = btnHabitsClick
+        end
+        object Button5: TButton
+          AlignWithMargins = True
+          Left = 337
+          Top = 272
+          Width = 308
+          Height = 243
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          TabOrder = 4
+        end
+        object Button6: TButton
+          AlignWithMargins = True
+          Left = 665
+          Top = 272
+          Width = 307
+          Height = 243
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          TabOrder = 5
+        end
+      end
+      object Panel1: TPanel
+        Left = 318
+        Top = 71
+        Width = 346
+        Height = 106
+        Anchors = []
+        Caption = 'Dashboard'
+        TabOrder = 1
+      end
+    end
+    object GridPanel4: TGridPanel
+      Left = 1
+      Top = 774
+      Width = 982
+      Height = 86
       Align = alClient
       BevelOuter = bvNone
       ColumnCollection = <
@@ -5298,137 +5481,30 @@ object frmStudentMenu: TfrmStudentMenu
       ControlCollection = <
         item
           Column = 0
-          Control = btnMessages
+          Control = btnBack
           Row = 0
-        end
-        item
-          Column = 1
-          Control = btnTrips
-          Row = 0
-        end
-        item
-          Column = 2
-          Control = btnMyTrips
-          Row = 0
-        end
-        item
-          Column = 0
-          Control = btnHabits
-          Row = 1
-        end
-        item
-          Column = 1
-          Control = Button5
-          Row = 1
-        end
-        item
-          Column = 2
-          Control = Button6
-          Row = 1
         end>
       RowCollection = <
         item
-          Value = 50.000000000000000000
-        end
-        item
-          Value = 50.000000000000000000
+          Value = 100.000000000000000000
         end>
-      TabOrder = 0
-      object btnMessages: TButton
-        AlignWithMargins = True
-        Left = 10
-        Top = 10
-        Width = 308
-        Height = 238
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Caption = 'Messages'
-        TabOrder = 0
-        OnClick = btnMessagesClick
-      end
-      object btnTrips: TButton
-        AlignWithMargins = True
-        Left = 338
-        Top = 10
-        Width = 308
-        Height = 238
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Caption = 'Trips'
-        TabOrder = 1
-        OnClick = btnTripsClick
-      end
-      object btnMyTrips: TButton
-        AlignWithMargins = True
-        Left = 666
-        Top = 10
-        Width = 308
-        Height = 238
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Caption = 'My Trips'
-        TabOrder = 2
-        OnClick = btnMyTripsClick
-      end
-      object btnHabits: TButton
-        AlignWithMargins = True
-        Left = 10
-        Top = 268
-        Width = 308
-        Height = 239
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Caption = 'Habits'
-        TabOrder = 3
-        OnClick = btnHabitsClick
-      end
-      object Button5: TButton
-        AlignWithMargins = True
-        Left = 338
-        Top = 268
-        Width = 308
-        Height = 239
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        TabOrder = 4
-      end
-      object Button6: TButton
-        AlignWithMargins = True
-        Left = 666
-        Top = 268
-        Width = 308
-        Height = 239
-        Margins.Left = 10
-        Margins.Top = 10
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        TabOrder = 5
-      end
-    end
-    object Panel1: TPanel
-      Left = 319
-      Top = 69
-      Width = 346
-      Height = 106
-      Anchors = []
-      Caption = 'Dashboard'
       TabOrder = 1
+      object btnBack: TBitBtn
+        AlignWithMargins = True
+        Left = 10
+        Top = 10
+        Width = 117
+        Height = 66
+        Margins.Left = 10
+        Margins.Top = 10
+        Margins.Right = 200
+        Margins.Bottom = 10
+        Align = alClient
+        Caption = '&Back'
+        Kind = bkClose
+        NumGlyphs = 2
+        TabOrder = 0
+      end
     end
   end
 end

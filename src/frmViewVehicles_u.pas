@@ -5,17 +5,20 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Mask, jpeg, iVehicle_u, System.Threading;
+  Vcl.StdCtrls, Vcl.Mask, jpeg, iVehicle_u, System.Threading, Vcl.Buttons;
 
 type
   TfrmViewVehicles = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstVehicleNames: TListBox;
     ImgVehicleImage: TImage;
+    GridPanel3: TGridPanel;
     btnNext: TButton;
-    GridPanel2: TGridPanel;
     pnlDescription: TPanel;
     pnlUploadedOn: TPanel;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstVehicleNamesClick(Sender: TObject);
     procedure btnNextClick(Sender: TObject);

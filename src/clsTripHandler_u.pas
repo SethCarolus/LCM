@@ -326,6 +326,7 @@ begin
           WHERE student_id = :id
           AND has_payed = false
         )
+        ORDER BY trip_name ASC
       ''';
 
       Parameters.ParamByName('id').Value := studentId;

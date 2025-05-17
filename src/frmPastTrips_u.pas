@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  Vcl.WinXPanels, Vcl.ExtCtrls, DateUtils;
+  Vcl.WinXPanels, Vcl.ExtCtrls, DateUtils, Vcl.Buttons;
 
 type
   TfrmPastTrips = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstTrips: TListBox;
     Label1: TLabel;
     StackPanel3: TStackPanel;
@@ -19,6 +20,8 @@ type
     edtPricePerPassenger: TEdit;
     StackPanel4: TStackPanel;
     btnViewComments: TButton;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure lstTripsClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnViewCommentsClick(Sender: TObject);

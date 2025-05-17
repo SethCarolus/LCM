@@ -4,14 +4,18 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
+  Vcl.Buttons;
 
 type
   TfrmViewHabits = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     redViewHabits: TRichEdit;
     Panel1: TPanel;
-    procedure FormShow(Sender: TObject);
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,7 +31,8 @@ uses clsFactory_u, clsApplicationState_u;
 
 {$R *.dfm}
 
-procedure TfrmViewHabits.FormShow(Sender: TObject);
+
+procedure TfrmViewHabits.FormActivate(Sender: TObject);
 begin
   var handler := TFactory.createUserHabitHandler();
   TApplicationState.Habits := handler.getUserHabitsFor(TApplicationState.CurrentUser.Id);
@@ -35,6 +40,7 @@ begin
   if (TApplicationState.Habits.IsEmpty) then
     begin
       ShowMessage('Welcome to LCM. This is your first Time using our App! We truly apprieciate your support!');
+      btnBack.SetFocus();
       Exit;
     end;
 
@@ -47,7 +53,6 @@ begin
     begin
       redViewHabits.Lines.Add('Session ' + (i + 1).ToString()+ ' :' + #9 + TApplicationState.Habits[i].ToString + ' minute/s')
     end;
-
 end;
 
 end.

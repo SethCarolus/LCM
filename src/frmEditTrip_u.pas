@@ -6,11 +6,12 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.NumberBox,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels,
-  iVehicle_u, System.Threading;
+  iVehicle_u, System.Threading, Vcl.Buttons;
 
 type
   TfrmEditTrip = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstVehicleNames: TListBox;
     StackPanel2: TStackPanel;
     Label3: TLabel;
@@ -30,6 +31,8 @@ type
     Label6: TLabel;
     btnMakeChanges: TButton;
     Label1: TLabel;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure lstVehicleNamesClick(Sender: TObject);
     procedure btnVehicleImageNextClick(Sender: TObject);
     procedure btnMakeChangesClick(Sender: TObject);

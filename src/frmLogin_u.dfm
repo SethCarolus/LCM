@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'LCM'
-  ClientHeight = 761
+  ClientHeight = 861
   ClientWidth = 984
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -5241,7 +5241,7 @@ object frmMain: TfrmMain
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
-  Position = poDesigned
+  Position = poScreenCenter
   OnActivate = FormActivate
   OnClose = FormClose
   TextHeight = 27
@@ -5249,7 +5249,7 @@ object frmMain: TfrmMain
     Left = 0
     Top = 0
     Width = 984
-    Height = 761
+    Height = 861
     Align = alClient
     BevelOuter = bvNone
     ColumnCollection = <
@@ -5278,14 +5278,15 @@ object frmMain: TfrmMain
         Value = 30.000000000000000000
       end>
     TabOrder = 0
+    ExplicitHeight = 761
     DesignSize = (
       984
-      761)
+      861)
     object GridPanel2: TGridPanel
       Left = 0
-      Top = 228
+      Top = 258
       Width = 984
-      Height = 305
+      Height = 345
       Margins.Left = 100
       Margins.Top = 50
       Margins.Right = 100
@@ -5323,12 +5324,14 @@ object frmMain: TfrmMain
           Value = 33.333333333333310000
         end>
       TabOrder = 0
+      ExplicitTop = 228
+      ExplicitHeight = 305
       object btnLogin: TButton
         AlignWithMargins = True
         Left = 100
-        Top = 223
+        Top = 250
         Width = 784
-        Height = 62
+        Height = 75
         Margins.Left = 100
         Margins.Top = 20
         Margins.Right = 100
@@ -5343,13 +5346,15 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 0
         OnClick = btnLoginClick
+        ExplicitTop = 223
+        ExplicitHeight = 62
       end
       object edtUsername: TEdit
         AlignWithMargins = True
         Left = 100
         Top = 20
         Width = 784
-        Height = 62
+        Height = 75
         Margins.Left = 100
         Margins.Top = 20
         Margins.Right = 100
@@ -5365,9 +5370,9 @@ object frmMain: TfrmMain
       object edtPassword: TEdit
         AlignWithMargins = True
         Left = 100
-        Top = 122
+        Top = 135
         Width = 784
-        Height = 61
+        Height = 75
         Margins.Left = 100
         Margins.Top = 20
         Margins.Right = 100
@@ -5378,12 +5383,13 @@ object frmMain: TfrmMain
         Text = 'pass899'
         TextHint = 'password'
         OnChange = edtPasswordChange
+        ExplicitTop = 122
         ExplicitHeight = 35
       end
     end
     object Image1: TImage
       Left = 322
-      Top = 39
+      Top = 54
       Width = 340
       Height = 149
       Anchors = []
@@ -7993,6 +7999,7 @@ object frmMain: TfrmMain
       Stretch = True
       Transparent = True
       ExplicitLeft = 0
+      ExplicitTop = 39
     end
   end
 end

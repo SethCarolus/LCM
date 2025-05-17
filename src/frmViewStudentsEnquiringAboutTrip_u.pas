@@ -5,17 +5,20 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.NumberBox,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels, Vcl.Buttons;
 
 type
   TfrmViewStudentsEnquiringAboutTrip = class(TForm)
     GridPanel1: TGridPanel;
-    StackPanel1: TStackPanel;
-    edtClass: TLabeledEdit;
-    edtGrade: TLabeledEdit;
     GridPanel2: TGridPanel;
+    StackPanel1: TStackPanel;
+    edtGrade: TLabeledEdit;
+    edtClass: TLabeledEdit;
+    GridPanel3: TGridPanel;
     lstStudents: TListBox;
     btnAccept: TButton;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstStudentsClick(Sender: TObject);
     procedure btnAcceptClick(Sender: TObject);

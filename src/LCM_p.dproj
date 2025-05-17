@@ -276,7 +276,7 @@
         <DCCReference Include="ITimer_u.pas"/>
         <DCCReference Include="logout_u.pas"/>
         <DCCReference Include="frmViewHabits_u.pas">
-            <Form>Form1</Form>
+            <Form>frmViewHabits</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -5,29 +5,31 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.WinXPanels, Vcl.StdCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TfrmManagePayment = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     StackPanel1: TStackPanel;
     Label1: TLabel;
     cmbStudent: TComboBox;
     Label2: TLabel;
+    lstTrips: TListBox;
     lblTotal: TLabel;
     btnMakePayment: TButton;
     Panel1: TPanel;
-    StackPanel2: TStackPanel;
-    lstTrips: TListBox;
     StackPanel3: TStackPanel;
     Label3: TLabel;
     cmbBankCard: TComboBox;
     Label4: TLabel;
     edtBalance: TEdit;
-    Label5: TLabel;
-    edtBankName: TEdit;
     Label6: TLabel;
     edtNameOnCard: TEdit;
+    Label5: TLabel;
+    edtBankName: TEdit;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure cmbBankCardChange(Sender: TObject);
     procedure cmbStudentChange(Sender: TObject);

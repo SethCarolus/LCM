@@ -5,33 +5,36 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.WinXPanels, Vcl.Imaging.jpeg, Vcl.Mask, Vcl.ComCtrls;
+  Vcl.WinXPanels, Vcl.Imaging.jpeg, Vcl.Mask, Vcl.ComCtrls, Vcl.Buttons;
 
 type
   TfrmViewTrips = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstTrips: TListBox;
     Label1: TLabel;
     btnEnquire: TButton;
     StackPanel1: TStackPanel;
     Label2: TLabel;
+    edtDriverName: TLabeledEdit;
+    imgDriver: TImage;
+    btnDriverImageNext: TButton;
     StackPanel2: TStackPanel;
     Label3: TLabel;
-    edtNumberPlate: TLabeledEdit;
     edtModel: TLabeledEdit;
+    edtNumberPlate: TLabeledEdit;
     edtMaxPassengers: TLabeledEdit;
     edtColor: TLabeledEdit;
     imgVehicle: TImage;
-    edtDriverName: TLabeledEdit;
-    imgDriver: TImage;
     btnVehicleImageNext: TButton;
-    btnDriverImageNext: TButton;
     StackPanel3: TStackPanel;
     edtStartTime: TLabel;
     dtpStartTime: TDateTimePicker;
     StackPanel4: TStackPanel;
-    edtPricePerPassenger: TEdit;
     Label4: TLabel;
+    edtPricePerPassenger: TEdit;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstTripsClick(Sender: TObject);
     procedure btnVehicleImageNextClick(Sender: TObject);

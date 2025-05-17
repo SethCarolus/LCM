@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels;
+  Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels, Vcl.Buttons;
 
 type
   TfrmManageTrips = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     Label1: TLabel;
     btnEdit: TButton;
     StackPanel2: TStackPanel;
@@ -23,14 +24,16 @@ type
     StackPanel4: TStackPanel;
     Label4: TLabel;
     edtPricePerPassenger: TEdit;
-    StackPanel1: TStackPanel;
     Label2: TLabel;
     dtpStartTime: TDateTimePicker;
+    StackPanel1: TStackPanel;
     btnAdd: TButton;
     btnDelete: TButton;
-    GridPanel2: TGridPanel;
+    GridPanel3: TGridPanel;
     lstTrips: TListBox;
     btnEnquiries: TButton;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure btnVehicleImageNextClick(Sender: TObject);
     procedure lstTripsClick(Sender: TObject);

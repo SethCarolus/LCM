@@ -82,6 +82,11 @@ end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  if (TApplicationState.CurrentUser = nil) OR (TApplicationState.HabitTimer = nil) then
+    begin
+      Exit;
+    end;
+
   LogTimeSpent(TApplicationState.CurrentUser.Id, Ceil(TApplicationState.HabitTimer.elapsedSeconds() / 60));
 end;
 

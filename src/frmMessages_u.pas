@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.Mask, Generics.Collections;
+  Vcl.ComCtrls, Vcl.Mask, Generics.Collections, Vcl.Buttons;
 
 type
   TfrmMessages = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     Label1: TLabel;
     redChat: TRichEdit;
     edtMessage: TEdit;
@@ -17,9 +18,11 @@ type
     pnlChatName: TPanel;
     lstChatDisplayNames: TListBox;
     btnRequest: TButton;
-    Timer1: TTimer;
     btnViewMessageRequests: TButton;
     btnRefresh: TButton;
+    Timer1: TTimer;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstChatDisplayNamesClick(Sender: TObject);
     procedure btnSendMessageClick(Sender: TObject);

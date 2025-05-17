@@ -4,12 +4,13 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TfrmStudentMenu = class(TForm)
     GridPanel1: TGridPanel;
     GridPanel2: TGridPanel;
+    GridPanel3: TGridPanel;
     btnMessages: TButton;
     btnTrips: TButton;
     btnMyTrips: TButton;
@@ -17,6 +18,8 @@ type
     Button5: TButton;
     Button6: TButton;
     Panel1: TPanel;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure btnMessagesClick(Sender: TObject);
     procedure btnTripsClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);

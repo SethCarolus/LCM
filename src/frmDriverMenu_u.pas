@@ -5,19 +5,22 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Mask;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.Buttons;
 
 type
   TfrmDriverMenu = class(TForm)
     GridPanel1: TGridPanel;
     GridPanel2: TGridPanel;
-    Panel1: TPanel;
+    GridPanel3: TGridPanel;
     btnMessages: TButton;
     btnFutreTrips: TButton;
     btnViewVehicles: TButton;
     btnPastTrips: TButton;
     btnHabits: TButton;
     Button6: TButton;
+    Panel1: TPanel;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure btnMessagesClick(Sender: TObject);
     procedure btnViewVehiclesClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);

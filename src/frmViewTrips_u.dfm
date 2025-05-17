@@ -2,7 +2,7 @@ object frmViewTrips: TfrmViewTrips
   Left = 0
   Top = 0
   Caption = 'LCM'
-  ClientHeight = 761
+  ClientHeight = 861
   ClientWidth = 984
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -5239,448 +5239,524 @@ object frmViewTrips: TfrmViewTrips
     E7662EDA6EEC5DC03B81A5A8C2F022A02BC1F176A28AAF2FA2DBC2BBD1B6674F
     D3ECA5BE459A89B6915B05AC017E0538147DAE072538DE6EF4FB7E33DAB4E63E
     E01BC00654C0351BFF0F9023985E9CB05C500000000049454E44AE426082}
+  Position = poOwnerFormCenter
   OnActivate = FormActivate
   TextHeight = 21
   object GridPanel1: TGridPanel
     Left = 0
     Top = 0
     Width = 984
-    Height = 761
-    Margins.Left = 0
-    Margins.Right = 0
-    Margins.Bottom = 0
+    Height = 861
     Align = alClient
-    Alignment = taLeftJustify
-    BevelOuter = bvNone
     ColumnCollection = <
       item
-        Value = 30.000000000000000000
-      end
-      item
-        Value = 35.000000000000000000
-      end
-      item
-        Value = 35.000000000000000000
+        Value = 100.000000000000000000
       end>
     ControlCollection = <
       item
         Column = 0
-        Control = lstTrips
-        Row = 1
-      end
-      item
-        Column = 0
-        Control = Label1
+        Control = GridPanel2
         Row = 0
       end
       item
         Column = 0
-        Control = btnEnquire
-        Row = 2
-      end
-      item
-        Column = 1
-        Control = StackPanel1
+        Control = GridPanel4
         Row = 1
-      end
-      item
-        Column = 2
-        Control = StackPanel2
-        Row = 1
-      end
-      item
-        Column = 2
-        Control = StackPanel3
-        Row = 2
-      end
-      item
-        Column = 1
-        Control = StackPanel4
-        Row = 2
       end>
     RowCollection = <
       item
-        Value = 10.000000000000000000
-      end
-      item
-        Value = 80.000000000000000000
+        Value = 90.000000000000000000
       end
       item
         Value = 10.000000000000000000
       end>
     TabOrder = 0
-    DesignSize = (
-      984
-      761)
-    object lstTrips: TListBox
-      AlignWithMargins = True
-      Left = 10
-      Top = 86
-      Width = 275
-      Height = 589
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
+    object GridPanel2: TGridPanel
+      Left = 1
+      Top = 1
+      Width = 982
+      Height = 773
+      Margins.Left = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
       Align = alClient
-      ItemHeight = 21
+      Alignment = taLeftJustify
+      BevelOuter = bvNone
+      ColumnCollection = <
+        item
+          Value = 30.000000000000000000
+        end
+        item
+          Value = 35.000000000000000000
+        end
+        item
+          Value = 35.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = lstTrips
+          Row = 1
+        end
+        item
+          Column = 0
+          Control = Label1
+          Row = 0
+        end
+        item
+          Column = 0
+          Control = btnEnquire
+          Row = 2
+        end
+        item
+          Column = 1
+          Control = StackPanel1
+          Row = 1
+        end
+        item
+          Column = 2
+          Control = StackPanel2
+          Row = 1
+        end
+        item
+          Column = 2
+          Control = StackPanel3
+          Row = 2
+        end
+        item
+          Column = 1
+          Control = StackPanel4
+          Row = 2
+        end>
+      RowCollection = <
+        item
+          Value = 10.000000000000000000
+        end
+        item
+          Value = 80.000000000000000000
+        end
+        item
+          Value = 10.000000000000000000
+        end>
       TabOrder = 0
-      OnClick = lstTripsClick
-    end
-    object Label1: TLabel
-      Left = 119
-      Top = 20
-      Width = 56
-      Height = 36
-      Anchors = []
-      Caption = 'Trips'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Segoe UI Variable Display'
-      Font.Style = []
-      ParentFont = False
-      ExplicitLeft = 129
-    end
-    object btnEnquire: TButton
-      AlignWithMargins = True
-      Left = 10
-      Top = 695
-      Width = 275
-      Height = 56
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      Caption = 'Enquire'
-      TabOrder = 1
-      OnClick = btnEnquireClick
-    end
-    object StackPanel1: TStackPanel
-      AlignWithMargins = True
-      Left = 298
-      Top = 79
-      Width = 339
-      Height = 603
-      Align = alClient
-      BevelOuter = bvNone
-      ControlCollection = <
-        item
-          Control = Label2
-        end
-        item
-          Control = edtDriverName
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = imgDriver
-        end
-        item
-          Control = btnDriverImageNext
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end>
-      HorizontalPositioning = sphpCenter
-      TabOrder = 2
-      object Label2: TLabel
-        Left = 147
-        Top = 0
-        Width = 44
-        Height = 21
-        Alignment = taCenter
-        Caption = 'Driver'
-      end
-      object edtDriverName: TLabeledEdit
+      DesignSize = (
+        982
+        773)
+      object lstTrips: TListBox
         AlignWithMargins = True
         Left = 10
-        Top = 53
-        Width = 319
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 30
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 47
-        EditLabel.Height = 21
-        EditLabel.Caption = 'Name:'
-        ReadOnly = True
-        TabOrder = 0
-        Text = ''
-      end
-      object imgDriver: TImage
-        AlignWithMargins = True
-        Left = 10
-        Top = 104
-        Width = 320
-        Height = 320
+        Top = 87
+        Width = 275
+        Height = 599
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
         Margins.Bottom = 10
-        Stretch = True
-      end
-      object btnDriverImageNext: TButton
-        AlignWithMargins = True
-        Left = 10
-        Top = 436
-        Width = 319
-        Height = 61
-        Margins.Left = 10
-        Margins.Top = 0
-        Margins.Right = 10
-        Margins.Bottom = 10
         Align = alClient
-        Caption = 'Next'
-        TabOrder = 1
-        OnClick = btnDriverImageNextClick
-      end
-    end
-    object StackPanel2: TStackPanel
-      AlignWithMargins = True
-      Left = 643
-      Top = 79
-      Width = 338
-      Height = 603
-      Align = alClient
-      BevelOuter = bvNone
-      ControlCollection = <
-        item
-          Control = Label3
-        end
-        item
-          Control = edtModel
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = edtNumberPlate
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = edtMaxPassengers
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = edtColor
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = imgVehicle
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end
-        item
-          Control = btnVehicleImageNext
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end>
-      HorizontalPositioning = sphpCenter
-      TabOrder = 3
-      object Label3: TLabel
-        Left = 143
-        Top = 0
-        Width = 52
-        Height = 21
-        Alignment = taCenter
-        Caption = 'Vehicle'
-      end
-      object edtModel: TLabeledEdit
-        AlignWithMargins = True
-        Left = 10
-        Top = 53
-        Width = 318
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 30
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 52
-        EditLabel.Height = 21
-        EditLabel.Caption = 'Model:'
-        ReadOnly = True
-        TabOrder = 1
-        Text = ''
-      end
-      object edtNumberPlate: TLabeledEdit
-        AlignWithMargins = True
-        Left = 10
-        Top = 124
-        Width = 318
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 30
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 104
-        EditLabel.Height = 21
-        EditLabel.Caption = 'Number Plate:'
-        ReadOnly = True
+        ItemHeight = 21
         TabOrder = 0
-        Text = ''
+        OnClick = lstTripsClick
       end
-      object edtMaxPassengers: TLabeledEdit
+      object Label1: TLabel
+        Left = 119
+        Top = 20
+        Width = 56
+        Height = 36
+        Anchors = []
+        Caption = 'Trips'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Segoe UI Variable Display'
+        Font.Style = []
+        ParentFont = False
+        ExplicitLeft = 129
+      end
+      object btnEnquire: TButton
         AlignWithMargins = True
         Left = 10
-        Top = 195
-        Width = 318
-        Height = 29
+        Top = 706
+        Width = 275
+        Height = 57
         Margins.Left = 10
-        Margins.Top = 30
+        Margins.Top = 10
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 119
-        EditLabel.Height = 21
-        EditLabel.Caption = 'Max Passengers:'
-        ReadOnly = True
+        Caption = 'Enquire'
+        TabOrder = 1
+        OnClick = btnEnquireClick
+      end
+      object StackPanel1: TStackPanel
+        AlignWithMargins = True
+        Left = 298
+        Top = 80
+        Width = 337
+        Height = 613
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = Label2
+          end
+          item
+            Control = edtDriverName
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = imgDriver
+          end
+          item
+            Control = btnDriverImageNext
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        HorizontalPositioning = sphpCenter
         TabOrder = 2
-        Text = ''
+        object Label2: TLabel
+          Left = 146
+          Top = 0
+          Width = 44
+          Height = 21
+          Alignment = taCenter
+          Caption = 'Driver'
+        end
+        object edtDriverName: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 53
+          Width = 317
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 47
+          EditLabel.Height = 21
+          EditLabel.Caption = 'Name:'
+          ReadOnly = True
+          TabOrder = 0
+          Text = ''
+        end
+        object imgDriver: TImage
+          AlignWithMargins = True
+          Left = 9
+          Top = 104
+          Width = 320
+          Height = 320
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Stretch = True
+        end
+        object btnDriverImageNext: TButton
+          AlignWithMargins = True
+          Left = 10
+          Top = 436
+          Width = 317
+          Height = 61
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Next'
+          TabOrder = 1
+          OnClick = btnDriverImageNextClick
+        end
       end
-      object edtColor: TLabeledEdit
+      object StackPanel2: TStackPanel
         AlignWithMargins = True
-        Left = 10
-        Top = 266
-        Width = 318
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 30
-        Margins.Right = 10
-        Margins.Bottom = 10
+        Left = 641
+        Top = 80
+        Width = 338
+        Height = 613
         Align = alClient
-        Alignment = taCenter
-        EditLabel.Width = 54
-        EditLabel.Height = 21
-        EditLabel.Caption = 'Colour:'
-        ReadOnly = True
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = Label3
+          end
+          item
+            Control = edtModel
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = edtNumberPlate
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = edtMaxPassengers
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = edtColor
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = imgVehicle
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end
+          item
+            Control = btnVehicleImageNext
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        HorizontalPositioning = sphpCenter
         TabOrder = 3
-        Text = ''
+        object Label3: TLabel
+          Left = 143
+          Top = 0
+          Width = 52
+          Height = 21
+          Alignment = taCenter
+          Caption = 'Vehicle'
+        end
+        object edtModel: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 53
+          Width = 318
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 52
+          EditLabel.Height = 21
+          EditLabel.Caption = 'Model:'
+          ReadOnly = True
+          TabOrder = 1
+          Text = ''
+        end
+        object edtNumberPlate: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 124
+          Width = 318
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 104
+          EditLabel.Height = 21
+          EditLabel.Caption = 'Number Plate:'
+          ReadOnly = True
+          TabOrder = 0
+          Text = ''
+        end
+        object edtMaxPassengers: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 195
+          Width = 318
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 119
+          EditLabel.Height = 21
+          EditLabel.Caption = 'Max Passengers:'
+          ReadOnly = True
+          TabOrder = 2
+          Text = ''
+        end
+        object edtColor: TLabeledEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 266
+          Width = 318
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 30
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          EditLabel.Width = 54
+          EditLabel.Height = 21
+          EditLabel.Caption = 'Colour:'
+          ReadOnly = True
+          TabOrder = 3
+          Text = ''
+        end
+        object imgVehicle: TImage
+          AlignWithMargins = True
+          Left = 10
+          Top = 317
+          Width = 318
+          Height = 200
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          ParentShowHint = False
+          ShowHint = False
+          Stretch = True
+        end
+        object btnVehicleImageNext: TButton
+          AlignWithMargins = True
+          Left = 10
+          Top = 529
+          Width = 318
+          Height = 61
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Next'
+          TabOrder = 4
+          OnClick = btnVehicleImageNextClick
+        end
       end
-      object imgVehicle: TImage
+      object StackPanel3: TStackPanel
+        Left = 638
+        Top = 696
+        Width = 344
+        Height = 77
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = edtStartTime
+            HorizontalPositioning = sphpCenter
+          end
+          item
+            Control = dtpStartTime
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        TabOrder = 4
+        object edtStartTime: TLabel
+          AlignWithMargins = True
+          Left = 133
+          Top = 3
+          Width = 78
+          Height = 21
+          Alignment = taCenter
+          Caption = 'Start Time:'
+        end
+        object dtpStartTime: TDateTimePicker
+          AlignWithMargins = True
+          Left = 10
+          Top = 29
+          Width = 324
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Date = 45759.000000000000000000
+          Time = 0.637265706020116300
+          Kind = dtkDateTime
+          TabOrder = 0
+        end
+      end
+      object StackPanel4: TStackPanel
+        Left = 295
+        Top = 696
+        Width = 343
+        Height = 77
+        Align = alClient
+        BevelOuter = bvNone
+        ControlCollection = <
+          item
+            Control = Label4
+            HorizontalPositioning = sphpCenter
+          end
+          item
+            Control = edtPricePerPassenger
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
+          end>
+        TabOrder = 5
+        object Label4: TLabel
+          AlignWithMargins = True
+          Left = 151
+          Top = 3
+          Width = 40
+          Height = 21
+          Alignment = taCenter
+          Caption = 'Price:'
+        end
+        object edtPricePerPassenger: TEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 29
+          Width = 323
+          Height = 29
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Alignment = taCenter
+          TabOrder = 0
+        end
+      end
+    end
+    object GridPanel4: TGridPanel
+      Left = 1
+      Top = 774
+      Width = 982
+      Height = 86
+      Align = alClient
+      BevelOuter = bvNone
+      ColumnCollection = <
+        item
+          Value = 33.333333333333340000
+        end
+        item
+          Value = 33.333333333333340000
+        end
+        item
+          Value = 33.333333333333310000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = btnBack
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      TabOrder = 1
+      object btnBack: TBitBtn
         AlignWithMargins = True
         Left = 10
-        Top = 317
-        Width = 318
-        Height = 200
+        Top = 10
+        Width = 117
+        Height = 66
         Margins.Left = 10
         Margins.Top = 10
-        Margins.Right = 10
+        Margins.Right = 200
         Margins.Bottom = 10
         Align = alClient
-        ParentShowHint = False
-        ShowHint = False
-        Stretch = True
-      end
-      object btnVehicleImageNext: TButton
-        AlignWithMargins = True
-        Left = 10
-        Top = 529
-        Width = 318
-        Height = 61
-        Margins.Left = 10
-        Margins.Top = 0
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Caption = 'Next'
-        TabOrder = 4
-        OnClick = btnVehicleImageNextClick
-      end
-    end
-    object StackPanel3: TStackPanel
-      Left = 640
-      Top = 685
-      Width = 344
-      Height = 76
-      Align = alClient
-      BevelOuter = bvNone
-      ControlCollection = <
-        item
-          Control = edtStartTime
-          HorizontalPositioning = sphpCenter
-        end
-        item
-          Control = dtpStartTime
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end>
-      TabOrder = 4
-      object edtStartTime: TLabel
-        AlignWithMargins = True
-        Left = 133
-        Top = 3
-        Width = 78
-        Height = 21
-        Alignment = taCenter
-        Caption = 'Start Time:'
-      end
-      object dtpStartTime: TDateTimePicker
-        AlignWithMargins = True
-        Left = 10
-        Top = 29
-        Width = 324
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 0
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Date = 45759.000000000000000000
-        Time = 0.637265706020116300
-        Kind = dtkDateTime
-        TabOrder = 0
-      end
-    end
-    object StackPanel4: TStackPanel
-      Left = 295
-      Top = 685
-      Width = 345
-      Height = 76
-      Align = alClient
-      BevelOuter = bvNone
-      ControlCollection = <
-        item
-          Control = Label4
-          HorizontalPositioning = sphpCenter
-        end
-        item
-          Control = edtPricePerPassenger
-          HorizontalPositioning = sphpFill
-          VerticalPositioning = spvpFill
-        end>
-      TabOrder = 5
-      object Label4: TLabel
-        AlignWithMargins = True
-        Left = 152
-        Top = 3
-        Width = 40
-        Height = 21
-        Alignment = taCenter
-        Caption = 'Price:'
-      end
-      object edtPricePerPassenger: TEdit
-        AlignWithMargins = True
-        Left = 10
-        Top = 29
-        Width = 325
-        Height = 29
-        Margins.Left = 10
-        Margins.Top = 0
-        Margins.Right = 10
-        Margins.Bottom = 10
-        Align = alClient
-        Alignment = taCenter
+        Caption = '&Back'
+        Kind = bkClose
+        NumGlyphs = 2
         TabOrder = 0
       end
     end

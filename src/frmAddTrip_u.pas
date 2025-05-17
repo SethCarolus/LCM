@@ -6,11 +6,12 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels, iVehicle_u, System.Threading,
-  Vcl.NumberBox;
+  Vcl.NumberBox, Vcl.Buttons;
 
 type
   TfrmAddTrip = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstVehicleNames: TListBox;
     StackPanel2: TStackPanel;
     Label3: TLabel;
@@ -21,15 +22,17 @@ type
     imgVehicle: TImage;
     btnVehicleImageNext: TButton;
     StackPanel4: TStackPanel;
-    Label4: TLabel;
-    Label2: TLabel;
-    dtpStartTime: TDateTimePicker;
     Label5: TLabel;
     edtName: TEdit;
+    Label4: TLabel;
+    nbxPrice: TNumberBox;
+    Label2: TLabel;
+    dtpStartTime: TDateTimePicker;
     Label6: TLabel;
     btnAdd: TButton;
     Label1: TLabel;
-    nbxPrice: TNumberBox;
+    GridPanel3: TGridPanel;
+    btnBack: TBitBtn;
     procedure lstVehicleNamesClick(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnVehicleImageNextClick(Sender: TObject);

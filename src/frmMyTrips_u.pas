@@ -5,27 +5,30 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels, Vcl.NumberBox;
+  Vcl.ExtCtrls, Vcl.Mask, Vcl.WinXPanels, Vcl.NumberBox, Vcl.Buttons;
 
 type
   TfrmMyTrips = class(TForm)
     GridPanel1: TGridPanel;
+    GridPanel2: TGridPanel;
     lstTrips: TListBox;
     Label1: TLabel;
     StackPanel3: TStackPanel;
     edtStartTime: TLabel;
     dtpStartTime: TDateTimePicker;
+    Label4: TLabel;
+    edtPricePerPassenger: TEdit;
     StackPanel4: TStackPanel;
     StackPanel1: TStackPanel;
-    Label2: TLabel;
-    redTripComment: TRichEdit;
     Label3: TLabel;
-    Label5: TLabel;
-    nbxRating: TNumberBox;
-    edtPricePerPassenger: TEdit;
-    Label4: TLabel;
-    btnSubmit: TButton;
     edtHeader: TEdit;
+    redTripComment: TRichEdit;
+    Label5: TLabel;
+    Label2: TLabel;
+    nbxRating: TNumberBox;
+    btnSubmit: TButton;
+    GridPanel4: TGridPanel;
+    btnBack: TBitBtn;
     procedure FormActivate(Sender: TObject);
     procedure lstTripsClick(Sender: TObject);
     procedure btnSubmitClick(Sender: TObject);
