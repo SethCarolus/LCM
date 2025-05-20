@@ -5,9 +5,23 @@ interface
 uses iImageHandler_u, iImage_u, Generics.Collections;
 
 type
+  ///<summary>
+  /// Handles image retrieval for vehicles and drivers by querying the database.
+  ///</summary>
   TImageHandler = class(TInterfacedObject, IImageHandler)
     public
+      ///<summary>
+      /// Retrieves a list of images associated with a specific vehicle.
+      ///</summary>
+      ///<param name="id">The ID of the vehicle whose images are to be retrieved.</param>
+      ///<returns>A list of IImage objects representing the vehicle's images.</returns>
       function getImagesForVehicleWith(const id: Integer): TList<IImage>;
+
+      ///<summary>
+      /// Retrieves a list of images associated with a specific driver.
+      ///</summary>
+      ///<param name="id">The ID of the driver whose images are to be retrieved.</param>
+      ///<returns>A list of IImage objects representing the driver's images.</returns>
       function getImagesForDriverWith(const id: Integer): TList<IImage>;
   end;
 

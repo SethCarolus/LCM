@@ -1,7 +1,9 @@
 unit iVehicleHandler_u;
 
 interface
-  uses iVehicle_u, Generics.Collections;
+
+uses iVehicle_u, Generics.Collections;
+
 type
   /// <summary>
   /// Represents an interface for handling vehicle data interactions.
@@ -9,23 +11,28 @@ type
   IVehicleHandler = interface
 
     /// <summary>
-    /// Retrieves a list of vehicles.
+    /// Returns a list of all the vehicles in the database.
     /// </summary>
-    /// <returns>
-    /// A <see cref="TList{IVehicle}"/> containing the collection of vehicles.
-    /// </returns>
-    /// <remarks>
-    /// This function fetches all available vehicles from the data source or storage and returns them as a list of <see cref="IVehicle"/> objects.
-    /// The list is a generic collection of type <see cref="IVehicle"/> and may contain multiple vehicle objects.
-    /// </remarks>
+    /// <returns>A list of IVehicle</returns>
     function getVehicles(): TList<IVehicle>;
 
+    /// <summary>
+    /// Returns a list of all the vehicles for a particular driver.
+    /// </summary>
+    /// <param name="id">The drivers ID.</param>
+    /// <returns>A list of IVehicle</returns>
     function getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
 
+    /// <summary>
+    /// Returns a particular vehicle.
+    /// </summary>
+    /// <param name="id">The vehicle's id.</param>
+    /// <returns>A Vehicle</returns>
     function getVehicleWith(const id: Integer): IVehicle;
   end;
 
 implementation
 
 uses dmMain_u, SysUtils;
+
 end.

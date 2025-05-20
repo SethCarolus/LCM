@@ -5,14 +5,34 @@ interface
 uses iVehicleHandler_u, iVehicle_u ,Generics.Collections, iImageHandler_u;
 
 type
-  TVehicleHandler = class(TInterfacedObject, IVehicleHandler)
-    private
-      fImageHandler: IImageHandler;
-    public
-      constructor create(const imageHandler: IImageHandler);
-      function getVehicles(): TList<IVehicle>;
-      function getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
-      function getVehicleWith(const id: Integer): IVehicle;
+   /// <summary>
+   /// A class representing a away to deal with Vehicle data interactions.
+   /// </summary>
+TVehicleHandler = class(TInterfacedObject, IVehicleHandler)
+  private
+    fImageHandler: IImageHandler;
+  public
+    constructor create(const imageHandler: IImageHandler);
+
+    /// <summary>
+    /// Returns a list of all the vehicles in the database.
+    /// </summary>
+    /// <returns>A list of IVehicle</returns>
+    function getVehicles(): TList<IVehicle>;
+
+    /// <summary>
+    /// Returns a list of all the vehicles for a particular driver.
+    /// </summary>
+    ///  <param name="id">The drivers ID.</param>
+    /// <returns>A list of IVehicle</returns>
+    function getVehiclesForDriverWith(id: Integer): TList<IVehicle>;
+
+    /// <summary>
+    /// Returns a particular vehicle.
+    /// </summary>
+    /// <param name="id">The vehicle's id.</param>
+    /// <returns>A Vehicle</returns>
+    function getVehicleWith(const id: Integer): IVehicle;
   end;
 
 implementation

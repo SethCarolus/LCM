@@ -6,14 +6,28 @@ uses iParentHandler_u, iUserHandler_u, iParent_u,
      iBankCardHandler_u;
 
 type
+  ///<summary>
+  /// Handles retrieval of parent data including associated user and optional bank card info.
+  ///</summary>
   TParentHandler = class(TInterfacedObject, IParentHandler)
-    private
-      fUserHandler: IUserHandler;
-      fBankCardHandler: IBankCardHandler;
-    public
-      constructor create(const userHandler: IUserHandler;
-                         const bankCardHandler: IBankCardHandler);
-      function getParent(const userId: Integer): IParent;
+  private
+    fUserHandler: IUserHandler;
+    fBankCardHandler: IBankCardHandler;
+  public
+    ///<summary>
+    /// Creates a new instance of TParentHandler with dependencies injected.
+    ///</summary>
+    ///<param name="userHandler">An object that implements IUserHandler for retrieving user data.</param>
+    ///<param name="bankCardHandler">An object that implements IBankCardHandler for retrieving bank card data.</param>
+    constructor create(const userHandler: IUserHandler;
+                       const bankCardHandler: IBankCardHandler);
+
+    ///<summary>
+    /// Retrieves the parent record associated with a given user ID.
+    ///</summary>
+    ///<param name="userId">The ID of the user to find the parent for.</param>
+    ///<returns>An IParent object containing parent details.</returns>
+    function getParent(const userId: Integer): IParent;
   end;
 
 implementation
