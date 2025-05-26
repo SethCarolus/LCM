@@ -61,6 +61,9 @@ begin
 
   TApplicationState.CurrentUser := getUserWith(Username);
   TApplicationState.HabitTimer := TFactory.createTimer();
+
+  Username := '';
+  Password := '';
   Navigate();
 end;
 
@@ -102,7 +105,7 @@ end;
 
 procedure TfrmMain.navigate;
 begin
-  var userTypeId := GetUserTypeIdWith(Username);
+  var userTypeId := GetUserTypeIdWith(TApplicationState.CurrentUser.Username);
 
   case userTypeId of
     // Driver
@@ -155,11 +158,13 @@ end;
 procedure TfrmMain.setPassword(const password: string);
 begin
   sPassword := password;
+  edtPassword.Text := password;
 end;
 
 procedure TfrmMain.setUsername(const username: string);
 begin
   sUsername := username;
+  edtUsername.Text := username;
 end;
 
 end.

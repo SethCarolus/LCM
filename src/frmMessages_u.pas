@@ -37,10 +37,6 @@ type
     procedure setContent(const content: string);
     property Content: string read getContent write setContent;
 
-    function getSearch(): string;
-    procedure setSearch(const search: string);
-    property Search: string read getSearch write setSearch;
-
     procedure DisplayDisplayNames();
     procedure DisplayChat();
     procedure RefreshAsync();
@@ -52,7 +48,6 @@ type
 var
   frmMessages: TfrmMessages;
   sContent: string;
-  sSearch: string;
 implementation
 
 uses clsFactory_u, clsApplicationState_u, IChatHandler_u, frmRequest_u,
@@ -85,7 +80,15 @@ begin
   if (TApplicationState.SelectedChat = nil) then
     begin
       ShowMessage('You need to be in a chat to send a message.');
+      Exit;
     end;
+
+  if (string.IsNullOrWhiteSpace(Content)) then
+    begin
+      ShowMessage('Please enter a message!');
+      Exit;
+    end;
+
 
   handler.sendMessage(TApplicationState.CurrentUser.Id,
                       TApplicationState.SelectedChat.UserId,
@@ -99,6 +102,10 @@ begin
 
   TApplicationState.UsersForRequestAcceptance :=
     handler.getUsersForRequestAcceptanceForUserWith(TApplicationState.CurrentUser.Id);
+
+  var number := handler.getNumberOfRequestsForUserWith(TApplicationState.CurrentUser.Id);
+
+  ShowMessage('Number of Requests: ' + number.ToString());
 
   var form := TfrmViewRequests.Create(Self);
   form.Show();
@@ -178,11 +185,6 @@ begin
   Result := sContent;
 end;
 
-function TfrmMessages.getSearch: string;
-begin
-  Result := sSearch;
-end;
-
 procedure TfrmMessages.lstChatDisplayNamesClick(Sender: TObject);
 begin
   var index := lstChatDisplayNames.ItemIndex;
@@ -237,11 +239,6 @@ procedure TfrmMessages.setContent(const content: string);
 begin
   sContent := content;
   edtMessage.Text := sContent;
-end;
-
-procedure TfrmMessages.setSearch(const search: string);
-begin
-  sSearch := search;
 end;
 
 procedure TfrmMessages.Timer1Timer(Sender: TObject);

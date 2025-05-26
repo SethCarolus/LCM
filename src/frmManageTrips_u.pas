@@ -34,6 +34,7 @@ type
     btnEnquiries: TButton;
     GridPanel4: TGridPanel;
     btnBack: TBitBtn;
+    btnInterestingFact: TButton;
     procedure FormActivate(Sender: TObject);
     procedure btnVehicleImageNextClick(Sender: TObject);
     procedure lstTripsClick(Sender: TObject);
@@ -42,6 +43,7 @@ type
     procedure btnEditClick(Sender: TObject);
     procedure btnViewEnquiriesClick(Sender: TObject);
     procedure btnEnquiriesClick(Sender: TObject);
+    procedure btnInterestingFactClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -150,6 +152,15 @@ begin
   Show();
 end;
 
+procedure TfrmManageTrips.btnInterestingFactClick(Sender: TObject);
+begin
+  var handler := TFactory.createTripHandler();
+
+  var cost: Currency := handler.getHighestTripPriceOfAllTime();
+
+  ShowMessage('The most expensive trip per passenger has been: ' + CurrToStrF(cost, ffCurrency, 2))
+
+end;
 procedure TfrmManageTrips.btnVehicleImageNextClick(Sender: TObject);
 begin
   if (TApplicationState.SelectedTrip = nil) then

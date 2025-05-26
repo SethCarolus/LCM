@@ -51,6 +51,8 @@ type
     function getUsersForRequestAcceptanceForUserWith(const id: Integer)
       : TList<IUser>;
 
+    function getNumberOfRequestsForUserWith(const id: Integer): Integer;
+
     /// <summary>
     /// Accepts a chat request from a sender to a receiver.
     /// </summary>
@@ -88,7 +90,9 @@ procedure TChatHandler.acceptRequest(const senderId, receiverId: Integer);
 begin
   with dmMain.qryChat do
   begin
-    SQL.Text :=    '''      UPDATE tblMessageRequest SET accepted = Yes WHERE sender_id = : senderId AND
+    SQL.Text :=
+    '''
+      UPDATE tblMessageRequest SET accepted = Yes WHERE sender_id = : senderId AND
       receiver_id = : receiverId;
     ''';
     Parameters.ParamByName(' senderId ').Value := senderId; Parameters.
@@ -205,6 +209,24 @@ begin
   end;
 end;
 
+function TChatHandler.getNumberOfRequestsForUserWith(
+  const id: Integer): Integer;
+begin
+  with dmMain.qryChat do
+    begin
+    SQL.Text :=
+      '''
+        SELECT COUNT(*) AS requests
+        FROM tblUser, tblMessageRequest
+        WHERE(tblUser.id = tblMessageRequest.sender_id) AND
+        NOT accepted AND tblMessageRequest.receiver_id = :id
+    ''';
+    Parameters.ParamByName('id').Value := id;
+    Open;
+    Result := FieldByName('requests').Value;
+    end;
+end;
+
 function TChatHandler.getUsersForRequestAcceptanceForUserWith(const id: Integer)
   : TList<IUser>;
 begin
@@ -212,10 +234,13 @@ begin
 
   with dmMain.qryChat do
   begin
-    SQL.Text :=    '''      SELECT sender_id, tblUser.id, username, first_name, last_name, display_name,      created_on, last_login, user_type_id FROM tblUser,
+    SQL.Text :=
+    '''
+      SELECT sender_id, tblUser.id, username, first_name, last_name, display_name,
+      created_on, last_login, user_type_id FROM tblUser,
       tblMessageRequest WHERE(tblUser.id = tblMessageRequest.sender_id) AND
       NOT accepted AND tblMessageRequest.receiver_id =
-      : id
+      :id
     ''';
       Parameters.ParamByName('id').Value := id;
     Open;
@@ -238,7 +263,9 @@ begin
   // get ids
   with dmMain.qryChat do
   begin
-    SQL.Text :=    '''      SELECT DISTINCT sender_id, receiver_id FROM tblMessage WHERE(sender_id = ?) OR
+    SQL.Text :=
+    '''
+      SELECT DISTINCT sender_id, receiver_id FROM tblMessage WHERE(sender_id = ?) OR
       (receiver_id = ?)
     ''';
     Parameters[0].Value := userId; Parameters[1].Value := userId;

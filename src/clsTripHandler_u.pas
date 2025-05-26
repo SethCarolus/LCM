@@ -20,7 +20,6 @@ type
       function getTripsForStudent(const studentId: Integer): TList<ITrip>;overload;
       function getTripsForStudentThatNeedPayment(const studentId: Integer): TList<ITrip>;
       function getTripsForDriver(const driverId: Integer): TList<ITrip>;
-
       procedure addTrip(const trip_name: string; const driverId: Integer;
                         const vehicleId: Integer; const startTime: TDateTime;
                         const costPerPassenger: Currency);
@@ -33,6 +32,7 @@ type
       procedure addTripComment(const header: string;const content: string; const userId: Integer;
                                const tripId: Integer);
       procedure changeTripsToPayed(const trips: TList<ITrip>; const studentId: Integer);
+      function getHighestTripPriceOfAllTime(): Currency;
   end;
 
 implementation
@@ -209,6 +209,20 @@ begin
 
           Next();
         end;
+    end;
+end;
+
+function TTripHandler.getHighestTripPriceOfAllTime: Currency;
+begin
+  with dmMain.qryTrip do
+    begin
+      SQL.Text :=
+      '''
+        SELECT Max(cost_per_passenger) as cost
+        FROM tblTrip;
+      ''';
+      Open;
+      Result := FieldByName('cost').Value;
     end;
 end;
 

@@ -333,6 +333,11 @@ object frmManageTrips: TfrmManageTrips
             Control = dtpStartTime
             HorizontalPositioning = sphpFill
             VerticalPositioning = spvpFill
+          end
+          item
+            Control = btnInterestingFact
+            HorizontalPositioning = sphpFill
+            VerticalPositioning = spvpFill
           end>
         TabOrder = 2
         object Label4: TLabel
@@ -384,6 +389,21 @@ object frmManageTrips: TfrmManageTrips
           Enabled = False
           Kind = dtkDateTime
           TabOrder = 1
+        end
+        object btnInterestingFact: TButton
+          AlignWithMargins = True
+          Left = 10
+          Top = 150
+          Width = 324
+          Height = 59
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Align = alClient
+          Caption = 'Interesting Fact'
+          TabOrder = 2
+          OnClick = btnInterestingFactClick
         end
       end
       object StackPanel1: TStackPanel

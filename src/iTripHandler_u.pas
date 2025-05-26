@@ -23,6 +23,7 @@ type
                              const tripId: Integer);
     procedure changeTripsToPayed(const trips: TList<ITrip>;
                                  const studentId: Integer);
+      function getHighestTripPriceOfAllTime(): Currency;
   end;
 
 implementation

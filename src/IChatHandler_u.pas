@@ -31,6 +31,8 @@ type
     function getChatRequestableUsersForUserWith(const id: Integer)
       : TList<IUser>;
 
+    function getNumberOfRequestsForUserWith(const id: Integer): Integer;
+
     /// <summary>
     ///   Retrieves all users who have had chat history with the specified user.
     /// </summary>
